@@ -1,6 +1,12 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {NAVIGATION_LOGIN, NAVIGATION_MAIN, NAVIGATION_SPLASH} from './routes';
+import {
+  NAVIGATION_LOGIN,
+  NAVIGATION_MAIN,
+  NAVIGATION_PROFILE,
+  NAVIGATION_SPLASH,
+  NAVIGATION_VERIFY_CODE,
+} from './routes';
 import * as Screens from 'components';
 
 const Stack = createNativeStackNavigator();
@@ -13,6 +19,10 @@ const StackNavigator = () => {
       {/* <Stack.Screen name={NAVIGATION_MAIN} component={Screens.Main} /> */}
       <Stack.Screen name={NAVIGATION_SPLASH} component={Screens.Splash} />
       <Stack.Screen name={NAVIGATION_LOGIN} component={Screens.Login} />
+      <Stack.Screen
+        name={NAVIGATION_VERIFY_CODE}
+        component={Screens.VerifyCode}
+      />
     </Stack.Navigator>
   );
 };
