@@ -13,19 +13,19 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   errorMessage: {
-    color: 'red',
+    color: '#EF0000',
     fontSize: 14,
     paddingTop: 5,
   },
 
   container: {
-    paddingHorizontal: 15,
+    paddingHorizontal: 24,
     flex: 1,
     paddingVertical: 30,
     backgroundColor: Colors.backgroundColor,
   },
   textHello: {
-    fontWeight: 'light',
+    fontWeight: '500',
     fontSize: 14,
     alignSelf: 'center',
     color: 'grey',
@@ -80,6 +80,7 @@ const styles = StyleSheet.create({
   styleCheckbox: {
     height: 18,
     width: 20,
+    marginRight: 10,
   },
   buttonSkip: {
     paddingHorizontal: 10,
@@ -97,10 +98,10 @@ const styles = StyleSheet.create({
     // borderRadius: 60,
     // justifyContent: 'center',
     // alignItems: 'center',
-    width: widthDevice * 0.9,
-    height: 50,
+    width: widthDevice - 50,
+    height: 48,
     borderRadius: 30,
-    backgroundColor: '#004D40',
+    backgroundColor: Colors.buttonBackground,
     alignItems: 'center',
     justifyContent: 'center',
   },
