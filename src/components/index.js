@@ -8,5 +8,6 @@ import Main from './Main/Main';
 import Home from './Home/Home';
 import Login from './Login/Login';
 import VerifyCode from './VerifyCode/VerifyCode';
+import MyPatient from './MyPatient/MyPatient';
 
-export {Splash, Main, Home, Login, VerifyCode};
+export {Splash, Main, Home, Login, VerifyCode, MyPatient};
