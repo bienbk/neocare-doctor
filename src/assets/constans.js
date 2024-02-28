@@ -18,6 +18,9 @@ export const empty_logo = require('assets/images/empty_logo.png');
 export const card_blue = require('assets/images/card_blue.jpg');
 export const card_pink = require('assets/images/card_pink.jpg');
 export const avatar = require('assets/images/avatar.png');
+export const home_img = require('assets/images/home.png');
+
+export const MIDDLE_DOT = '\u25CF';
 export function formatMoney(x) {
   return x && x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }

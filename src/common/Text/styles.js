@@ -44,13 +44,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: Colors.gray.gray10,
     fontWeight: '600',
-    fontStyle: 'normal',
+    fontStyle: 'bold',
   },
   moneyBold20: {
     fontFamily: 'SVN-Poppins-Bold',
     fontSize: 20,
     color: Colors.gray.gray10,
-    fontWeight: isAndroid ? 'normal' : '700',
+    fontWeight: isAndroid ? 'bold' : '700',
   },
 });
 

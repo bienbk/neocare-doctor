@@ -5,14 +5,23 @@ import {TextNormal, TextSemiBold} from '../Text/TextFont';
 import {widthDevice} from '../../assets/constans';
 import Colors from '../../theme/Colors';
 
-const CustomButton = ({onPress, label, styledButton, isDisabled}) => {
+const CustomButton = ({
+  onPress,
+  label,
+  styledButton,
+  isDisabled,
+  styledLabel,
+}) => {
   // const [value, setValue] = useState(false);
   return (
     <TouchableOpacity
       onPress={onPress}
       disabled={isDisabled}
       style={styledButton ? styledButton : styles.buttonContinue}>
-      <TextSemiBold style={styles.textContinueButton}>{label}</TextSemiBold>
+      <TextSemiBold
+        style={styledLabel ? styledLabel : styles.textContinueButton}>
+        {label}
+      </TextSemiBold>
     </TouchableOpacity>
   );
 };

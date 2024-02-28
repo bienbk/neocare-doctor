@@ -5,14 +5,14 @@ import {TextNormal} from '../Text/TextFont';
 import Colors from '../../theme/Colors';
 import {widthDevice} from '../../assets/constans';
 import LinearGradient from 'react-native-linear-gradient';
-// import Svg from '../Svg/Svg';
+import Svg from '../Svg/Svg';
 
 const ProgressLine = ({isDetailDoctor}) => {
   return (
     <View style={styles.wrapperTimeSection}>
       {!isDetailDoctor && (
         <View style={styles.wrapperTitleTime}>
-          {/* <Svg name={'icon_checked'} size={16} /> */}
+          <Svg name={'icon_checked'} size={16} />
           <TextNormal style={styles.textTitleTime}>
             Gói chăm sóc sức khoẻ 6 tháng
           </TextNormal>

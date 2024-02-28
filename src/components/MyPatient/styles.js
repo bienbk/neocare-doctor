@@ -77,25 +77,29 @@ const styles = StyleSheet.create({
   },
   wrapperProfileContent: {paddingHorizontal: 10},
   textDoctorName: {marginBottom: 5, fontWeight: 'bold', fontSize: 17},
-  textDoctorDepartment: {
+  diseaseText: {
     marginBottom: 5,
     color: Colors.red.red40,
     paddingVertical: 2,
     backgroundColor: Colors.red.red90,
-    paddingHorizontal: 8,
+    width: '80%',
     textAlign: 'center',
     borderRadius: 8,
   },
+  subtitleText: {color: Colors.gray.gray60, paddingBottom: 5},
   wrapperMydoctor: {
     backgroundColor: Colors.backgroundColor,
     marginTop: -30,
     width: widthDevice,
     paddingHorizontal: 15,
-    paddingTop: 30,
+    paddingTop: 10,
     // minHeight: 50,
     borderRadius: 32,
     zIndex: 100,
     alignSelf: 'center',
+  },
+  requestingText: {
+    color: Colors.gray.gray60
   },
   // wrapperFollowingdoctor: {
   //   width: widthDevice,

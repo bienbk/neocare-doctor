@@ -64,7 +64,7 @@ const Login = ({navigation}) => {
                 style={styles.containerButtonInputPhone}>
                 <View style={styles.viewImageVietnam}>
                   {/* <Images source={icon_vietnam} style={styles.imageVietNam} /> */}
-                  {/* <Svg name={'viet'} size={22} style={styles.imageVietNam} /> */}
+                  <Svg name={'viet'} size={22} style={styles.imageVietNam} />
                 </View>
                 <TextNormal style={styles.codeCountry}>(+84)</TextNormal>
                 <TextInput

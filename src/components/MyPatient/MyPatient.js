@@ -25,22 +25,23 @@ import MyModal from '../../common/MyModal/MyModal';
 import CustomButton from '../../common/CustomButton/CustomButton';
 import PatientItem from './PatientItem';
 import HeaderTab from './HeaderTab';
+import { NAVIGATION_PACKAGE_DETAILS } from '../../navigation/routes';
 
 const doctors = [
   {
     id: 1,
     name: 'Nguyễn Hữu Nghĩa',
-    class: 'PGS.TS.BS',
-    department: 'Ung bướu',
-    address: 'Long Bien,TP Ha Noi',
+    year: '1969',
+    gender: 'Nam',
+    disease: 'Huyết áp cao',
     isConnect: true,
   },
   {
     id: 2,
     name: 'Lê Hoàng Bảo',
-    class: 'BS',
-    department: 'Nội tiết',
-    address: 'Cau Giay,TP Ha Noi',
+    year: '1965',
+    gender: 'Nam',
+    disease: 'Tiểu đuờng',
     isConnect: true,
   },
   {
@@ -76,8 +77,20 @@ const MyPatient = ({navigation}) => {
   useEffect(() => {
     setListDoctor(doctors);
   }, []);
+  const handleSelectPatient = item => {
+    if (tabActive !== 3 || !item) {
+      return;
+    }
+    navigation.navigate(NAVIGATION_PACKAGE_DETAILS);
+  };
   const renderDoctorItem = ({item, index}) => {
-    return <PatientItem item={item} selectItem={() => {}} />;
+    return (
+      <PatientItem
+        item={item}
+        selectItem={() => handleSelectPatient(item)}
+        tabActive={tabActive}
+      />
+    );
   };
   return (
     <SafeAreaView style={styles.containerSafeArea}>
@@ -106,12 +119,16 @@ const MyPatient = ({navigation}) => {
         </LinearGradient>
         <View style={styles.container}>
           <View style={styles.wrapperMydoctor}>
-            <HeaderTab isSelected={tabActive} onPressTab={val => setTabActive(val)}/>
+            <HeaderTab
+              isSelected={tabActive}
+              onPressTab={val => setTabActive(val)}
+            />
             {listDoctor && (
               <FlatList
                 scrollEnabled={false}
                 data={listDoctor.filter(i => i.id <= 2)}
                 showsVerticalScrollIndicator={false}
+                contentContainerStyle={{paddingTop: 10}}
                 keyExtractor={(item, index) => `${item.name}-${index}`}
                 renderItem={renderDoctorItem}
               />
