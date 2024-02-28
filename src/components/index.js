@@ -9,5 +9,6 @@ import Home from './Home/Home';
 import Login from './Login/Login';
 import VerifyCode from './VerifyCode/VerifyCode';
 import MyPatient from './MyPatient/MyPatient';
+import PackageDetails from './PackageDetails/PackageDetails';
 
-export {Splash, Main, Home, Login, VerifyCode, MyPatient};
+export {Splash, Main, Home, Login, VerifyCode, MyPatient, PackageDetails};

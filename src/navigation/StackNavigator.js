@@ -3,6 +3,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {
   NAVIGATION_LOGIN,
   NAVIGATION_MAIN,
+  NAVIGATION_PACKAGE_DETAILS,
   NAVIGATION_PROFILE,
   NAVIGATION_SPLASH,
   NAVIGATION_VERIFY_CODE,
@@ -22,6 +23,10 @@ const StackNavigator = () => {
       <Stack.Screen
         name={NAVIGATION_VERIFY_CODE}
         component={Screens.VerifyCode}
+      />
+      <Stack.Screen
+        name={NAVIGATION_PACKAGE_DETAILS}
+        component={Screens.PackageDetails}
       />
     </Stack.Navigator>
   );

@@ -10,7 +10,7 @@ import styles from './styles';
 import {avatar, doctor_avatar} from '../../assets/constans';
 import ProgressLine from '../../common/ProgressLine/ProgressLine';
 
-const PatientItem = ({item, selectItem}) => {
+const PatientItem = ({item, selectItem, tabActive}) => {
   return (
     <TouchableOpacity onPress={selectItem} style={[styles.wrapperDoctorItem]}>
       <View
@@ -25,12 +25,26 @@ const PatientItem = ({item, selectItem}) => {
         />
         <View style={styles.wrapperProfileContent}>
           <TextSemiBold style={styles.textDoctorName}>{item.name}</TextSemiBold>
-          <TextSmallTwelve style={styles.textDoctorDepartment}>
-            {item.department}
-          </TextSmallTwelve>
+          {tabActive !== 3 ? (
+            <View>
+              <TextSmallTwelve
+                style={
+                  styles.subtitleText
+                }>{`${item.gender} | ${item.year}`}</TextSmallTwelve>
+              <TextSmallTwelve style={styles.diseaseText}>
+                {item.disease}
+              </TextSmallTwelve>
+            </View>
+          ) : (
+            <TextNormal style={styles.requestingText}>
+              {'Gói chăm sóc đặc biệt 6 tháng'}
+            </TextNormal>
+          )}
         </View>
       </View>
-      {item && item.isConnect && <ProgressLine isDetailDoctor={false} />}
+      {item && item.isConnect && tabActive !== 3 && (
+        <ProgressLine isDetailDoctor={false} />
+      )}
       {/* {item && item.isConnect && <ProgressLine isDetailDoctor={false} />} */}
     </TouchableOpacity>
   );

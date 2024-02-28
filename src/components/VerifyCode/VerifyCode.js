@@ -35,13 +35,13 @@ import {
   TextNormalSemiBold,
   TextSemiBold,
 } from 'common/Text/TextFont';
-import Loading from 'common/Loading/Loading';
-import {CommonActions} from '@react-navigation/native';
-import Svg from 'common/Svg/Svg';
-import {OneSignal} from 'react-native-onesignal';
+// import Loading from 'common/Loading/Loading';
+// import {CommonActions} from '@react-navigation/native';
+// import Svg from 'common/Svg/Svg';
+// import {OneSignal} from 'react-native-onesignal';
 import {asyncStorage} from 'store/index';
 import strings from 'localization/Localization';
-import {NAVIGATION_MAIN, NAVIGATION_PROFILE_HEALTH} from '../../navigation/routes';
+import {NAVIGATION_MAIN} from '../../navigation/routes';
 
 const VerifyCode = ({navigation, route}) => {
   const {phone, type} = route.params;

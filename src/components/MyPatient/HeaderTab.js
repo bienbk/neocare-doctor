@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
-import {TextNormal} from '../../common/Text/TextFont';
+import {TextNormal, TextSmallEleven} from '../../common/Text/TextFont';
 import Colors from '../../theme/Colors';
 
 const HeaderTab = ({isSelected, onPressTab}) => {
@@ -38,6 +38,19 @@ const HeaderTab = ({isSelected, onPressTab}) => {
           style={[styles.titleTab, isSelected === 3 && styles.titleActivedTab]}>
           Chờ xác nhận
         </TextNormal>
+        <TextSmallEleven
+          style={{
+            height: 20,
+            width: 20,
+            padding: 2,
+            textAlign: 'center',
+            borderRadius: 10,
+            backgroundColor: Colors.red.red50,
+            marginLeft: 2,
+            color: Colors.whiteColor,
+          }}>
+          {'10'}
+        </TextSmallEleven>
       </TouchableOpacity>
     </View>
   );
@@ -48,17 +61,18 @@ export default HeaderTab;
 const styles = StyleSheet.create({
   wrapperTab: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-evenly',
     alignItems: 'center',
     paddingBottom: 5,
-    marginHorizontal: 0,
     paddingHorizontal: 10,
   },
   wrapperTabItem: {
-    paddingHorizontal: 5,
+    paddingHorizontal: 3,
     paddingVertical: 5,
     justifyContent: 'center',
     alignContent: 'center',
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   wrapperActiveTabItem: {
     borderBottomColor: '#2544BD',
@@ -70,7 +84,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   titleTab: {
-    color: 'gray',
+    color: Colors.gray.gray60,
     fontWeight: '600',
   },
 });
