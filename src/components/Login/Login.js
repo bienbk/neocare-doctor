@@ -51,6 +51,7 @@ const Login = props => {
     if (!phone) {
       return 0;
     }
+    // console.log('go to submit 1 time')
     dispatch(sendPhone('+84' + phone.replace(/^0/, '')));
     // navigation.navigate(NAVIGATION_VERIFY_CODE, {
     //   phone: phone.replace(/^0/, ''),
@@ -97,9 +98,11 @@ const Login = props => {
                   onChangeText={text => setPhone(text)}
                 />
               </TouchableOpacity>
-              <TextNormal style={styles.errorMessage}>
-                {'Số điện thoại không hợp lệ'}
-              </TextNormal>
+              {showError ? (
+                <TextNormal style={styles.errorMessage}>
+                  {'Số điện thoại không hợp lệ'}
+                </TextNormal>
+              ) : null}
             </View>
           </View>
           <View style={[styles.viewButtonSubmitPhone]}>

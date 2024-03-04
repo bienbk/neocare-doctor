@@ -16,7 +16,7 @@ function createRequestTypes(prefix = '', bases, suffixes = suffixTypes) {
 }
 
 // Events related to Neocafe REST API
-export const NEOCAFE = createRequestTypes(
+export const NEOCARE = createRequestTypes(
   'NEOCARE',
   [
     //auth

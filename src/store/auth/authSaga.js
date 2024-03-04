@@ -1,4 +1,4 @@
-import {takeLatest, call, put, select} from 'redux-saga/effects';
+import {takeLatest, call, put, select, fork} from 'redux-saga/effects';
 import {NEOCARE} from 'store/actionsTypes';
 import authController from './authController';
 import {isTokenConfirm} from './authSelector';
@@ -9,6 +9,7 @@ import {resetGetListShop, resetOrder} from 'store/actions';
 import strings from 'localization/Localization';
 
 function* sendPhoneSaga({payload}) {
+  console.log('go to send phone saga');
   try {
     const result = yield call(
       authController.sendPhoneController,
@@ -48,10 +49,7 @@ function* sendPhoneSaga({payload}) {
 
 function* reSendPhoneSaga({payload}) {
   try {
-    const result = yield call(
-      authController.reSendPhoneController,
-      payload,
-    );
+    const result = yield call(authController.reSendPhoneController, payload);
     console.log('RESULT SAGA::: ', result);
     if (result.success === true && result?.data && result?.data?.status) {
       const data = result.data;
@@ -95,17 +93,21 @@ function* confirmOtp({payload}) {
   try {
     const result = yield call(authController.confirmOtpController, query);
     // console.log('result confirmOtp:', result);
-    let frontToken = result.headers?.get('front-token');
-    let stAccessToken = result.headers?.get('st-access-token');
-    let stRefreshToken = result.headers?.get('st-refresh-token');
-    if (frontToken || stAccessToken || stRefreshToken) {
-      yield asyncStorage.setToken({frontToken, stAccessToken, stRefreshToken});
-    }
     if (result.data?.status == 'OK') {
       yield put({
         type: NEOCARE.CONFIRM_OTP_SUCCESS,
       });
       yield asyncStorage.setUser(result.data?.user);
+      let frontToken = result.headers?.get('front-token');
+      let stAccessToken = result.headers?.get('st-access-token');
+      let stRefreshToken = result.headers?.get('st-refresh-token');
+      if (frontToken || stAccessToken || stRefreshToken) {
+        yield asyncStorage.setToken({
+          frontToken,
+          stAccessToken,
+          stRefreshToken,
+        });
+      }
       // yield put(confirmOtpReset());
     } else {
       yield put({
@@ -116,7 +118,7 @@ function* confirmOtp({payload}) {
       });
     }
   } catch (e) {
-    console.log('error confirm Otp', e)
+    console.log('error confirm Otp', e);
     yield put({
       type: NEOCARE.CONFIRM_OTP_ERROR,
       payload: {
@@ -184,7 +186,7 @@ function* getVersions({payload}) {
 }
 
 export default function* watcherSaga() {
-  yield takeLatest(NEOCARE.RESEND_PHONE_REQUEST, reSendPhoneSaga);
+  yield fork(takeLatest, NEOCARE.RESEND_PHONE_REQUEST, reSendPhoneSaga);
   yield takeLatest(NEOCARE.SEND_PHONE_REQUEST, sendPhoneSaga);
   yield takeLatest(NEOCARE.CONFIRM_OTP_REQUEST, confirmOtp);
   yield takeLatest(NEOCARE.LOGIN_PHONE_REQUEST, loginPhone);
