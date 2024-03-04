@@ -59,6 +59,26 @@ const getUser = async () => {
   return null;
 };
 
+const setToken = async tokens => {
+  try {
+    await AsyncStorage.setItem('tokenHeaders', JSON.stringify(tokens));
+  } catch (e) {
+    console.log(e);
+  }
+};
+const getToken = async () => {
+  try {
+    const value = await AsyncStorage.getItem('tokenHeaders');
+    if (value !== null) {
+      // console.log(value);
+      return JSON.parse(value);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+  return null;
+};
+
 const setSkipForceUpdate = async skip => {
   try {
     await AsyncStorage.setItem('skipForceUpdate', skip);
@@ -156,6 +176,8 @@ export default {
   setExtraProducts,
   setUser,
   getUser,
+  setToken,
+  getToken,
   setSkipForceUpdate,
   getSkipForceUpdate,
   setTheFirstLogin,

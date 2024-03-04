@@ -1,6 +1,19 @@
 import {BASE_PATH_CAFE, BASE_PATH_MENU} from 'assets/config';
 
 export const UrlApi = {
+  // ---------------------- USER -AUTH  ---------------------------
+  baseApi: BASE_PATH_MENU,
+  getUserInfo: BASE_PATH_MENU + 'userinfo',
+  getVersion: BASE_PATH_CAFE + 'version',
+  sendPhone: BASE_PATH_MENU + 'doctors/auth/signinup/code',
+  resendPhone: BASE_PATH_MENU + 'doctors/auth/signinup/code/resend',
+  confirmPhone: BASE_PATH_MENU + 'doctors/auth/signinup/code/consume',
+  refreshToken: BASE_PATH_MENU + 'doctors/auth/session/refresh',
+  loginPhone: BASE_PATH_MENU + 'customerloginphone',
+  deleteAccount: BASE_PATH_MENU + 'deleteAccount',
+  confirmOtpDelete: BASE_PATH_MENU + 'confirmPhone',
+  updateUserInfo: BASE_PATH_MENU + 'updateCustomerInfo',
+  updateLanguageUrl: BASE_PATH_MENU + 'updatelanguages',
   // ------------------ PRODUCT ------------------------
   getFavoriteProducts: BASE_PATH_MENU + 'getMyMenuCustomer',
   // addFavoriteProduct: BASE_PATH_MENU + 'createMyMenuCustomer',
@@ -32,17 +45,6 @@ export const UrlApi = {
   // --------------------- SHOP --------------------------------
   getListShop: BASE_PATH_MENU + 'getListShopByLocation1',
   getHistoryCashin: BASE_PATH_MENU + 'getTransactionsAddPoint',
-
-  // ---------------------- USER -AUTH  ---------------------------
-  getUserInfo: BASE_PATH_MENU + 'userinfo',
-  getVersion: BASE_PATH_CAFE + 'version',
-  sendPhone: BASE_PATH_MENU + 'phone',
-  confirmPhone: BASE_PATH_MENU + 'phone',
-  loginPhone: BASE_PATH_MENU + 'customerloginphone',
-  deleteAccount: BASE_PATH_MENU + 'deleteAccount',
-  confirmOtpDelete: BASE_PATH_MENU + 'confirmPhone',
-  updateUserInfo: BASE_PATH_MENU + 'updateCustomerInfo',
-  updateLanguageUrl: BASE_PATH_MENU + 'updatelanguages',
 
   // ----------------------- CATEGORY ------------------------------
   getListCategory: BASE_PATH_MENU + 'getListCategoryShop',

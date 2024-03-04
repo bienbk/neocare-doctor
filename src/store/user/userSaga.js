@@ -1,4 +1,4 @@
-import {NEOCAFE} from 'store/actionsTypes';
+import {NEOCARE} from 'store/actionsTypes';
 import {takeLatest, call, put, select} from 'redux-saga/effects';
 import UserController from './userController';
 import {asyncStorage} from 'store/index';
@@ -17,11 +17,11 @@ function* getDeleteAccount() {
     console.log('DELETE SAAAGAAAAAA:', result);
     if (result?.success && result?.data?.status === 1) {
       yield put({
-        type: NEOCAFE.GET_DELETE_ACCOUNT_SUCCESS,
+        type: NEOCARE.GET_DELETE_ACCOUNT_SUCCESS,
       });
     } else {
       yield put({
-        type: NEOCAFE.GET_DELETE_ACCOUNT_ERROR,
+        type: NEOCARE.GET_DELETE_ACCOUNT_ERROR,
         payload: {
           errorMsg: result?.data?.message,
         },
@@ -29,7 +29,7 @@ function* getDeleteAccount() {
     }
   } catch (error) {
     yield put({
-      type: NEOCAFE.GET_DELETE_ACCOUNT_ERROR,
+      type: NEOCARE.GET_DELETE_ACCOUNT_ERROR,
       payload: {
         errorMsg: 'Xảy ra lỗi trong quá trình xóa tài khoản',
       },
@@ -48,17 +48,17 @@ function* confirmDeleteAccountSaga({payload}) {
     const result = yield call(UserController.confirmDeleteAccount, query);
     if (result.success === true) {
       yield put({
-        type: NEOCAFE.CONFIRM_DELETE_OTP_SUCCESS,
+        type: NEOCARE.CONFIRM_DELETE_OTP_SUCCESS,
       });
     } else {
       yield put({
-        type: NEOCAFE.CONFIRM_DELETE_OTP_ERROR,
+        type: NEOCARE.CONFIRM_DELETE_OTP_ERROR,
         payload: result.errorMessage,
       });
     }
   } catch (error) {
     yield put({
-      type: NEOCAFE.CONFIRM_DELETE_OTP_ERROR,
+      type: NEOCARE.CONFIRM_DELETE_OTP_ERROR,
       payload:
         'Xảy ra lỗi trong quá trình xác thực. Vui lòng liên hệ nhân viên phục vụ!',
     });
@@ -69,18 +69,18 @@ function* updateUserSaga({payload}) {
     const result = yield call(UserController.updateUserInfo, payload);
     if (result.success === true) {
       yield put({
-        type: NEOCAFE.UPDATE_USER_INFO_SUCCESS,
+        type: NEOCARE.UPDATE_USER_INFO_SUCCESS,
         payload: result.user,
       });
     } else {
       yield put({
-        type: NEOCAFE.UPDATE_USER_INFO_ERROR,
+        type: NEOCARE.UPDATE_USER_INFO_ERROR,
         payload: result.message,
       });
     }
   } catch (error) {
     yield put({
-      type: NEOCAFE.UPDATE_USER_INFO_ERROR,
+      type: NEOCARE.UPDATE_USER_INFO_ERROR,
       payload: error.message,
     });
   }
@@ -95,29 +95,29 @@ function* setLanguageSaga({payload}) {
     const result = yield call(UserController.updateLanguage, payload);
     if (result.success) {
       yield put({
-        type: NEOCAFE.SET_LANGUAGE_SUCCESS,
+        type: NEOCARE.SET_LANGUAGE_SUCCESS,
         payload: payload?.language,
       });
     } else {
       yield put({
-        type: NEOCAFE.SET_LANGUAGE_ERROR,
+        type: NEOCARE.SET_LANGUAGE_ERROR,
         payload: result.message,
       });
     }
   } catch (error) {
     yield put({
-      type: NEOCAFE.SET_LANGUAGE_ERROR,
+      type: NEOCARE.SET_LANGUAGE_ERROR,
       payload: error.message,
     });
   }
 }
 
 export default function* watcherSaga() {
-  yield takeLatest(NEOCAFE.GET_DELETE_ACCOUNT_REQUEST, getDeleteAccount);
+  yield takeLatest(NEOCARE.GET_DELETE_ACCOUNT_REQUEST, getDeleteAccount);
   yield takeLatest(
-    NEOCAFE.CONFIRM_DELETE_OTP_REQUEST,
+    NEOCARE.CONFIRM_DELETE_OTP_REQUEST,
     confirmDeleteAccountSaga,
   );
-  yield takeLatest(NEOCAFE.SET_LANGUAGE_REQUEST, setLanguageSaga)
-  yield takeLatest(NEOCAFE.UPDATE_USER_INFO_REQUEST, updateUserSaga);
+  yield takeLatest(NEOCARE.SET_LANGUAGE_REQUEST, setLanguageSaga)
+  yield takeLatest(NEOCARE.UPDATE_USER_INFO_REQUEST, updateUserSaga);
 }
