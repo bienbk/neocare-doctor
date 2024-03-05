@@ -63,7 +63,6 @@ HttpClient.interceptors.request.use(
     } else {
       config.headers.rid = 'passwordless';
     }
-    console.log('REQUEST API:', config);
     return config;
   },
   error => {
@@ -75,11 +74,9 @@ HttpClient.interceptors.request.use(
 // Custom middleware for responses (this one just logs the error).
 HttpClient.interceptors.response.use(
   response => {
-    console.log('response Http Client: ', response);
     return response;
   },
   error => {
-    console.log('Request got response with error:', error.response);
     if (
       error.response.status === 401 &&
       error.response.data &&
@@ -119,7 +116,6 @@ HttpRefresh.interceptors.response.use(
     return response;
   },
   error => {
-    console.log('Request got response with error:', error);
     return Promise.reject(error);
   },
 );

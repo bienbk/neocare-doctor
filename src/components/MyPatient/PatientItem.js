@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {TouchableOpacity, View} from 'react-native';
 import {
   TextNormal,
@@ -11,6 +11,8 @@ import {avatar, doctor_avatar} from '../../assets/constans';
 import ProgressLine from '../../common/ProgressLine/ProgressLine';
 
 const PatientItem = ({item, selectItem, tabActive}) => {
+  const {doctor_of_patient} = item;
+
   return (
     <TouchableOpacity onPress={selectItem} style={[styles.wrapperDoctorItem]}>
       <View
@@ -24,28 +26,44 @@ const PatientItem = ({item, selectItem, tabActive}) => {
           source={avatar}
         />
         <View style={styles.wrapperProfileContent}>
-          <TextSemiBold style={styles.textDoctorName}>{item.name}</TextSemiBold>
-          {tabActive !== 3 ? (
+          <TextSemiBold style={styles.textDoctorName}>
+            {item.last_name + ' ' + item.first_name}
+          </TextSemiBold>
+          {tabActive !== 2 && (
             <View>
-              <TextSmallTwelve
-                style={
-                  styles.subtitleText
-                }>{`${item.gender} | ${item.year}`}</TextSmallTwelve>
+              <TextSmallTwelve style={styles.subtitleText}>{`${
+                item.gender ? 'Nam' : 'Nữ'
+              } | ${
+                item.birthday
+                  ? item.birthday.substring(0, 11).split('-')[0]
+                  : '1999'
+              }`}</TextSmallTwelve>
               <TextSmallTwelve style={styles.diseaseText}>
-                {item.disease}
+                {item.phone}
               </TextSmallTwelve>
             </View>
-          ) : (
-            <TextNormal style={styles.requestingText}>
-              {'Gói chăm sóc đặc biệt 6 tháng'}
-            </TextNormal>
           )}
+          {tabActive === 2 &&
+            doctor_of_patient.length > 0 &&
+            doctor_of_patient[0]?.package_items &&
+            doctor_of_patient[0]?.package_items
+              .filter(i => i.product_status === 2)
+              .map(pack => (
+                <TextNormal style={styles.requestingText}>
+                  {pack.name}
+                </TextNormal>
+              ))}
         </View>
       </View>
-      {item && item.isConnect && tabActive !== 3 && (
-        <ProgressLine isDetailDoctor={false} />
-      )}
-      {/* {item && item.isConnect && <ProgressLine isDetailDoctor={false} />} */}
+      {doctor_of_patient &&
+        tabActive === 1 &&
+        doctor_of_patient.length > 0 &&
+        doctor_of_patient[0]?.package_items &&
+        doctor_of_patient[0]?.package_items.map(line => {
+          return (
+            <ProgressLine key={line.id} line={line} isDetailDoctor={false} />
+          );
+        })}
     </TouchableOpacity>
   );
 };

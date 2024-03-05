@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: Colors.gray.gray10,
     fontWeight: '600',
-    fontStyle: 'bold',
+    // fontStyle: 'bold',
   },
   moneyBold20: {
     fontFamily: 'SVN-Poppins-Bold',

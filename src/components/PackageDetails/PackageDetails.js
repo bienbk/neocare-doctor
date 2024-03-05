@@ -15,11 +15,48 @@ import {NAVIGATION_MY_PATIENT} from '../../navigation/routes';
 import CustomButton from '../../common/CustomButton/CustomButton';
 import strings from '../../localization/Localization';
 import ConfirmationModal from '../../common/ConfirmationModal/ConfirmationModal';
+import {formatMoney} from '../../assets/constans';
+import {useDispatch, useSelector} from 'react-redux';
+import {statusConfirmOrderSelector} from '../../store/orders/orderSelector';
+import {confirmOrderAction} from '../../store/orders/orderAction';
+import Status from '../../common/Status/Status';
 
-const PackageDetails = ({navigation}) => {
+const PackageDetails = ({navigation, route}) => {
   const [currentPackge, setCurrentPackge] = useState(null);
+  const [patientSending, setPatientSending] = useState({});
   const [modal, setModal] = useState(false);
-
+  const dispatch = useDispatch();
+  const statusConfirmOrder = useSelector(state =>
+    statusConfirmOrderSelector(state),
+  );
+  useEffect(() => {
+    const {packageDetail} = route ? route?.params : {};
+    console.log('package order::', packageDetail);
+    if (
+      packageDetail &&
+      packageDetail?.doctor_of_patient[0] &&
+      packageDetail?.doctor_of_patient[0]?.package_items &&
+      packageDetail?.doctor_of_patient[0]?.package_items[0]
+    ) {
+      setPatientSending(packageDetail);
+      setCurrentPackge(packageDetail?.doctor_of_patient[0]?.package_items[0]);
+    }
+  }, []);
+  const handleConfirmOrder = val => {
+    if (currentPackge && currentPackge?.order_id) {
+      dispatch(
+        confirmOrderAction({
+          order_id: (currentPackge?.order_id).toString(),
+          order_status: val,
+        }),
+      );
+    }
+  };
+  useEffect(() => {
+    if (statusConfirmOrder === Status.SUCCESS) {
+      setModal(true);
+    }
+  }, [statusConfirmOrder]);
   return (
     <SafeAreaView style={styles.containerSafeArea}>
       <View style={styles.container}>
@@ -34,23 +71,29 @@ const PackageDetails = ({navigation}) => {
           />
         </TouchableOpacity>
         <View style={{marginTop: heightDevice * 0.06, alignItems: 'center'}}>
-          <TextSemiBold style={styles.titleText}>
-            Gói chăm sóc đặc biệt 6 tháng
-          </TextSemiBold>
+          {currentPackge && (
+            <TextSemiBold style={styles.titleText}>
+              {currentPackge?.name || ''}
+            </TextSemiBold>
+          )}
           <View style={styles.wrapperPatientInfo}>
             <View style={styles.contentLine}>
               <TextNormal style={{color: Colors.gray.gray60}}>
                 Tên bệnh nhân
               </TextNormal>
-              <TextNormal style={styles.nameText}>
-                Trần Thị Phương Trang
-              </TextNormal>
+              {patientSending && (
+                <TextNormal style={styles.nameText}>
+                  {patientSending.first_name + ' ' + patientSending.last_name}
+                </TextNormal>
+              )}
             </View>
             <View style={styles.contentLine}>
               <TextNormal style={{color: Colors.gray.gray60}}>
                 Ngày sinh
               </TextNormal>
-              <TextNormal>{'13/3/1974'}</TextNormal>
+              {patientSending && (
+                <TextNormal>{patientSending?.birthday}</TextNormal>
+              )}
             </View>
           </View>
           <View style={styles.wrapperContentCard}>
@@ -64,7 +107,11 @@ const PackageDetails = ({navigation}) => {
               <TextNormal style={{color: Colors.gray.gray60}}>
                 Thời hạn gói
               </TextNormal>
-              <TextNormal>6 tháng</TextNormal>
+              {currentPackge && (
+                <TextNormal>{`${
+                  currentPackge?.name.match(/\d+/)[0]
+                } tháng`}</TextNormal>
+              )}
             </View>
             <View style={styles.contentLine}>
               <TextNormal style={{color: Colors.gray.gray60}}>
@@ -74,22 +121,24 @@ const PackageDetails = ({navigation}) => {
             </View>
             <View style={styles.wrapperPaymentLine}>
               <TextNormalSemiBold>Tổng</TextNormalSemiBold>
-              <TextNormal style={{fontWeight: 'bold', fontSize: 17}}>
-                2.500.000đ
-              </TextNormal>
+              {currentPackge && (
+                <TextNormal style={{fontWeight: 'bold', fontSize: 17}}>
+                  {`${formatMoney(currentPackge?.price)} đ`}
+                </TextNormal>
+              )}
             </View>
           </View>
         </View>
         <View style={styles.wrapperButtonSection}>
           <CustomButton
-            onPress={() => {}}
+            onPress={() => handleConfirmOrder(3)}
             label={'Huỷ yêu cầu'}
             styledLabel={styles.labelCancelBtn}
             styledButton={styles.buttonCancel}
           />
           <CustomButton
-            onPress={() => setModal(true)}
-            label={'Xác nhận yêu cầu'}
+            onPress={() => handleConfirmOrder(1)}
+            label={'Xác nhận'}
             styledButton={styles.buttonConfirm}
           />
         </View>
@@ -100,11 +149,11 @@ const PackageDetails = ({navigation}) => {
         onConfirm={() => setModal(false)}
         title={'Xác nhận thành công'}
         textButtonConfrim={strings.common.close}>
-        <TextNormal style={{paddingHorizontal: 20, textAlign: 'center'}}>
-          {
-            'Bệnh nhân Trần Thị Phương Trang vừa được xác nhận mua gói thành công.'
-          }
-        </TextNormal>
+        {patientSending && (
+          <TextNormal style={{paddingHorizontal: 20, textAlign: 'center'}}>
+            {`Bệnh nhân ${patientSending.first_name} ${patientSending.last_name} vừa được xác nhận mua gói thành công.`}
+          </TextNormal>
+        )}
         <TextNormal style={{paddingHorizontal: 20, textAlign: 'center'}}>
           {'Gói sẽ có hiệu lực từ ngày hôm nay.'}
         </TextNormal>
