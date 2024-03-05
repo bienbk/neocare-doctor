@@ -33,6 +33,12 @@ export const NEOCARE = createRequestTypes(
     'CONFIRM_DELETE_OTP',
     'UPDATE_USER_INFO',
     'SET_LANGUAGE',
+
+    // patient
+    'LIST_PATIENT',
+
+    // orders
+    'CONFIRM_ORDER',
   ],
   suffixTypes,
 );

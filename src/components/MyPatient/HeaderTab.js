@@ -3,7 +3,7 @@ import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import {TextNormal, TextSmallEleven} from '../../common/Text/TextFont';
 import Colors from '../../theme/Colors';
 
-const HeaderTab = ({isSelected, onPressTab}) => {
+const HeaderTab = ({isSelected, onPressTab, requesting}) => {
   return (
     <View style={styles.wrapperTab}>
       <TouchableOpacity
@@ -18,6 +18,17 @@ const HeaderTab = ({isSelected, onPressTab}) => {
         </TextNormal>
       </TouchableOpacity>
       <TouchableOpacity
+        onPress={() => onPressTab(0)}
+        style={[
+          styles.wrapperTabItem,
+          isSelected === 0 && styles.wrapperActiveTabItem,
+        ]}>
+        <TextNormal
+          style={[styles.titleTab, isSelected === 0 && styles.titleActivedTab]}>
+          Đang theo dõi
+        </TextNormal>
+      </TouchableOpacity>
+      <TouchableOpacity
         onPress={() => onPressTab(2)}
         style={[
           styles.wrapperTabItem,
@@ -25,32 +36,9 @@ const HeaderTab = ({isSelected, onPressTab}) => {
         ]}>
         <TextNormal
           style={[styles.titleTab, isSelected === 2 && styles.titleActivedTab]}>
-          Đang theo dõi
-        </TextNormal>
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() => onPressTab(3)}
-        style={[
-          styles.wrapperTabItem,
-          isSelected === 3 && styles.wrapperActiveTabItem,
-        ]}>
-        <TextNormal
-          style={[styles.titleTab, isSelected === 3 && styles.titleActivedTab]}>
           Chờ xác nhận
         </TextNormal>
-        <TextSmallEleven
-          style={{
-            height: 20,
-            width: 20,
-            padding: 2,
-            textAlign: 'center',
-            borderRadius: 10,
-            backgroundColor: Colors.red.red50,
-            marginLeft: 2,
-            color: Colors.whiteColor,
-          }}>
-          {'10'}
-        </TextSmallEleven>
+        {/* <TextSmallEleven style={styles.badgeIcon}>{requesting}</TextSmallEleven> */}
       </TouchableOpacity>
     </View>
   );
@@ -59,6 +47,16 @@ const HeaderTab = ({isSelected, onPressTab}) => {
 export default HeaderTab;
 
 const styles = StyleSheet.create({
+  badgeIcon: {
+    height: 20,
+    width: 20,
+    padding: 2,
+    textAlign: 'center',
+    borderRadius: 10,
+    backgroundColor: Colors.red.red50,
+    marginLeft: 2,
+    color: Colors.whiteColor,
+  },
   wrapperTab: {
     flexDirection: 'row',
     justifyContent: 'space-evenly',
