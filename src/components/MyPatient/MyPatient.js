@@ -47,7 +47,7 @@ const MyPatient = ({navigation}) => {
         page: 1,
         size: 10,
         status: tabActive,
-        doctorId: 9,
+        doctorId: 11,
       }),
     );
   };
@@ -140,10 +140,10 @@ const MyPatient = ({navigation}) => {
                   Thêm thông tin bệnh nhân có thể giúp bạn liên hệ với họ dễ
                   dàng hơn
                 </TextNormalSemiBold>
-                <CustomButton
+                {/* <CustomButton
                   label={'Thêm bệnh nhân'}
                   styledButton={styles.addDoctorBtn}
-                />
+                /> */}
               </View>
             )}
           </View>

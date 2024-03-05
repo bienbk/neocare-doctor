@@ -5,9 +5,7 @@ class OrderController {
   confirmOrder = async payload => {
     console.log('payload controller:::', payload);
     try {
-      const {data} = await HttpClient.put(UrlApi.apiConfirmOrder, {
-        body: payload,
-      });
+      const {data} = await HttpClient.put(UrlApi.apiConfirmOrder, payload);
       console.log('DATA FROM CONFIRM ORDER CONTROLLEr:::', data);
       return {success: true};
     } catch (error) {

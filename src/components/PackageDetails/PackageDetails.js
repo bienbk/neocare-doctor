@@ -52,6 +52,9 @@ const PackageDetails = ({navigation, route}) => {
       );
     }
   };
+  const onSuccess = () => {
+    navigation && navigation.navigate(NAVIGATION_MY_PATIENT);
+  };
   useEffect(() => {
     if (statusConfirmOrder === Status.SUCCESS) {
       setModal(true);
@@ -146,7 +149,7 @@ const PackageDetails = ({navigation, route}) => {
       <ConfirmationModal
         isConfriming={true}
         isOpen={modal}
-        onConfirm={() => setModal(false)}
+        onConfirm={onSuccess}
         title={'Xác nhận thành công'}
         textButtonConfrim={strings.common.close}>
         {patientSending && (

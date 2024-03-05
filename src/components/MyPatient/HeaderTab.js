@@ -38,7 +38,7 @@ const HeaderTab = ({isSelected, onPressTab, requesting}) => {
           style={[styles.titleTab, isSelected === 2 && styles.titleActivedTab]}>
           Chờ xác nhận
         </TextNormal>
-        <TextSmallEleven style={styles.badgeIcon}>{requesting}</TextSmallEleven>
+        {/* <TextSmallEleven style={styles.badgeIcon}>{requesting}</TextSmallEleven> */}
       </TouchableOpacity>
     </View>
   );

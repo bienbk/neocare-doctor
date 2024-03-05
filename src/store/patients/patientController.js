@@ -4,7 +4,9 @@ import {UrlApi} from 'http/UrlApi';
 class PatientController {
   listPatient = async payload => {
     try {
-      const {data} = await HttpClient.get(UrlApi.apiListPatient, {params: payload});
+      const {data} = await HttpClient.get(UrlApi.apiListPatient, {
+        params: payload,
+      });
       console.log('DATA FROM LIST PATIENT CONTROLLEr:::', data);
       if (data) {
         return {success: true, data: data};

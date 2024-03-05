@@ -24,6 +24,7 @@ export default (state = initializeState, {type, payload}) => {
       return {
         ...state,
         statusListPatient: Status.ERROR,
+        listPatient: [],
       };
     case NEOCARE.LIST_PATIENT_RESET:
       return {
