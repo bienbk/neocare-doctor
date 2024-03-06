@@ -1,5 +1,7 @@
 import {PATH_NEOCARE_DOCTOR, PATH_DOCTOR_AUTH} from 'assets/config';
 
+// const PATH_DOCTOR_AUTH = 'https://dev-api.neocare.vn/';
+// const PATH_NEOCARE_DOCTOR = 'https://dev-api.neocare.vn/doctors/v1/';
 export const UrlApi = {
   // ---------------------- USER -AUTH  ---------------------------
   baseApi: PATH_DOCTOR_AUTH,

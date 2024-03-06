@@ -74,7 +74,7 @@ const Main = () => {
       }
     };
     return (
-      <TouchableOpacity style={focused ? styles.activeTab : styles.inactiveTab}>
+      <View style={focused ? styles.activeTab : styles.inactiveTab}>
         <Svg name={icons[route.name]} size={25} color={Colors.gray.gray30} />
         <TextSmallEleven
           style={{
@@ -83,7 +83,7 @@ const Main = () => {
           }}>
           {title(route.name)}
         </TextSmallEleven>
-      </TouchableOpacity>
+      </View>
     );
   };
 
