@@ -47,7 +47,6 @@ const MyPatient = ({navigation}) => {
         page: 1,
         size: 10,
         status: tabActive,
-        doctorId: 11,
       }),
     );
   };
