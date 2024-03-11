@@ -12,14 +12,21 @@ const Splash = ({navigation}) => {
   useEffect(() => {
     checAuthentication();
   }, []);
+  async function doesSessionExist() {
+    if (await SuperTokens.doesSessionExist()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
   const checAuthentication = async () => {
-    const token = await asyncStorage.getToken();
-    if (token && token.frontToken) {
+    const hasToken = await doesSessionExist();
+    if (hasToken) {
       navigation && navigation.navigate(NAVIGATION_MAIN);
     } else {
       setTimeout(() => {
         navigation && navigation.navigate(NAVIGATION_LOGIN);
-      }, 2000);
+      }, 500);
     }
   };
   return (
