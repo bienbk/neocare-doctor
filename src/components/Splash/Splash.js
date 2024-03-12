@@ -6,6 +6,7 @@ import styles from './styles';
 import {TextHighLightBold} from '../../common/Text/TextFont';
 import {NAVIGATION_LOGIN, NAVIGATION_MAIN} from '../../navigation/routes';
 import {asyncStorage} from '../../store';
+import SuperTokens from 'supertokens-react-native';
 
 const Splash = ({navigation}) => {
   // const dispatch = useDispatch();
