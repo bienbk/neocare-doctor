@@ -12,7 +12,7 @@ import {name as appName} from './app.json';
 
 SuperTokens.init({
     apiDomain: PATH_DOCTOR_AUTH,
-    apiBasePath: '/patients/auth',
+    apiBasePath: '/doctors/auth',
 });
 
 AppRegistry.registerComponent(appName, () => App);
