@@ -18,7 +18,10 @@ import ConfirmationModal from '../../common/ConfirmationModal/ConfirmationModal'
 import {formatMoney} from '../../assets/constans';
 import {useDispatch, useSelector} from 'react-redux';
 import {statusConfirmOrderSelector} from '../../store/orders/orderSelector';
-import {confirmOrderAction} from '../../store/orders/orderAction';
+import {
+  confirmOrderAction,
+  resetConfrimOrder,
+} from '../../store/orders/orderAction';
 import Status from '../../common/Status/Status';
 
 const PackageDetails = ({navigation, route}) => {
@@ -31,7 +34,6 @@ const PackageDetails = ({navigation, route}) => {
   );
   useEffect(() => {
     const {packageDetail} = route ? route?.params : {};
-    console.log('package order::', packageDetail);
     if (
       packageDetail &&
       packageDetail?.doctor_of_patient[0] &&
@@ -53,6 +55,7 @@ const PackageDetails = ({navigation, route}) => {
     }
   };
   const onSuccess = () => {
+    dispatch(resetConfrimOrder());
     navigation && navigation.navigate(NAVIGATION_MY_PATIENT);
   };
   useEffect(() => {
@@ -200,7 +203,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
     width: widthDevice,
   },
-  titleText: {paddingBottom: 15, size: 20, fontWeight: 'bold'},
+  titleText: {paddingBottom: 15, fontSize: 20, fontWeight: 'bold'},
   closeIcon: {
     position: 'absolute',
     top: 10,
