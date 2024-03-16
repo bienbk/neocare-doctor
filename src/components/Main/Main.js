@@ -2,7 +2,7 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import * as Screens from 'components';
 import {NAVIGATION_HOME} from 'navigation/routes';
-import {Platform, StyleSheet, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import Colors from 'theme/Colors';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
@@ -15,6 +15,7 @@ import {
   NAVIGATION_DOCTOR_DETAIL,
   NAVIGATION_MY_DOCTOR,
   NAVIGATION_MY_PATIENT,
+  NAVIGATION_PRESCRIPTION,
 } from '../../navigation/routes';
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -55,31 +56,35 @@ const Main = () => {
   // const currentUserLanguage = useSelector(state => getCurrentLanguage(state));
   const renderItemTab = ({focused}, route) => {
     const icons = {
-      [NAVIGATION_HOME]: 'icon_home_main',
-      [NAVIGATION_MY_PATIENT]: 'icon_heart_main',
-      // ['NAVIGATION_PRESCRIBED']: 'icon_medicine_main',
-      // [NAVIGATION_ACCOUNT]: 'icon_account_main',
+      [NAVIGATION_HOME]: 'icon_heart_main',
+      [NAVIGATION_MY_PATIENT]: 'icon_mydoctor_main',
+      // ['NAVIGATION_PRESCRIPTION']: 'icon_medicine_main',
+      [NAVIGATION_ACCOUNT]: 'icon_account_main',
     };
     const title = router => {
       switch (router) {
         case NAVIGATION_HOME:
-          return strings.common.home;
+          return 'Home';
         case NAVIGATION_MY_PATIENT:
-          return 'Bệnh nhân';
-        // case 'NAVIGATION_PRESCRIBED':
+          return 'Patient';
+        // case 'NAVIGATION_PRESCRIPTION':
         //   return 'Chỉ định';
-        // case NAVIGATION_ACCOUNT:
-        //   return strings.common.user;
-        // default:
+        case NAVIGATION_ACCOUNT:
+          return strings.common.user;
+        default:
       }
     };
     return (
-      <View style={focused ? styles.activeTab : styles.inactiveTab}>
-        <Svg name={icons[route.name]} size={25} color={Colors.gray.gray30} />
+      <View style={styles.inactiveTab}>
+        <Svg
+          name={icons[route.name]}
+          size={25}
+          color={focused ? Colors.buttonBackground : 'black'}
+        />
         <TextSmallEleven
           style={{
             color: focused ? Colors.blue.blue20 : Colors.textGrayColor,
-            fontWeight: focused ? 'bold' : '500',
+            fontWeight: focused ? 'bold' : '600',
           }}>
           {title(route.name)}
         </TextSmallEleven>
@@ -89,7 +94,7 @@ const Main = () => {
 
   return (
     <Tab.Navigator
-      initialRouteName={NAVIGATION_MY_PATIENT}
+      initialRouteName={NAVIGATION_ACCOUNT}
       screenOptions={screenOption}>
       <Tab.Screen
         name={NAVIGATION_HOME}
@@ -104,15 +109,15 @@ const Main = () => {
         options={{title: () => null}}
       />
       {/* <Tab.Screen
-        name={'NAVIGATION_PRESCRIBED'}
-        component={Screens.Home}
+        name={NAVIGATION_PRESCRIPTION}
+        component={Screens.Prescription}
         options={{title: () => null}}
-      />
+      /> */}
       <Tab.Screen
         name={NAVIGATION_ACCOUNT}
         component={Screens.Account}
         options={{title: () => null}}
-      /> */}
+      />
     </Tab.Navigator>
   );
 };
@@ -129,19 +134,21 @@ const styles = StyleSheet.create({
   },
   inactiveTab: {
     alignItems: 'center',
-    width: widthDevice / 5,
+    // zIndex: 999,
+    // width: widthDevice / 5,
     // backgroundColor: 'red',
-    paddingVertical: 5,
+    padding: 10,
   },
   activeTab: {
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'white',
-    zIndex: 100,
-    elevation: 1,
-    width: Platform.OS === 'ios' ? 50 : 60,
-    height: Platform.OS === 'ios' ? 50 : 60,
-    top: Platform.OS === 'ios' ? -10 : -20,
-    borderRadius: Platform.OS === 'ios' ? 25 : 30,
+    // backgroundColor: Colors.blue.blue95,
+    zIndex: 999,
+    elevation: 0,
+    // padding: 5,
+    // width: Platform.OS === 'ios' ? 50 : 60,
+    // height: Platform.OS === 'ios' ? 50 : 60,
+    // top: Platform.OS === 'ios' ? -10 : -15,
+    // borderRadius: Platform.OS === 'ios' ? 30 : 40,
   },
 });

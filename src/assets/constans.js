@@ -1,5 +1,6 @@
 import {Dimensions, Platform} from 'react-native';
 import DeviceInfo from 'react-native-device-info';
+import { NAVIGATION_LOGIN } from '../navigation/routes';
 
 export const heightDevice = Dimensions.get('window').height;
 export const widthDevice = Dimensions.get('window').width;
@@ -19,8 +20,87 @@ export const card_blue = require('assets/images/card_blue.jpg');
 export const card_pink = require('assets/images/card_pink.jpg');
 export const avatar = require('assets/images/avatar.png');
 export const home_img = require('assets/images/home.png');
-
+export const user_example = require('assets/images/user_example.png');
+export const qr_code = require('assets/images/qr_code.png');
 export const MIDDLE_DOT = '\u25CF';
 export function formatMoney(x) {
   return x && x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
+
+export const LIST_OPTION = [
+  {
+    title: 'Chung',
+    id: 1,
+    items: [
+      {
+        name: 'Hồ sơ',
+        icon: 'icon_user',
+        link: '',
+      },
+      {
+        name: 'Thông tin thân nhân',
+        icon: 'icon_profile',
+        link: '',
+      },
+      {
+        name: 'Tài khoản & dữ liệu',
+        icon: 'icon_profile',
+        link: '',
+      },
+    ],
+  },
+  {
+    title: 'Sức khoẻ',
+    id: 2,
+    items: [
+      {
+        name: 'Tình trạng sức khoẻ',
+        icon: 'icon_user',
+        link: '',
+      },
+      {
+        name: 'Nhà thuốc & Chuyên gia',
+        icon: 'icon_profile',
+        link: '',
+      },
+      {
+        name: 'Đơn vị',
+        icon: 'icon_profile',
+        link: '',
+      },
+    ],
+  },
+  {
+    title: 'Cài đặt & Hỗ trợ',
+    id: 3,
+    items: [
+      {
+        name: 'Ngôn ngữ',
+        icon: 'icon_language',
+        link: '',
+      },
+      {
+        name: 'Hotline 0901234567',
+        icon: 'icon_hotline',
+        link: '',
+      },
+      {
+        name: 'Chính sách và quyền riêng tư',
+        icon: 'icon_policy',
+        link: '',
+      },
+      {
+        name: 'Đăng xuất',
+        icon: 'icon_logout_red',
+        link: NAVIGATION_LOGIN,
+      },
+    ],
+  },
+];
+export const today = new Intl.DateTimeFormat('vi', {
+  month: 'long',
+  day: 'numeric',
+  hour12: false,
+  weekday: 'long',
+  year: 'numeric',
+}).format(new Date());

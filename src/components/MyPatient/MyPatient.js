@@ -28,7 +28,7 @@ import Skeleton from './Skeleton';
 import Colors from '../../theme/Colors';
 
 const MyPatient = ({navigation}) => {
-  const [tabActive, setTabActive] = useState(2);
+  const [tabActive, setTabActive] = useState(-1);
   const dispatch = useDispatch();
   const [refreshing, setRefreshing] = useState(false);
   const listPatient = useSelector(state => listPatientSelector(state));
@@ -38,18 +38,20 @@ const MyPatient = ({navigation}) => {
   );
   useEffect(() => {
     const navigationListener = navigation.addListener('focus', () => {
-      fetchPatientData();
+      setTabActive(2);
     });
     return navigationListener;
   }, [navigation]);
   const fetchPatientData = () => {
-    dispatch(
-      listPatientAction({
-        page: 1,
-        size: 10,
-        status: tabActive,
-      }),
-    );
+    if (tabActive !== -1) {
+      dispatch(
+        listPatientAction({
+          page: 1,
+          size: 10,
+          status: tabActive,
+        }),
+      );
+    }
   };
   useEffect(() => {
     if (statusListPatient === Status.SUCCESS) {

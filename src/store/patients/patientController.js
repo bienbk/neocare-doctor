@@ -8,9 +8,7 @@ class PatientController {
         params: payload,
       });
       console.log('DATA FROM LIST PATIENT CONTROLLEr:::', data);
-      if (data) {
-        return {success: true, data: data};
-      }
+      return {success: true, data: data || []};
     } catch (error) {
       console.log('LIST PATIENT ERROR:::', error);
       return {success: false};
