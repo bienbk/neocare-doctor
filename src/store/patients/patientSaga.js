@@ -8,7 +8,7 @@ function* listPatientSaga({payload}) {
     if (result.success) {
       yield put({
         type: NEOCARE.LIST_PATIENT_SUCCESS,
-        payload: result.data,
+        payload: result?.data || [],
       });
     } else {
       yield put({
