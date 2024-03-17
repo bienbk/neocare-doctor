@@ -37,7 +37,7 @@ const Login = props => {
   console.log('errorSendPhone', errorSendPhone);
 
   useEffect(() => {
-    console.log('get here useEffect');
+    // console.log('get here useEffect');
     if (statusSendPhone === Status.SUCCESS) {
       props.navigation.navigate(NAVIGATION_VERIFY_CODE, {
         phone: phone.replace(/^0/, ''),
@@ -48,7 +48,7 @@ const Login = props => {
   }, [statusSendPhone]);
 
   const handleSubmitPhone = () => {
-    if (!phone) {
+    if (!phone || phone === '') {
       return 0;
     }
     // console.log('go to submit 1 time')

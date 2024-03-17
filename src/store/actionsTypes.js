@@ -31,6 +31,7 @@ export const NEOCARE = createRequestTypes(
     //user
     'GET_DELETE_ACCOUNT',
     'CONFIRM_DELETE_OTP',
+    'GET_USER_INFO',
     'UPDATE_USER_INFO',
     'SET_LANGUAGE',
 

@@ -13,6 +13,7 @@ const initializeState = {
   statusUpdateUser: Status.DEFAULT,
   updatedUser: {},
   errorUpdateUser: '',
+  statusGetUserInfo: Status.DEFAULT,
 
   statusSetLanguage: Status.DEFAULT,
   currentUserLanguage: '',
@@ -75,6 +76,22 @@ export default (state = initializeState, {type, payload}) => {
         ...state,
         statusConfirmDelete: Status.DEFAULT,
         errorDeleteAccount: '',
+      };
+    case NEOCARE.GET_USER_INFO_REQUEST:
+      return {
+        ...state,
+        statusGetUserInfo: Status.LOADING,
+      };
+    case NEOCARE.GET_USER_INFO_SUCCESS:
+      return {
+        ...state,
+        statusGetUserInfo: Status.SUCCESS,
+      };
+    case NEOCARE.GET_USER_INFO_ERROR:
+      return {
+        ...state,
+        statusGetUserInfo: Status.ERROR,
+        currentUser: payload,
       };
     case NEOCARE.UPDATE_USER_INFO_REQUEST:
       return {

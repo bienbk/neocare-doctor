@@ -19,6 +19,9 @@ export const updateUserInformation = payload => ({
   type: NEOCARE.UPDATE_USER_INFO_REQUEST,
   payload,
 });
+export const getUserInfoAction = () => ({
+  type: NEOCARE.GET_USER_INFO_REQUEST,
+});
 export const resetUpdateUser = () => ({
   type: NEOCARE.UPDATE_USER_INFO_RESET,
 });

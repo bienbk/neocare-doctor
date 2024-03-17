@@ -64,6 +64,27 @@ function* confirmDeleteAccountSaga({payload}) {
     });
   }
 }
+function* getUserInfoSaga() {
+  try {
+    const result = yield call(UserController.getUserInfo);
+    if (result.success === true) {
+      asyncStorage.setUser(result.data);
+      yield put({
+        type: NEOCARE.GET_USER_INFO_SUCCESS,
+      });
+    } else {
+      yield put({
+        type: NEOCARE.GET_USER_INFO_ERROR,
+        payload: result.message,
+      });
+    }
+  } catch (error) {
+    yield put({
+      type: NEOCARE.GET_USER_INFO_ERROR,
+      payload: error.message,
+    });
+  }
+}
 function* updateUserSaga({payload}) {
   try {
     const result = yield call(UserController.updateUserInfo, payload);
@@ -118,6 +139,7 @@ export default function* watcherSaga() {
     NEOCARE.CONFIRM_DELETE_OTP_REQUEST,
     confirmDeleteAccountSaga,
   );
-  yield takeLatest(NEOCARE.SET_LANGUAGE_REQUEST, setLanguageSaga)
+  yield takeLatest(NEOCARE.GET_USER_INFO_REQUEST, getUserInfoSaga);
+  yield takeLatest(NEOCARE.SET_LANGUAGE_REQUEST, setLanguageSaga);
   yield takeLatest(NEOCARE.UPDATE_USER_INFO_REQUEST, updateUserSaga);
 }

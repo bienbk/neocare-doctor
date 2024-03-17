@@ -16,6 +16,7 @@ export const UrlApi = {
   confirmOtpDelete: PATH_DOCTOR_AUTH + 'confirmPhone',
   updateUserInfo: PATH_DOCTOR_AUTH + 'updateCustomerInfo',
   updateLanguageUrl: PATH_DOCTOR_AUTH + 'updatelanguages',
+  apiGetUserInfo: PATH_DOCTOR_AUTH + 'doctors/v1/users/info',
   // ------------------ PATIENT ------------------------
   apiListPatient: PATH_NEOCARE_DOCTOR + 'list-patient',
 
