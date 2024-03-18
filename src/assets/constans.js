@@ -38,33 +38,7 @@ export const LIST_OPTION = [
         link: '',
       },
       {
-        name: 'Thông tin thân nhân',
-        icon: 'icon_profile',
-        link: '',
-      },
-      {
         name: 'Tài khoản & dữ liệu',
-        icon: 'icon_profile',
-        link: '',
-      },
-    ],
-  },
-  {
-    title: 'Sức khoẻ',
-    id: 2,
-    items: [
-      {
-        name: 'Tình trạng sức khoẻ',
-        icon: 'icon_user',
-        link: '',
-      },
-      {
-        name: 'Nhà thuốc & Chuyên gia',
-        icon: 'icon_profile',
-        link: '',
-      },
-      {
-        name: 'Đơn vị',
         icon: 'icon_profile',
         link: '',
       },
@@ -74,11 +48,6 @@ export const LIST_OPTION = [
     title: 'Cài đặt & Hỗ trợ',
     id: 3,
     items: [
-      {
-        name: 'Ngôn ngữ',
-        icon: 'icon_language',
-        link: '',
-      },
       {
         name: 'Hotline 0901234567',
         icon: 'icon_hotline',

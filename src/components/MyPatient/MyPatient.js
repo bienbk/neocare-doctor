@@ -7,25 +7,19 @@ import {
   ScrollView,
 } from 'react-native';
 import styles from './styles';
-import {TextMoneyBold, TextNormalSemiBold} from '../../common/Text/TextFont';
-import Images from '../../common/Images/Images';
-import {empty_logo, heightDevice, widthDevice} from '../../assets/constans';
+import {TextMoneyBold, TextNormalSemiBold} from 'common/Text/TextFont';
+import Images from 'common/Images/Images';
+import {empty_logo, heightDevice, widthDevice} from 'assets/constans';
 import LinearGradient from 'react-native-linear-gradient';
 import PatientItem from './PatientItem';
 import HeaderTab from './HeaderTab';
-import {NAVIGATION_PACKAGE_DETAILS} from '../../navigation/routes';
+import {NAVIGATION_PACKAGE_DETAILS} from 'navigation/routes';
 import {useDispatch, useSelector} from 'react-redux';
-import {
-  listPatientAction,
-  resetListPatient,
-} from '../../store/patients/patientAction';
-import {
-  listPatientSelector,
-  statusListPatientSelector,
-} from '../../store/patients/patientSelector';
-import Status from '../../common/Status/Status';
+import {listPatientAction, resetListPatient} from 'store/actions';
+import {listPatientSelector, statusListPatientSelector} from 'store/selectors';
+import Status from 'common/Status/Status';
 import Skeleton from './Skeleton';
-import Colors from '../../theme/Colors';
+import Colors from 'theme/Colors';
 
 const MyPatient = ({navigation}) => {
   const [tabActive, setTabActive] = useState(-1);
@@ -113,7 +107,7 @@ const MyPatient = ({navigation}) => {
           end={{x: 1, y: 1}}
           style={{height: heightDevice * (117 / 844), width: widthDevice}}>
           <View style={styles.wrapperTitle}>
-            <TextMoneyBold style={styles.titleText}> Bệnh nhân</TextMoneyBold>
+            <TextMoneyBold style={styles.titleText}>Khách hàng</TextMoneyBold>
           </View>
         </LinearGradient>
         <View style={styles.container}>

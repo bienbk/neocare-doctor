@@ -12,18 +12,15 @@ import {useDispatch, useSelector} from 'react-redux';
 import {sendPhone} from 'store/actions';
 import styles from './styles';
 import {isErrorSendOtp, isStatusSendPhone} from 'store/selectors';
-import {TextNormal, TextSemiBold} from '../../common/Text/TextFont';
-import SeparatorLine from '../../common/SeparatorLine/SeparatorLine';
+import {TextNormal} from 'common/Text/TextFont';
 import Svg from 'common/Svg/Svg';
 import Colors from 'theme/Colors';
 import Status from 'common/Status/Status';
 import {heightDevice} from 'assets/constans';
-import Images from '../../common/Images/Images';
-import {icon_vietnam} from '../../assets/constans';
-import {NAVIGATION_VERIFY_CODE} from '../../navigation/routes';
+import {NAVIGATION_VERIFY_CODE} from 'navigation/routes';
 import CheckBox from '@react-native-community/checkbox';
-import CustomButton from '../../common/CustomButton/CustomButton';
-import strings from '../../localization/Localization';
+import CustomButton from 'common/CustomButton/CustomButton';
+import strings from 'localization/Localization';
 
 const Login = props => {
   const dispatch = useDispatch();
@@ -31,7 +28,7 @@ const Login = props => {
   const statusSendPhone = useSelector(state => isStatusSendPhone(state));
   const errorSendPhone = useSelector(state => isErrorSendOtp(state));
   const [showError, setShowError] = useState(false);
-  const [phone, setPhone] = useState('0123123');
+  const [phone, setPhone] = useState('');
   const [isAgreePolicy, setAgreePolicy] = useState(true);
   console.log('statusSendPhone', statusSendPhone);
   console.log('errorSendPhone', errorSendPhone);
@@ -114,10 +111,10 @@ const Login = props => {
                   boxType={'square'}
                   lineWidth={2}
                   style={styles.styleCheckbox}
-                  onTintColor={Colors.buttonBackground}
-                  onFillColor={Colors.buttonBackground}
+                  onTintColor={Colors.main}
+                  onFillColor={Colors.main}
                   tintColors={{
-                    true: Colors.buttonBackground,
+                    true: Colors.main,
                     false: 'black',
                   }}
                   onCheckColor={Colors.whiteColor}

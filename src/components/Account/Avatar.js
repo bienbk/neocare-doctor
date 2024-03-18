@@ -1,18 +1,11 @@
 import {user_example} from 'assets/constans';
 import Images from 'common/Images/Images';
 import {TextNormalSemiBold, TextSemiBold} from 'common/Text/TextFont';
-import React, {useEffect, useState} from 'react';
-import {
-  StyleSheet,
-  FlatList,
-  RefreshControl,
-  TouchableOpacity,
-  View,
-  ScrollView,
-} from 'react-native';
+import React, {useEffect} from 'react';
+import {StyleSheet, RefreshControl, View, ScrollView} from 'react-native';
 import Colors from 'theme/Colors';
-import {heightDevice, widthDevice} from '../../assets/constans';
-import {asyncStorage} from '../../store';
+import {widthDevice} from 'assets/constans';
+import {asyncStorage} from 'store';
 
 const Avatar = ({}) => {
   const [refreshing, setRefreshing] = React.useState(false);
@@ -22,7 +15,6 @@ const Avatar = ({}) => {
   }, []);
   async function getUserStorage() {
     const userStore = (await asyncStorage.getUser()) || {id: -1};
-    console.log('User store: ', userStore);
     setUser(userStore);
   }
 
@@ -78,7 +70,7 @@ const styles = StyleSheet.create({
     borderRadius: 6,
   },
   labelPhone: {
-    paddingHorizontal: 10,
+    paddingHorizontal: 3,
     color: 'white',
     paddingVertical: 5,
     borderRadius: 20,
@@ -99,6 +91,7 @@ const styles = StyleSheet.create({
     borderColor: '#FFC51B',
     width: 92,
     height: 92,
+    marginTop: 10,
     borderRadius: 92,
     justifyContent: 'center',
     alignItems: 'center',

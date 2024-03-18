@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     // paddingVertical: 10,
     height: 40,
     borderWidth: 1,
-    borderColor: '#2544BD',
+    borderColor: Colors.primary,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 24,
@@ -43,18 +43,18 @@ const styles = StyleSheet.create({
   buttonOk: {
     width: 120,
     height: 35,
-    backgroundColor: Colors.buttonBackground,
+    backgroundColor: Colors.primary,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 24,
   },
   modalButtonCancelText: {
-    color: Colors.buttonBackground,
+    color: Colors.main,
     fontSize: 14,
     fontWeight: '600',
   },
   modalButtonOkText: {
-    color: 'white',
+    color: Colors.main,
     fontSize: 14,
     fontWeight: '600',
   },
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     height: 40,
-    backgroundColor: Colors.buttonBackground,
+    backgroundColor: Colors.primary,
     borderRadius: 20,
   },
   buttonBack: {
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    borderColor: '#2544BD',
+    borderColor: Colors.primary,
   },
   containerModal: {
     backgroundColor: Colors.backgroundColor,
