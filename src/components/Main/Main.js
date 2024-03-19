@@ -81,7 +81,7 @@ const Main = () => {
       screenOptions={screenOption}>
       <Tab.Screen
         name={NAVIGATION_HOME}
-        component={Screens.PackageDetails}
+        component={Screens.Home}
         options={{
           title: () => null,
         }}

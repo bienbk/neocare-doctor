@@ -19,13 +19,15 @@ import {
   TextSemiBold,
   TextSmallMedium,
 } from 'common/Text/TextFont';
-import { TextNormalSemiBold } from '../../common/Text/TextFont';
+import {TextNormalSemiBold} from '../../common/Text/TextFont';
 import Images from '../../common/Images/Images';
-import { qr_code } from '../../assets/constans';
+import {qr_code} from '../../assets/constans';
+import {asyncStorage} from 'store';
 
 const IMAGE_HEIGHT = heightDevice * 0.336;
 
 const Account = ({navigation}) => {
+  const [user, setUser] = React.useState({id: -1, username: ''});
   const positionY = useRef(new Animated.Value(0)).current;
   const imageAnimation = {
     transform: [
@@ -67,6 +69,17 @@ const Account = ({navigation}) => {
       Phiên bản 1.0 build 2445
     </TextSmallMedium>
   );
+
+  async function getUserStorage() {
+    const userStore = (await asyncStorage.getUser()) || {id: -1};
+    setUser(userStore);
+  }
+  console.log('USEEEE NAMEEEEE:', user);
+
+  useEffect(() => {
+    getUserStorage();
+  }, []);
+
   return (
     <SafeAreaView style={styles.container}>
       <Animated.View
@@ -91,7 +104,7 @@ const Account = ({navigation}) => {
         <TouchableOpacity style={styles.wrapperPackage}>
           <View>
             <TextNormalSemiBold>Mã giới thiệu</TextNormalSemiBold>
-            <TextMoneyBold>AGKMBIL12</TextMoneyBold>
+            <TextMoneyBold>{user?.qr_code}</TextMoneyBold>
           </View>
           <Images source={qr_code} style={styles.imageCode} />
         </TouchableOpacity>

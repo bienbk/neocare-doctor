@@ -1,6 +1,6 @@
 import {Dimensions, Platform} from 'react-native';
 import DeviceInfo from 'react-native-device-info';
-import { NAVIGATION_LOGIN } from '../navigation/routes';
+import {NAVIGATION_LOGIN} from '../navigation/routes';
 
 export const heightDevice = Dimensions.get('window').height;
 export const widthDevice = Dimensions.get('window').width;
@@ -22,6 +22,7 @@ export const avatar = require('assets/images/avatar.png');
 export const home_img = require('assets/images/home.png');
 export const user_example = require('assets/images/user_example.png');
 export const qr_code = require('assets/images/qr_code.png');
+export const home_image = require('assets/images/home.png');
 export const MIDDLE_DOT = '\u25CF';
 export function formatMoney(x) {
   return x && x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');

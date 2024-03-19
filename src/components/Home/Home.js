@@ -9,82 +9,88 @@ import {
 import styles from './styles';
 import {
   MIDDLE_DOT,
+  doctor_avatar,
   heightDevice,
   home_img,
+  user_example,
   widthDevice,
 } from '../../assets/constans';
 import {
   TextMoneyBold,
   TextNormal,
   TextSemiBold,
+  TextSmallMedium,
 } from '../../common/Text/TextFont';
 import Images from '../../common/Images/Images';
 import Icons from '../../common/Icons/Icons';
 import Colors from '../../theme/Colors';
 import DiseaseCard from './DiseaseCard';
+import CustomeHeader from './CustomeHeader';
+
+const fakeData = [
+  {
+    id: 1,
+    name: 'Khẩn cấp',
+    status: '20 người',
+    created_at: '27/02/2024, 10:02',
+    value: '120/80',
+    subVal: '80',
+    label: 'Thêm chỉ số đo',
+  },
+  {
+    id: 4,
+    name: 'Yêu cầu mua gói',
+    status: '16 Yêu cầu',
+    created_at: '27/02/2024, 10:02',
+    value: '6.2',
+    unit: '%',
+    label: 'Thêm kết quả',
+  },
+  {
+    id: 2,
+    name: 'Yêu cầu tư vấn',
+    status: '25 Yêu cầu',
+    created_at: '27/02/2024, 10:02',
+    value: '120',
+    unit: 'mg/dL',
+    subVal: '',
+    label: 'Thêm chỉ số đo',
+  },
+];
 
 const Home = ({navigation}) => {
+  const getParameterData = () => {
+    const query = {
+      size: 100,
+      page: 1,
+      from_at: '2024-02-12T00:00:00Z',
+      to_at: '2024-03-14T00:00:00Z',
+    };
+  };
   const renderCardItem = ({item, index}) => (
-    <DiseaseCard item={item} index={index} />
+    <DiseaseCard
+      name={item?.name}
+      status={item?.status}
+      created_at={item.created_at}
+      value={item.value}
+      unit={item.unit}
+      label={item.label}
+      subValue={item.subVal}
+      index={index}
+    />
   );
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView>
-        <View
-          style={{
-            height: heightDevice * 0.4,
-            backgroundColor: '#2544BD',
-            borderBottomLeftRadius: 40,
-            borderBottomRightRadius: 40,
-            flexDirection: 'row',
-            alignItems: 'center',
-          }}>
-          <Images
-            source={home_img}
-            style={{
-              width: widthDevice * (180 / 390),
-              height: heightDevice * (190 / 800),
-            }}
-          />
-          <View
-            style={{
-              paddingRight: 5,
-              flex: 1,
-              // backgroundColor: 'red',
-              height: '80%',
-            }}>
-            <TouchableOpacity
-              style={{
-                backgroundColor: 'white',
-                borderRadius: 30,
-                padding: 8,
-                alignSelf: 'flex-end',
-                marginBottom: 20,
-              }}>
-              <Icons type={'Feather'} name={'bell'} size={28} color={'black'} />
-            </TouchableOpacity>
-            <TextSemiBold style={{textAlign: 'right', color: 'white'}}>
-              Xin chào,
-            </TextSemiBold>
-            <TextMoneyBold
-              style={{
-                textAlign: 'right',
-                fontSize: 23,
-                color: 'white',
-                lineHeight: 33,
-              }}>
-              {'Sức khoẻ bạn\n hôm nay thế nào?'}
-            </TextMoneyBold>
-          </View>
-        </View>
-        <View
-          style={{
-            backgroundColor: 'transparent',
-            marginTop: -55,
-          }}>
+      <CustomeHeader />
+      <ScrollView showsVerticalScrollIndicator={false}>
+        {/* <CustomeHeader /> */}
+
+        <View style={styles.wrapperListCard}>
           <FlatList
-            data={[1, 2, 3, 4]}
+            data={fakeData}
+            scrollEnabled={false}
             showsVerticalScrollIndicator={false}
+            keyExtractor={i => i.name}
             renderItem={renderCardItem}
           />
         </View>

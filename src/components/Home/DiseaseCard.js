@@ -10,7 +10,7 @@ import Icons from '../../common/Icons/Icons';
 import styles from './styles';
 import Colors from '../../theme/Colors';
 
-const DiseaseCard = ({item, index}) => {
+const DiseaseCard = ({name, status}) => {
   return (
     <View
       style={{
@@ -22,7 +22,7 @@ const DiseaseCard = ({item, index}) => {
         marginBottom: 10,
         paddingVertical: 10,
       }}>
-      <TextSemiBold style={{fontWeight: 'bold'}}>{'Huyết áp'}</TextSemiBold>
+      <TextSemiBold style={{fontWeight: 'bold'}}>{name}</TextSemiBold>
       <View
         style={{
           flexDirection: 'row',
@@ -32,30 +32,12 @@ const DiseaseCard = ({item, index}) => {
           borderBottomWidth: 1,
         }}>
         <TextNormal style={{color: '#07C558', paddingRight: 10}}>
-          {MIDDLE_DOT + ' Bình thường'}
+          {MIDDLE_DOT + ` ${status}`}
         </TextNormal>
         <Icons type={'Feather'} name={'clock'} color={'lightgray'} />
         <TextNormal style={{color: '#898989', paddingLeft: 4}}>
           {'Hôm nay, ' + new Date().getHours() + ':' + new Date().getMinutes()}
         </TextNormal>
-      </View>
-      <View
-        style={{
-          padding: 15,
-          justifyContent: 'center',
-          alignItems: 'center',
-          flexDirection: 'row',
-        }}>
-        <TextMoneyBold style={styles.fontSize29}>{'120/80'}</TextMoneyBold>
-        <View
-          style={{
-            flexDirection: 'row',
-            paddingHorizontal: 15,
-            alignItems: 'center',
-          }}>
-          <Icons type={'Feather'} name={'heart'} size={25} color={'red'} />
-          <TextMoneyBold style={styles.fontSize29}>80</TextMoneyBold>
-        </View>
       </View>
     </View>
   );

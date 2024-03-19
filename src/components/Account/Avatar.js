@@ -50,9 +50,11 @@ const Avatar = ({}) => {
           <TextNormalSemiBold style={styles.labelPhone}>
             {user?.phone || '0376527002'}
           </TextNormalSemiBold>
-          <TextNormalSemiBold style={styles.labelConnect}>
-            {'Đã xác thực'}
-          </TextNormalSemiBold>
+          <View style={styles.labelConnect}>
+            <TextNormalSemiBold style={{color: 'white'}}>
+              {'Đã xác thực'}
+            </TextNormalSemiBold>
+          </View>
         </View>
       </ScrollView>
     </View>
