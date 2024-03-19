@@ -85,7 +85,7 @@ const Home = ({navigation}) => {
       <ScrollView showsVerticalScrollIndicator={false}>
         {/* <CustomeHeader /> */}
 
-        <View style={styles.wrapperListCard}>
+        <View style={{marginTop: 10}}>
           <FlatList
             data={fakeData}
             scrollEnabled={false}
