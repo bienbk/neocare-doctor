@@ -167,7 +167,7 @@ const PackageDetails = ({navigation, route}) => {
       {step === -1 && currentPackage !== 0 && (
         <GeneralPackage
           currentPackage={currentPackage}
-          nextStep={() => handleConfirmOrder(6)}
+          nextStep={() => handleConfirmOrder(1)}
         />
       )}
       {(step === 0 || step === 1) && (
