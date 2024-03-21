@@ -49,7 +49,7 @@ const Main = () => {
         case NAVIGATION_HOME:
           return 'Trang chủ';
         case NAVIGATION_MY_PATIENT:
-          return 'Khách hàng';
+          return 'Tư Vấn';
         // case 'NAVIGATION_PRESCRIPTION':
         //   return 'Chỉ định';
         case NAVIGATION_ACCOUNT:
@@ -77,7 +77,7 @@ const Main = () => {
 
   return (
     <Tab.Navigator
-      initialRouteName={NAVIGATION_MY_PATIENT}
+      initialRouteName={NAVIGATION_HOME}
       screenOptions={screenOption}>
       <Tab.Screen
         name={NAVIGATION_HOME}

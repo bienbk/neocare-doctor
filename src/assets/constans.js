@@ -23,6 +23,7 @@ export const home_img = require('assets/images/home.png');
 export const user_example = require('assets/images/user_example.png');
 export const qr_code = require('assets/images/qr_code.png');
 export const home_image = require('assets/images/home.png');
+export const decorator_home = require('assets/images/decorator_home.png');
 export const MIDDLE_DOT = '\u25CF';
 export function formatMoney(x) {
   return x && x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
