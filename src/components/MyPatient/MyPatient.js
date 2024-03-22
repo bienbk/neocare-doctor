@@ -20,6 +20,8 @@ import {listPatientSelector, statusListPatientSelector} from 'store/selectors';
 import Status from 'common/Status/Status';
 import Skeleton from './Skeleton';
 import Colors from 'theme/Colors';
+import {asyncStorage} from '../../store';
+import {OneSignal} from 'react-native-onesignal';
 
 const MyPatient = ({navigation}) => {
   const [tabActive, setTabActive] = useState(-1);
@@ -87,6 +89,29 @@ const MyPatient = ({navigation}) => {
     setRefreshing(true);
     fetchPatientData();
   }, [tabActive]);
+
+  const sendOneSignal = async () => {
+    const tempUser = await asyncStorage.getUser();
+    // const id = await OneSignal.User.pushSubscription.getPushSubscriptionId();
+    console.log('IDDDDDDDDD:::::::::::::::::::', tempUser);
+    if (tempUser == null) {
+      return;
+    }
+
+    OneSignal.login(tempUser?.id.toString());
+
+    let dataOneSignal = {
+      cid: tempUser?.id,
+      name: tempUser?.first_name + ' ' + tempUser?.last_name,
+    };
+    // console.log('dataOneSignalLLLLLLLLLL::::::::::', dataOneSignal);
+    OneSignal.User.addTags(dataOneSignal);
+  };
+
+  useEffect(() => {
+    sendOneSignal();
+  }, []);
+
   return (
     <SafeAreaView style={styles.containerSafeArea}>
       <ScrollView
