@@ -34,15 +34,15 @@ const HeaderTab = ({isSelected, onPressTab, requesting, number}) => {
       </View>
       <View style={styles.wrapperTab}>
         <TouchableOpacity
-          onPress={() => onPressTab(1)}
+          onPress={() => onPressTab(0)}
           style={[
             styles.wrapperTabItem,
-            isSelected === 1 && styles.wrapperActiveTabItem,
+            isSelected === 0 && styles.wrapperActiveTabItem,
           ]}>
           <TextNormal
             style={[
               styles.titleTab,
-              isSelected === 1 && styles.titleActivedTab,
+              isSelected === 0 && styles.titleActivedTab,
             ]}>
             Khẩn cấp
           </TextNormal>
@@ -56,15 +56,15 @@ const HeaderTab = ({isSelected, onPressTab, requesting, number}) => {
           )}
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => onPressTab(0)}
+          onPress={() => onPressTab(1)}
           style={[
             styles.wrapperTabItem,
-            isSelected === 0 && styles.wrapperActiveTabItem,
+            isSelected === 1 && styles.wrapperActiveTabItem,
           ]}>
           <TextNormal
             style={[
               styles.titleTab,
-              isSelected === 0 && styles.titleActivedTab,
+              isSelected === 1 && styles.titleActivedTab,
             ]}>
             Yêu cầu tư vấn
           </TextNormal>

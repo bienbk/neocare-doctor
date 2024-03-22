@@ -19,6 +19,7 @@ export const UrlApi = {
   apiGetUserInfo: PATH_DOCTOR_AUTH + 'doctors/v1/users/info',
   // ------------------ PATIENT ------------------------
   apiListPatient: PATH_NEOCARE_DOCTOR + 'list-patient',
+  apiListEmergency: PATH_NEOCARE_DOCTOR + 'category/list',
 
   // ------------------- ORDER -----------------------
   apiConfirmOrder: PATH_NEOCARE_DOCTOR + 'orders/healthcare',

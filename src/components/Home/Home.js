@@ -14,8 +14,22 @@ import PatientItem from './PatientItem';
 import HeaderTab from './HeaderTab';
 import {NAVIGATION_PACKAGE_DETAILS} from 'navigation/routes';
 import {useDispatch, useSelector} from 'react-redux';
-import {listPatientAction, resetListPatient} from 'store/actions';
-import {listPatientSelector, statusListPatientSelector} from 'store/selectors';
+import {
+  listPatientAction,
+  resetListPatient,
+  listEmergencyAction,
+  listRequestedAction,
+  resetListEmergency,
+  resetListRequested,
+} from 'store/actions';
+import {
+  listPatientSelector,
+  statusListPatientSelector,
+  listEmergencySelector,
+  statusListEmergency,
+  listRequestedSelector,
+  statusListRequested,
+} from 'store/selectors';
 import Status from 'common/Status/Status';
 import Skeleton from './Skeleton';
 import Colors from 'theme/Colors';
@@ -25,23 +39,46 @@ const Home = ({navigation}) => {
   const dispatch = useDispatch();
   const [refreshing, setRefreshing] = useState(false);
   const listPatient = useSelector(state => listPatientSelector(state));
-
+  const listEmergency = useSelector(state => listEmergencySelector(state));
+  const statusEmergency = useSelector(state => statusListEmergency(state));
+  const listRequested = useSelector(state => listRequestedSelector(state));
+  const statusRequested = useSelector(state => statusListRequested(state));
   const statusListPatient = useSelector(state =>
     statusListPatientSelector(state),
   );
   useEffect(() => {
     const navigationListener = navigation.addListener('focus', () => {
-      setTabActive(2);
+      setTabActive(0);
     });
     return navigationListener;
   }, [navigation]);
   const fetchPatientData = () => {
-    if (tabActive !== -1) {
+    if (tabActive === 2) {
       dispatch(
         listPatientAction({
           page: 1,
           size: 10,
           status: tabActive,
+        }),
+      );
+    }
+    if (tabActive === 0) {
+      dispatch(
+        listEmergencyAction({
+          category: 1,
+          read: false,
+          page: 1,
+          size: 100,
+        }),
+      );
+    }
+    if (tabActive === 1) {
+      dispatch(
+        listRequestedAction({
+          category: 2,
+          read: false,
+          page: 1,
+          size: 100,
         }),
       );
     }
@@ -80,8 +117,20 @@ const Home = ({navigation}) => {
     fetchPatientData();
   }, []);
   useEffect(() => {
+    if (statusEmergency === Status.SUCCESS) {
+      dispatch(resetListEmergency());
+    }
+  }, [statusEmergency]);
+  useEffect(() => {
+    if (statusRequested === Status.SUCCESS) {
+      dispatch(resetListRequested());
+    }
+  }, [statusRequested]);
+  useEffect(() => {
     setRefreshing(true);
-    fetchPatientData();
+    if (tabActive !== -1) {
+      fetchPatientData();
+    }
   }, [tabActive]);
   return (
     <SafeAreaView style={styles.containerSafeArea}>
@@ -105,7 +154,13 @@ const Home = ({navigation}) => {
         {!refreshing && listPatient && (
           <FlatList
             scrollEnabled={false}
-            data={listPatient}
+            data={
+              tabActive === 0
+                ? listEmergency
+                : tabActive === 1
+                ? listRequested
+                : listPatient
+            }
             showsVerticalScrollIndicator={false}
             keyExtractor={(item, index) => `${item.name}-${index}`}
             renderItem={renderDoctorItem}
@@ -121,8 +176,7 @@ const Home = ({navigation}) => {
               source={empty_logo}
             />
             <TextNormalSemiBold style={styles.emptyDoctorText}>
-              Thêm thông tin bệnh nhân có thể giúp bạn liên hệ với họ dễ dàng
-              hơn
+              Thông tin bệnh nhân có thể giúp bạn liên hệ với họ dễ dàng hơn
             </TextNormalSemiBold>
           </View>
         )}
