@@ -111,67 +111,9 @@ const MyPatient = ({navigation}) => {
   useEffect(() => {
     sendOneSignal();
   }, []);
-
   return (
-    <SafeAreaView style={styles.containerSafeArea}>
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        style={styles.containerSafeArea}
-        refreshControl={
-          <RefreshControl
-            progressBackgroundColor={Colors.buttonBackground}
-            colors={['white']}
-            progressViewOffset={heightDevice / 2.3}
-            refreshing={refreshing}
-            onRefresh={onRefresh}
-          />
-        }>
-        <LinearGradient
-          colors={['#2643B3', '#546DE0']}
-          start={{x: 0, y: 1}}
-          end={{x: 1, y: 1}}
-          style={{height: heightDevice * (117 / 844), width: widthDevice}}>
-          <View style={styles.wrapperTitle}>
-            <TextMoneyBold style={styles.titleText}>Khách hàng</TextMoneyBold>
-          </View>
-        </LinearGradient>
-        <View style={styles.container}>
-          <View style={styles.wrapperMydoctor}>
-            <HeaderTab
-              isSelected={tabActive}
-              requesting={listPatient.length}
-              onPressTab={val => setTabActive(val)}
-            />
-            {listPatient && (
-              <FlatList
-                scrollEnabled={false}
-                data={listPatient}
-                showsVerticalScrollIndicator={false}
-                contentContainerStyle={{paddingTop: 5}}
-                keyExtractor={(item, index) => `${item.name}-${index}`}
-                renderItem={renderDoctorItem}
-              />
-            )}
-            {(!listPatient || listPatient.length === 0) && !refreshing && (
-              <View style={styles.containerEmpty}>
-                <Images
-                  resizeMode="contain"
-                  style={styles.imageEmpty}
-                  source={empty_logo}
-                />
-                <TextNormalSemiBold style={styles.emptyDoctorText}>
-                  Thêm thông tin bệnh nhân có thể giúp bạn liên hệ với họ dễ
-                  dàng hơn
-                </TextNormalSemiBold>
-                {/* <CustomButton
-                  label={'Thêm bệnh nhân'}
-                  styledButton={styles.addDoctorBtn}
-                /> */}
-              </View>
-            )}
-          </View>
-        </View>
-      </ScrollView>
+    <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
+      <View />
     </SafeAreaView>
   );
 };
