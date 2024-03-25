@@ -1,6 +1,25 @@
 import {Dimensions, Platform} from 'react-native';
 import DeviceInfo from 'react-native-device-info';
 import {NAVIGATION_LOGIN} from '../navigation/routes';
+import Colors from '../theme/Colors';
+export const STATUS = {
+  0: 'Bình thuờng',
+  1: 'Thấp',
+  2: 'Lý tuởng',
+  3: 'Hơi Cao',
+  4: 'Cao',
+  5: 'Rất cao',
+  6: 'Cực kỳ cao',
+};
+export const STATUS_COLORS = {
+  0: Colors.normal,
+  1: Colors.lowest,
+  2: Colors.good,
+  3: Colors.litle_high,
+  4: Colors.high,
+  5: Colors.very_high,
+  6: Colors.highest,
+};
 
 export const heightDevice = Dimensions.get('window').height;
 export const widthDevice = Dimensions.get('window').width;

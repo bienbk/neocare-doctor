@@ -20,8 +20,15 @@ class PatientController {
       const {data} = await HttpClient.get(UrlApi.apiListEmergency, {
         params: payload,
       });
-      console.log('DATA FROM LIST apiListEmergency CONTROLLEr:::', data);
-      return {success: true, data: data || []};
+      if (data?.parameters_of_patients) {
+        data.parameters_of_patients.map(item => {
+          if (item.items && item.items.length) {
+            item.items = Array.from(item.items, i => JSON.parse(i));
+          }
+        });
+      }
+      console.log('emergency data::', data?.parameters_of_patients);
+      return {success: true, data: data?.parameters_of_patients || []};
     } catch (error) {
       console.log('LIST EMERGENCY ERROR:::', error);
       return {success: false};
@@ -33,7 +40,7 @@ class PatientController {
         params: payload,
       });
       console.log('DATA FROM LIST listRequested CONTROLLEr:::', data);
-      return {success: true, data: data || []};
+      return {success: true, data: []};
     } catch (error) {
       console.log('LIST listRequested ERROR:::', error);
       return {success: false};

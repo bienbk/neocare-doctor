@@ -7,7 +7,7 @@ import {StyleSheet} from 'react-native';
 import Colors from 'theme/Colors';
 import {TextNormal} from 'common/Text/TextFont';
 import Icons from 'common/Icons/Icons';
-import {NAVIGATION_MY_PATIENT} from 'navigation/routes';
+import {NAVIGATION_HOME} from 'navigation/routes';
 import strings from 'localization/Localization';
 import ConfirmationModal from 'common/ConfirmationModal/ConfirmationModal';
 import {useDispatch, useSelector} from 'react-redux';
@@ -62,7 +62,7 @@ const PackageDetails = ({navigation, route}) => {
   }, []);
   const renderStep = () =>
     STEP.map((item, index) => (
-      <View style={styles.wrapperStepItem}>
+      <View key={item} style={styles.wrapperStepItem}>
         <View style={styles.wrapperIcon}>
           <Icons
             type={'MaterialIcons'}
@@ -127,11 +127,11 @@ const PackageDetails = ({navigation, route}) => {
     }
   }, [statusConfirm]);
   const handleBack = () => {
-    step === -1 && navigation.navigate(NAVIGATION_MY_PATIENT);
+    step === -1 && navigation.navigate(NAVIGATION_HOME);
     step !== -1 && setStep(prev => (prev -= 1));
   };
   const onSuccess = () => {
-    navigation && navigation.navigate(NAVIGATION_MY_PATIENT);
+    navigation && navigation.navigate(NAVIGATION_HOME);
   };
   const handleConfirmOrder = val => {
     console.log(currentPackage);

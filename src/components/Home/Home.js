@@ -103,7 +103,7 @@ const Home = ({navigation}) => {
       packageDetail: item,
     });
   };
-  const renderDoctorItem = ({item, index}) => {
+  const renderPatientItem = ({item, index}) => {
     return (
       <PatientItem
         item={item}
@@ -163,23 +163,26 @@ const Home = ({navigation}) => {
             }
             showsVerticalScrollIndicator={false}
             keyExtractor={(item, index) => `${item.name}-${index}`}
-            renderItem={renderDoctorItem}
+            renderItem={renderPatientItem}
           />
         )}
         {refreshing &&
           [...Array(4).keys()].map(i => <Skeleton item={listPatient[0]} />)}
-        {(!listPatient || listPatient.length === 0) && !refreshing && (
-          <View style={styles.containerEmpty}>
-            <Images
-              resizeMode="contain"
-              style={styles.imageEmpty}
-              source={empty_logo}
-            />
-            <TextNormalSemiBold style={styles.emptyDoctorText}>
-              Thông tin bệnh nhân có thể giúp bạn liên hệ với họ dễ dàng hơn
-            </TextNormalSemiBold>
-          </View>
-        )}
+        {(!listPatient.length ||
+          !listEmergency.length ||
+          !listRequested.length) &&
+          !refreshing && (
+            <View style={styles.containerEmpty}>
+              <Images
+                resizeMode="contain"
+                style={styles.imageEmpty}
+                source={empty_logo}
+              />
+              <TextNormalSemiBold style={styles.emptyDoctorText}>
+                Thông tin bệnh nhân có thể giúp bạn liên hệ với họ dễ dàng hơn
+              </TextNormalSemiBold>
+            </View>
+          )}
       </ScrollView>
     </SafeAreaView>
   );
