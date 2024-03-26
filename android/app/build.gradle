@@ -109,7 +109,7 @@ android {
         versionName "1.0.0"
         multiDexEnabled true
         resValue "string", "build_config_package", "com.neocaredoctor"
-        manifestPlaceholders = [label: 'Neo_NeoCare_Doctor']
+        manifestPlaceholders = [label: 'Neo_NeoCare_Expert']
     }
 
     splits {
@@ -143,14 +143,14 @@ android {
         debug {
             signingConfig signingConfigs.debug
             matchingFallbacks = ['debug', 'release']
-            resValue "string", "app_name", "NeoCareDoctorDebug"
+            resValue "string", "app_name", "NeoCareExpertDebug"
         }
         dev {
             initWith debug
             // signingConfig signingConfigs.dev
             applicationIdSuffix ".development"
-            resValue "string", "app_name", "NeoCareDoctorDev"
-            manifestPlaceholders = [label: 'NeoCareDoctorDev']
+            resValue "string", "app_name", "NeoCareDevExpert"
+            manifestPlaceholders = [label: 'NeoCareDevExpert']
         }
         release {
             // Caution! In production, you need to generate your own keystore file.
@@ -158,7 +158,7 @@ android {
             signingConfig signingConfigs.release
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
-            resValue "string", "app_name", "NeoCare Doctor"
+            resValue "string", "app_name", "Neo Care Expert"
         }
     }
 

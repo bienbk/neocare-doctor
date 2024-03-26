@@ -24,7 +24,7 @@ const HeaderTab = ({isSelected, onPressTab, requesting, number}) => {
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
           <Images source={user_example} style={styles.avatarIcon} />
           <View style={{paddingHorizontal: 10}}>
-            <TextSemiBold style={{fontWeight: 'light'}}>
+            <TextSemiBold style={{fontWeight: 100}}>
               Xin chào
               <TextSemiBold> Tran</TextSemiBold>
             </TextSemiBold>

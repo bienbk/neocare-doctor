@@ -6,20 +6,20 @@ import {
   RefreshControl,
   ScrollView,
 } from 'react-native';
-import styles from './styles';
-import {TextMoneyBold, TextNormalSemiBold} from 'common/Text/TextFont';
-import Images from 'common/Images/Images';
-import {empty_logo, heightDevice, widthDevice} from 'assets/constans';
-import LinearGradient from 'react-native-linear-gradient';
-import PatientItem from './PatientItem';
-import HeaderTab from './HeaderTab';
+// import styles from './styles';
+// import {TextMoneyBold, TextNormalSemiBold} from 'common/Text/TextFont';
+// import Images from 'common/Images/Images';
+// import {empty_logo, heightDevice, widthDevice} from 'assets/constans';
+// import LinearGradient from 'react-native-linear-gradient';
+// import PatientItem from './PatientItem';
+// import HeaderTab from './HeaderTab';
 import {NAVIGATION_PACKAGE_DETAILS} from 'navigation/routes';
 import {useDispatch, useSelector} from 'react-redux';
 import {listPatientAction, resetListPatient} from 'store/actions';
 import {listPatientSelector, statusListPatientSelector} from 'store/selectors';
 import Status from 'common/Status/Status';
-import Skeleton from './Skeleton';
-import Colors from 'theme/Colors';
+// import Skeleton from './Skeleton';
+// import Colors from 'theme/Colors';
 import {asyncStorage} from '../../store';
 import {OneSignal} from 'react-native-onesignal';
 
@@ -69,18 +69,18 @@ const MyPatient = ({navigation}) => {
       packageDetail: item,
     });
   };
-  const renderDoctorItem = ({item, index}) => {
-    if (refreshing) {
-      return <Skeleton item={item} />;
-    }
-    return (
-      <PatientItem
-        item={item}
-        selectItem={() => handleSelectPatient(item)}
-        tabActive={tabActive}
-      />
-    );
-  };
+  // const renderDoctorItem = ({item, index}) => {
+  //   if (refreshing) {
+  //     return <Skeleton item={item} />;
+  //   }
+  //   return (
+  //     <PatientItem
+  //       item={item}
+  //       selectItem={() => handleSelectPatient(item)}
+  //       tabActive={tabActive}
+  //     />
+  //   );
+  // };
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
     fetchPatientData();
@@ -101,7 +101,7 @@ const MyPatient = ({navigation}) => {
     OneSignal.login(tempUser?.id.toString());
 
     let dataOneSignal = {
-      cid: tempUser?.id,
+      cid: tempUser?.id.toString(),
       name: tempUser?.first_name + ' ' + tempUser?.last_name,
     };
     // console.log('dataOneSignalLLLLLLLLLL::::::::::', dataOneSignal);
