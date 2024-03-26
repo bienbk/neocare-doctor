@@ -43,10 +43,68 @@ export const user_example = require('assets/images/user_example.png');
 export const qr_code = require('assets/images/qr_code.png');
 export const home_image = require('assets/images/home.png');
 export const decorator_home = require('assets/images/decorator_home.png');
+export const patient_card = require('assets/images/patient_card.png');
 export const MIDDLE_DOT = '\u25CF';
 export function formatMoney(x) {
   return x && x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
+export const HOME_DATA = [
+  {
+    id: 1,
+    name: 'Huyết áp',
+    status: 'Bình thường',
+    created_at: '27/02/2024, 10:02',
+    value: '120/80',
+    subVal: '80',
+    label: 'Thêm chỉ số đo',
+  },
+  {
+    id: 4,
+    name: 'HbA1c',
+    status: 'Cao bất thường',
+    created_at: '27/02/2024, 10:02',
+    value: '6.2',
+    unit: '%',
+    label: 'Thêm kết quả',
+  },
+  {
+    id: 2,
+    name: 'Đường huyết',
+    status: 'Bình thường',
+    created_at: '27/02/2024, 10:02',
+    value: '120',
+    unit: 'mg/dL',
+    subVal: '',
+    label: 'Thêm chỉ số đo',
+  },
+  {
+    id: 3,
+    name: 'Mỡ máu',
+    status: 'Cao bất thường',
+    created_at: '27/02/2024, 10:02',
+    value: '6.2',
+    unit: '%',
+    label: 'Thêm kết quả',
+  },
+  {
+    id: 5,
+    name: 'Axit Uric',
+    status: 'Cao bất thường',
+    created_at: '27/02/2024, 10:02',
+    value: '6.2',
+    unit: '%',
+    label: 'Thêm kết quả',
+  },
+  {
+    id: 6,
+    name: 'Cân nặng',
+    status: 'Bình thường',
+    created_at: '27/02/2024, 10:02',
+    value: '78',
+    unit: 'kg',
+    label: 'Thêm chỉ số đo',
+  },
+];
 
 export const LIST_OPTION = [
   {

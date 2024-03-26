@@ -41,15 +41,15 @@ const Main = () => {
   const renderItemTab = ({focused}, route) => {
     const icons = {
       [NAVIGATION_HOME]: 'icon_heart_main',
-      [NAVIGATION_MY_PATIENT]: 'icon_mydoctor_main',
+      // [NAVIGATION_MY_PATIENT]: 'icon_mydoctor_main',
       [NAVIGATION_ACCOUNT]: 'icon_account_main',
     };
     const title = router => {
       switch (router) {
         case NAVIGATION_HOME:
           return 'Trang chủ';
-        case NAVIGATION_MY_PATIENT:
-          return 'Tư Vấn';
+        // case NAVIGATION_MY_PATIENT:
+        //   return 'Tư Vấn';
         // case 'NAVIGATION_PRESCRIPTION':
         //   return 'Chỉ định';
         case NAVIGATION_ACCOUNT:
@@ -86,11 +86,11 @@ const Main = () => {
           title: () => null,
         }}
       />
-      <Tab.Screen
+      {/* <Tab.Screen
         name={NAVIGATION_MY_PATIENT}
         component={Screens.MyPatient}
         options={{title: () => null}}
-      />
+      /> */}
       <Tab.Screen
         name={NAVIGATION_ACCOUNT}
         component={Screens.Account}

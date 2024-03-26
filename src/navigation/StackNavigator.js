@@ -4,7 +4,7 @@ import {
   NAVIGATION_LOGIN,
   NAVIGATION_MAIN,
   NAVIGATION_PACKAGE_DETAILS,
-  NAVIGATION_PROFILE,
+  NAVIGATION_MY_PATIENT,
   NAVIGATION_SPLASH,
   NAVIGATION_VERIFY_CODE,
 } from './routes';
@@ -23,6 +23,10 @@ const StackNavigator = () => {
       <Stack.Screen
         name={NAVIGATION_VERIFY_CODE}
         component={Screens.VerifyCode}
+      />
+      <Stack.Screen
+        name={NAVIGATION_MY_PATIENT}
+        component={Screens.MyPatient}
       />
       <Stack.Screen
         name={NAVIGATION_PACKAGE_DETAILS}
