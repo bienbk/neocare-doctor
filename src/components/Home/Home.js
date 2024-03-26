@@ -12,7 +12,10 @@ import Images from 'common/Images/Images';
 import {empty_logo} from 'assets/constans';
 import PatientItem from './PatientItem';
 import HeaderTab from './HeaderTab';
-import {NAVIGATION_PACKAGE_DETAILS} from 'navigation/routes';
+import {
+  NAVIGATION_PACKAGE_DETAILS,
+  NAVIGATION_MY_PATIENT,
+} from 'navigation/routes';
 import {useDispatch, useSelector} from 'react-redux';
 import {
   listPatientAction,
@@ -34,6 +37,9 @@ import Status from 'common/Status/Status';
 import Skeleton from './Skeleton';
 import Colors from 'theme/Colors';
 
+import {asyncStorage} from 'store';
+import {OneSignal} from 'react-native-onesignal';
+
 const Home = ({navigation}) => {
   const [tabActive, setTabActive] = useState(-1);
   const dispatch = useDispatch();
@@ -46,6 +52,22 @@ const Home = ({navigation}) => {
   const statusListPatient = useSelector(state =>
     statusListPatientSelector(state),
   );
+  const sendOneSignal = async () => {
+    const tempUser = await asyncStorage.getUser();
+    if (!tempUser) {
+      return;
+    }
+    OneSignal.login(tempUser?.id.toString());
+    let dataOneSignal = {
+      cid: tempUser?.id,
+      name: tempUser?.first_name + ' ' + tempUser?.last_name,
+    };
+    OneSignal.User.addTags(dataOneSignal);
+  };
+
+  useEffect(() => {
+    sendOneSignal();
+  }, []);
   useEffect(() => {
     const navigationListener = navigation.addListener('focus', () => {
       setTabActive(0);
@@ -96,12 +118,18 @@ const Home = ({navigation}) => {
     }
   }, [refreshing, statusListPatient]);
   const handleSelectPatient = item => {
-    if (tabActive !== 2 || !item) {
+    console.log('press item::', item);
+    if (!item) {
       return;
     }
-    navigation.navigate(NAVIGATION_PACKAGE_DETAILS, {
-      packageDetail: item,
-    });
+    tabActive === 2 &&
+      navigation.navigate(NAVIGATION_PACKAGE_DETAILS, {
+        packageDetail: item,
+      });
+    tabActive !== 2 &&
+      navigation.navigate(NAVIGATION_MY_PATIENT, {
+        patient: item,
+      });
   };
   const renderPatientItem = ({item, index}) => {
     return (
@@ -168,9 +196,9 @@ const Home = ({navigation}) => {
         )}
         {refreshing &&
           [...Array(4).keys()].map(i => <Skeleton item={listPatient[0]} />)}
-        {(!listPatient.length ||
-          !listEmergency.length ||
-          !listRequested.length) &&
+        {listPatient.length === 0 &&
+          listEmergency.length === 0 &&
+          listRequested.length === 0 &&
           !refreshing && (
             <View style={styles.containerEmpty}>
               <Images
