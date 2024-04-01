@@ -21,6 +21,7 @@ import {TextNormal} from 'common/Text/TextFont';
 import {asyncStorage} from 'store/index';
 import strings from 'localization/Localization';
 import {NAVIGATION_MAIN} from '../../navigation/routes';
+import {CommonActions} from '@react-navigation/native';
 
 const VerifyCode = ({navigation, route}) => {
   const {phone, type} = route.params;
@@ -70,7 +71,12 @@ const VerifyCode = ({navigation, route}) => {
   useEffect(() => {
     if (statusConfirmOtp === Status.SUCCESS) {
       dispatch(confirmOtpReset());
-      navigation.navigate(NAVIGATION_MAIN);
+      navigation.dispatch(
+        CommonActions.reset({
+          index: 0,
+          routes: [{name: NAVIGATION_MAIN}],
+        }),
+      );
     }
   }, [statusConfirmOtp]);
 

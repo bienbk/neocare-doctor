@@ -67,6 +67,7 @@ const clearStorage = async () => {
   // AsyncStorage.clear();
   try {
     await AsyncStorage.removeItem('user');
+    await AsyncStorage.clear();
     // await AsyncStorage.removeItem('recommendedProducts');
   } catch (e) {
     console.log(e);

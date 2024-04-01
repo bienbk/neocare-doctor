@@ -5,11 +5,20 @@ import React, {useEffect, useState} from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import Colors from 'theme/Colors';
 import Svg from 'common/Svg/Svg';
-const Feature = ({icon, name, navigation, link, onPress, index, lastIndex}) => {
+import {NAVIGATION_LOGIN} from '../../navigation/routes';
+const Feature = ({
+  icon,
+  name,
+  navigation,
+  link,
+  onPress,
+  index,
+  lastIndex,
+  logOut,
+}) => {
   const handlePress = () => {
-    if (navigation && link) {
-      console.log('LINK:', link);
-      // onPress && onPress();
+    if (link === NAVIGATION_LOGIN) {
+      logOut();
     }
   };
   return (

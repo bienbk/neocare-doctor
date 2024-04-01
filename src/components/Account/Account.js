@@ -23,6 +23,8 @@ import {TextNormalSemiBold} from '../../common/Text/TextFont';
 import Images from '../../common/Images/Images';
 import {qr_code} from '../../assets/constans';
 import {asyncStorage} from 'store';
+import {CommonActions} from '@react-navigation/native';
+import SuperTokens from 'supertokens-react-native';
 
 const IMAGE_HEIGHT = heightDevice * 0.336;
 
@@ -52,12 +54,27 @@ const Account = ({navigation}) => {
     outputRange: [0, 1],
     extrapolate: 'clamp',
   });
+  const handleLogOut = async () => {
+    await asyncStorage.clearStorage();
+    await SuperTokens.signOut();
+    setTimeout(() => {
+      setTimeout(() => {
+        navigation.dispatch(
+          CommonActions.reset({
+            index: 0,
+            routes: [{name: NAVIGATION_LOGIN}],
+          }),
+        );
+      }, 50);
+    }, 100);
+  };
   const renderFeature = list =>
     list.map((item, index) => (
       <Feature
         key={item.name}
         name={item.name}
         icon={item.icon}
+        logOut={handleLogOut}
         index={index}
         lastIndex={index === list.length - 1}
         navigation={navigation}
@@ -74,7 +91,7 @@ const Account = ({navigation}) => {
     const userStore = (await asyncStorage.getUser()) || {id: -1};
     setUser(userStore);
   }
-  console.log('USEEEE NAMEEEEE:', user);
+  // console.log('USEEEE NAMEEEEE:', user);
 
   useEffect(() => {
     getUserStorage();
