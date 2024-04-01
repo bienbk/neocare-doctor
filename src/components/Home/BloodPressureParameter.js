@@ -6,6 +6,7 @@ import {STATUS_COLORS, STATUS} from 'assets/constans';
 import Colors from '../../theme/Colors';
 
 const BloodPressureParameter = ({parameter}) => {
+  console.log('parameter huyet ap::', parameter);
   return (
     <View style={styles.wrapperParameterItem}>
       <View style={styles.lineBetween}>

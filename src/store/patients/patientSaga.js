@@ -41,9 +41,9 @@ function* listEmergencySaga({payload}) {
     });
   }
 }
-function* listRequestedSaga({payload}) {
+function* listRequestedSaga() {
   try {
-    const result = yield call(PatientController.listRequested, payload);
+    const result = yield call(PatientController.listRequested);
     if (result && result?.success) {
       yield put({
         type: NEOCARE.LIST_REQUESTED_SUCCESS,

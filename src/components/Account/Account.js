@@ -87,10 +87,10 @@ const Account = ({navigation}) => {
     </TextSmallMedium>
   );
 
-  async function getUserStorage() {
+  const getUserStorage = async () => {
     const userStore = (await asyncStorage.getUser()) || {id: -1};
     setUser(userStore);
-  }
+  };
   // console.log('USEEEE NAMEEEEE:', user);
 
   useEffect(() => {

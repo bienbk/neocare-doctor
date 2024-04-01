@@ -18,7 +18,7 @@ export const UrlApi = {
   updateLanguageUrl: PATH_DOCTOR_AUTH + 'updatelanguages',
   apiGetUserInfo: PATH_DOCTOR_AUTH + 'doctors/v1/users/info',
   // ------------------ PATIENT ------------------------
-  apiListPatient: PATH_NEOCARE_DOCTOR + 'list-patient',
+  apiListPatient: PATH_NEOCARE_DOCTOR + 'orders/status/1',
   apiListEmergency: PATH_NEOCARE_DOCTOR + 'category/list',
 
   // ------------------- ORDER -----------------------

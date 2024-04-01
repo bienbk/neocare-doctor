@@ -14,6 +14,7 @@ import {formatMoney} from 'assets/constans';
 
 const GeneralPackage = ({currentPackage, nextStep}) => {
   console.log('CURRENT PACKAGE:::', currentPackage);
+  const {patient} = currentPackage;
   return (
     <View style={styles.container}>
       <View style={{alignItems: 'center'}}>
@@ -24,22 +25,21 @@ const GeneralPackage = ({currentPackage, nextStep}) => {
             </TextNormal>
 
             <TextNormal style={styles.nameText}>
-              {currentPackage?.first_name + ' ' + currentPackage?.last_name}
+              {patient?.first_name + ' ' + patient?.last_name}
             </TextNormal>
           </View>
           <View style={styles.contentLine}>
             <TextNormal style={{color: Colors.gray.gray60}}>
               Ngày sinh
             </TextNormal>
-            <TextNormal>
-              {new Date(currentPackage?.birthday).toLocaleDateString('en-GB') ||
-                '13/03/1992'}
-            </TextNormal>
+            <TextNormal>{'13/03/1992'}</TextNormal>
           </View>
           <View style={styles.line} />
           <View style={styles.contentLine}>
             <TextNormal style={{color: Colors.gray.gray60}}>Tên gói</TextNormal>
-            <TextSemiBold>{currentPackage?.package_items?.name}</TextSemiBold>
+            <TextSemiBold>
+              {currentPackage?.package_items?.product_name}
+            </TextSemiBold>
           </View>
           <View style={styles.contentLine}>
             <TextNormal style={{color: Colors.gray.gray60}}>
@@ -53,7 +53,7 @@ const GeneralPackage = ({currentPackage, nextStep}) => {
             </TextNormal>
             {currentPackage && (
               <TextNormal>{`${
-                currentPackage?.package_items?.name.match(/\d+/)[0]
+                currentPackage?.package_items?.product_name.match(/\d+/)[0]
               } tháng`}</TextNormal>
             )}
           </View>

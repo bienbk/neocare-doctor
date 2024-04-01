@@ -47,18 +47,20 @@ const PackageDetails = ({navigation, route}) => {
   const [modal, setModal] = useState(false);
   useEffect(() => {
     const {packageDetail} = route ? route?.params : {};
-    if (
-      packageDetail &&
-      packageDetail?.doctor_of_patient[0] &&
-      packageDetail?.doctor_of_patient[0]?.package_items &&
-      packageDetail?.doctor_of_patient[0]?.package_items[0]
-    ) {
-      const customPackage = {
-        ...packageDetail,
-        package_items: packageDetail?.doctor_of_patient[0]?.package_items[0],
-      };
-      setCurrentPackage(customPackage);
-    }
+    console.log('package DETAIL', packageDetail);
+    setCurrentPackage(packageDetail);
+    // if (
+    //   packageDetail &&
+    //   packageDetail?.doctor_of_patient[0] &&
+    //   packageDetail?.doctor_of_patient[0]?.package_items &&
+    //   packageDetail?.doctor_of_patient[0]?.package_items[0]
+    // ) {
+    //   const customPackage = {
+    //     ...packageDetail,
+    //     package_items: packageDetail?.doctor_of_patient[0]?.package_items[0],
+    //   };
+    //   setCurrentPackage(customPackage);
+    // }
   }, []);
   const renderStep = () =>
     STEP.map((item, index) => (
@@ -133,16 +135,13 @@ const PackageDetails = ({navigation, route}) => {
   const onSuccess = () => {
     navigation && navigation.navigate(NAVIGATION_HOME);
   };
-  const handleConfirmOrder = val => {
+  const handleConfirmOrder = () => {
     console.log(currentPackage);
-    if (
-      currentPackage?.package_items &&
-      currentPackage?.package_items?.order_id
-    ) {
+    if (currentPackage?.order_id) {
       dispatch(
         confirmOrderAction({
-          order_id: (currentPackage?.package_items?.order_id).toString(),
-          order_status: val,
+          order_id: currentPackage?.order_id,
+          order_status: 1,
         }),
       );
     }
@@ -170,7 +169,7 @@ const PackageDetails = ({navigation, route}) => {
       {step === -1 && currentPackage !== 0 && (
         <GeneralPackage
           currentPackage={currentPackage}
-          nextStep={() => handleConfirmOrder(1)}
+          nextStep={() => handleConfirmOrder()}
         />
       )}
       {(step === 0 || step === 1) && (
@@ -203,7 +202,7 @@ const PackageDetails = ({navigation, route}) => {
         textButtonConfrim={strings.common.close}>
         {currentPackage && (
           <TextNormal style={{paddingHorizontal: 20, textAlign: 'center'}}>
-            {`Bệnh nhân ${currentPackage.first_name} ${currentPackage.last_name} vừa được xác nhận mua gói thành công.`}
+            {`Bệnh nhân ${currentPackage?.patient.first_name} ${currentPackage?.patient.last_name} vừa được xác nhận mua gói thành công.`}
           </TextNormal>
         )}
         <TextNormal style={{paddingHorizontal: 20, textAlign: 'center'}}>

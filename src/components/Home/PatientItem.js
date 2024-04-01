@@ -8,22 +8,40 @@ import CholesterolParameter from './CholesterolParameter';
 import BloodPressureParameter from './BloodPressureParameter';
 import Hba1cParameter from './Hba1cParameter';
 import AcidUricParameter from './AcidUricParameter';
+import BloodGlucoseParameter from './BloodGlucoseParameter';
 const BLP = 'Blood Pressure';
 const CHOL = 'Cholesterol';
 const HBA1C = 'HbA1cLabTest';
 const ACU = 'Acid Uric';
+const BLG = 'Blood Glucose';
+// 0-EMERGENCY::::: 1-SERVICE:::::2-PACKAGE
 const PatientItem = ({item, selectItem, tabActive}) => {
+  // console.log(item);
   const [currentPatient, setCurrentPatient] = useState({});
-  const {items, patient, doctor_of_patient} = item;
+  const {items, patient} = item;
+  console.log(items);
   useEffect(() => {
     if (patient) {
-      setCurrentPatient(patient);
+      setCurrentPatient(
+        tabActive === 2
+          ? {
+              ...patient.patient,
+              order_id: item.order_id,
+              package_items: item?.package_item_orders[0],
+            }
+          : patient,
+      );
     } else {
       setCurrentPatient(item);
     }
   }, [tabActive]);
+  useEffect(() => {
+    if (currentPatient) {
+      console.log('current patient:::', currentPatient);
+    }
+  }, [currentPatient]);
   const max_status = items ? Math.max(...Array.from(items, i => i.status)) : 0;
-  const renderParameter = type =>
+  const renderParameter = () =>
     items.map(parameter => (
       <View key={parameter?.name}>
         {parameter?.name === HBA1C && <Hba1cParameter parameter={parameter} />}
@@ -33,6 +51,9 @@ const PatientItem = ({item, selectItem, tabActive}) => {
         )}
         {parameter?.name === BLP && (
           <BloodPressureParameter parameter={parameter} />
+        )}
+        {parameter?.name === BLG && (
+          <BloodGlucoseParameter parameter={parameter} />
         )}
       </View>
     ));
@@ -48,32 +69,27 @@ const PatientItem = ({item, selectItem, tabActive}) => {
           <TextSemiBold style={styles.textPatientName}>
             {currentPatient?.first_name + ' ' + currentPatient?.last_name}
           </TextSemiBold>
-          {tabActive !== 2 && (
+          {tabActive !== 2 && currentPatient?.birthday && (
             <View>
               <TextSmallTwelve style={styles.subtitleText}>{`${
                 currentPatient?.gender === 1 ? 'Nam' : 'Nữ'
               } | ${
                 currentPatient?.birthday
-                  ? currentPatient?.birthday.substring(0, 11).split('-')[0]
+                  ? new Date(currentPatient?.birthday).getFullYear()
                   : '1999'
               }`}</TextSmallTwelve>
             </View>
           )}
-          {tabActive === 2 &&
-            doctor_of_patient.length > 0 &&
-            doctor_of_patient[0]?.package_items &&
-            doctor_of_patient[0]?.package_items
-              // .filter(i => i.product_status === 2)
-              .map(pack => (
-                <View>
-                  <TextNormal style={styles.requestingText}>
-                    {pack.name}
-                  </TextNormal>
-                  <TextNormal style={styles.priceText}>
-                    {formatMoney(pack?.price) + ' vnd'}
-                  </TextNormal>
-                </View>
-              ))}
+          {tabActive === 2 && currentPatient.package_items && (
+            <View>
+              <TextNormal style={styles.requestingText}>
+                {currentPatient?.package_items.product_name}
+              </TextNormal>
+              <TextNormal style={styles.priceText}>
+                {formatMoney(currentPatient?.package_items?.price) + ' vnd'}
+              </TextNormal>
+            </View>
+          )}
         </View>
         {tabActive === 0 && (
           <View

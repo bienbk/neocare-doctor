@@ -23,6 +23,7 @@ import Status from 'common/Status/Status';
 
 const ConfirmPackage = ({currentPackage, nextStep}) => {
   console.log('CURRENT PACKAGE:::', currentPackage);
+  const {patient} = currentPackage;
   const renderSelector = () =>
     currentPackage?.store.map(item => {
       return (
@@ -44,18 +45,17 @@ const ConfirmPackage = ({currentPackage, nextStep}) => {
               Tên bệnh nhân
             </TextNormal>
 
-            <TextNormal style={styles.nameText}>
-              {currentPackage?.first_name + ' ' + currentPackage?.last_name}
-            </TextNormal>
+            {patient && (
+              <TextNormal style={styles.nameText}>
+                {patient?.first_name + ' ' + patient?.last_name}
+              </TextNormal>
+            )}
           </View>
           <View style={styles.contentLine}>
             <TextNormal style={{color: Colors.gray.gray60}}>
               Ngày sinh
             </TextNormal>
-            <TextNormal>
-              {new Date(currentPackage?.birthday).toLocaleDateString('en-GB') ||
-                '13/03/1992'}
-            </TextNormal>
+            <TextNormal>{'13/03/1992'}</TextNormal>
           </View>
           {currentPackage?.group.length > 0 && (
             <View style={styles.contentLine}>
@@ -80,7 +80,9 @@ const ConfirmPackage = ({currentPackage, nextStep}) => {
           <View style={styles.line} />
           <View style={styles.contentLine}>
             <TextNormal style={{color: Colors.gray.gray60}}>Tên gói</TextNormal>
-            <TextSemiBold>{currentPackage?.package_items?.name}</TextSemiBold>
+            <TextSemiBold>
+              {currentPackage?.package_items?.product_name}
+            </TextSemiBold>
           </View>
           <View style={styles.contentLine}>
             <TextNormal style={{color: Colors.gray.gray60}}>
@@ -94,7 +96,7 @@ const ConfirmPackage = ({currentPackage, nextStep}) => {
             </TextNormal>
             {currentPackage && (
               <TextNormal>{`${
-                currentPackage?.package_items?.name.match(/\d+/)[0]
+                currentPackage?.package_items?.product_name.match(/\d+/)[0]
               } tháng`}</TextNormal>
             )}
           </View>

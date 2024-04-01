@@ -76,13 +76,7 @@ const Home = ({navigation}) => {
   }, [navigation]);
   const fetchPatientData = () => {
     if (tabActive === 2) {
-      dispatch(
-        listPatientAction({
-          page: 1,
-          size: 10,
-          status: 2,
-        }),
-      );
+      dispatch(listPatientAction());
     }
     if (tabActive === 0) {
       dispatch(
@@ -124,7 +118,11 @@ const Home = ({navigation}) => {
     }
     tabActive === 2 &&
       navigation.navigate(NAVIGATION_PACKAGE_DETAILS, {
-        packageDetail: item,
+        packageDetail: {
+          ...item.patient,
+          order_id: item.order_id,
+          package_items: item?.package_item_orders[0],
+        },
       });
     tabActive !== 2 &&
       navigation.navigate(NAVIGATION_MY_PATIENT, {
