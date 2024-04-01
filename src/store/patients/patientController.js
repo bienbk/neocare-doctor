@@ -40,7 +40,7 @@ class PatientController {
         params: payload,
       });
       console.log('DATA FROM LIST listRequested CONTROLLEr:::', data);
-      return {success: true, data: []};
+      return {success: true, data: data?.service_requesting || []};
     } catch (error) {
       console.log('LIST listRequested ERROR:::', error);
       return {success: false};

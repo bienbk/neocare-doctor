@@ -80,7 +80,7 @@ const Home = ({navigation}) => {
         listPatientAction({
           page: 1,
           size: 10,
-          status: tabActive,
+          status: 2,
         }),
       );
     }
@@ -172,8 +172,8 @@ const Home = ({navigation}) => {
         style={styles.containerListPatient}
         refreshControl={
           <RefreshControl
-            progressBackgroundColor={Colors.buttonBackground}
-            colors={['white']}
+            progressBackgroundColor={Colors.primary}
+            colors={['black']}
             // progressViewOffset={heightDevice / 2.3}
             refreshing={refreshing}
             onRefresh={onRefresh}
@@ -190,15 +190,14 @@ const Home = ({navigation}) => {
                 : listPatient
             }
             showsVerticalScrollIndicator={false}
-            keyExtractor={(item, index) => `${item.name}-${index}`}
+            keyExtractor={(_, index) => `${index}`}
             renderItem={renderPatientItem}
           />
         )}
-        {refreshing &&
-          [...Array(4).keys()].map(i => <Skeleton item={listPatient[0]} />)}
-        {listPatient.length === 0 &&
-          listEmergency.length === 0 &&
-          listRequested.length === 0 &&
+        {refreshing && [...Array(4).keys()].map(i => <Skeleton />)}
+        {((!listPatient.length && tabActive === 2) ||
+          (!listEmergency.length && tabActive === 0) ||
+          (!listRequested.length && tabActive === 1)) &&
           !refreshing && (
             <View style={styles.containerEmpty}>
               <Images

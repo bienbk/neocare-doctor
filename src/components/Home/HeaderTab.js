@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   ImageBackground,
   StyleSheet,
@@ -16,17 +16,31 @@ import Images from 'common/Images/Images';
 import {user_example, widthDevice} from 'assets/constans';
 import Icons from 'common/Icons/Icons';
 import {decorator_home} from 'assets/constans';
+import { asyncStorage } from '../../store';
 
 const HeaderTab = ({isSelected, onPressTab, requesting, number}) => {
+  const [currentUser, setCurrentUser] = useState({last_name: ''});
+
+  useEffect(() => {
+    initUser();
+  }, []);
+
+  const initUser = async () => {
+    const user = await asyncStorage.getUser();
+    if (user) {
+      console.log('user::', user);
+      setCurrentUser(user);
+    }
+  };
   return (
     <ImageBackground source={decorator_home} style={{paddingBottom: 1}}>
       <View source={decorator_home} style={styles.wrapperFixedHeader}>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
           <Images source={user_example} style={styles.avatarIcon} />
           <View style={{paddingHorizontal: 10}}>
-            <TextSemiBold style={{fontWeight: 100}}>
+            <TextSemiBold style={{fontWeight: 500}}>
               Xin chào
-              <TextSemiBold> Tran</TextSemiBold>
+              <TextSemiBold> {currentUser.last_name || 'bạn'}</TextSemiBold>
             </TextSemiBold>
           </View>
         </View>

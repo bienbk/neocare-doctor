@@ -46,15 +46,15 @@ const PatientItem = ({item, selectItem, tabActive}) => {
         />
         <View style={styles.wrapperProfileContent}>
           <TextSemiBold style={styles.textPatientName}>
-            {currentPatient.first_name + ' ' + currentPatient.last_name}
+            {currentPatient?.first_name + ' ' + currentPatient?.last_name}
           </TextSemiBold>
           {tabActive !== 2 && (
             <View>
               <TextSmallTwelve style={styles.subtitleText}>{`${
-                currentPatient.gender === 1 ? 'Nam' : 'Nữ'
+                currentPatient?.gender === 1 ? 'Nam' : 'Nữ'
               } | ${
-                currentPatient.birthday
-                  ? currentPatient.birthday.substring(0, 11).split('-')[0]
+                currentPatient?.birthday
+                  ? currentPatient?.birthday.substring(0, 11).split('-')[0]
                   : '1999'
               }`}</TextSmallTwelve>
             </View>
@@ -75,7 +75,7 @@ const PatientItem = ({item, selectItem, tabActive}) => {
                 </View>
               ))}
         </View>
-        {tabActive !== 2 && (
+        {tabActive === 0 && (
           <View
             style={[
               styles.statusPatient,
@@ -87,7 +87,7 @@ const PatientItem = ({item, selectItem, tabActive}) => {
           </View>
         )}
       </View>
-      {tabActive !== 2 && (
+      {tabActive === 0 && (
         <View style={styles.wrapperParameterList}>
           {renderParameter(tabActive)}
         </View>

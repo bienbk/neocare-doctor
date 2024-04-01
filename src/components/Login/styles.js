@@ -119,6 +119,9 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     paddingVertical: 10,
     borderRadius: 50,
+    borderColor: Colors.gray.gray90,
+    borderWidth: 1,
+    borderStyle: 'solid',
   },
   viewImageVietnam: {
     alignItems: 'center',

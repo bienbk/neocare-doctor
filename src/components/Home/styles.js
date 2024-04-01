@@ -143,6 +143,7 @@ const styles = StyleSheet.create({
 
   requestingText: {
     color: Colors.gray.gray60,
+    paddingVertical: 2,
   },
   textRequest: {
     marginBottom: 5,
@@ -172,7 +173,7 @@ const styles = StyleSheet.create({
     width: '100%',
     paddingVertical: 15,
     borderRadius: 24,
-    backgroundColor: Colors.buttonBackground,
+    backgroundColor: Colors.primary,
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 10,

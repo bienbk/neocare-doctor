@@ -135,10 +135,13 @@ const PackageDetails = ({navigation, route}) => {
   };
   const handleConfirmOrder = val => {
     console.log(currentPackage);
-    if (currentPackage?.package_items) {
+    if (
+      currentPackage?.package_items &&
+      currentPackage?.package_items?.order_id
+    ) {
       dispatch(
         confirmOrderAction({
-          order_id: (currentPackage?.package_items.order_id).toString(),
+          order_id: (currentPackage?.package_items?.order_id).toString(),
           order_status: val,
         }),
       );

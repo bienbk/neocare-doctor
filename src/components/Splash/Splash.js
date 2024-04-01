@@ -7,6 +7,7 @@ import {TextHighLightBold} from 'common/Text/TextFont';
 import {NAVIGATION_LOGIN, NAVIGATION_MAIN} from 'navigation/routes';
 import {getUserInfoAction} from 'store/user/userAction';
 import SuperTokens from 'supertokens-react-native';
+import {CommonActions} from '@react-navigation/native';
 
 const Splash = ({navigation}) => {
   const dispatch = useDispatch();
@@ -24,8 +25,22 @@ const Splash = ({navigation}) => {
   };
   const checAuthentication = async () => {
     const hasToken = await doesSessionExist();
-    hasToken && navigation && navigation.navigate(NAVIGATION_MAIN);
-    !hasToken && navigation && navigation.navigate(NAVIGATION_LOGIN);
+    hasToken &&
+      navigation &&
+      navigation.dispatch(
+        CommonActions.reset({
+          index: 0,
+          routes: [{name: NAVIGATION_MAIN}],
+        }),
+      );
+    !hasToken &&
+      navigation &&
+      navigation.dispatch(
+        CommonActions.reset({
+          index: 0,
+          routes: [{name: NAVIGATION_LOGIN}],
+        }),
+      );
   };
   return (
     <SafeAreaView style={styles.container}>

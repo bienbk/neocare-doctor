@@ -32,7 +32,7 @@ const Main = () => {
   const screenOption = ({route}) => ({
     tabBarHideOnKeyboard: true,
     tabBarIcon: e => renderItemTab(e, route),
-    tabBarActiveTintColor: Colors.buttonBackground,
+    tabBarActiveTintColor: Colors.main,
     tabBarInactiveTintColor: Colors.textGrayColor,
     headerShown: false,
     tabBarStyle: {height: 75 + insets.bottom / 2},
@@ -62,11 +62,11 @@ const Main = () => {
         <Svg
           name={icons[route.name]}
           size={25}
-          color={focused ? Colors.buttonBackground : 'black'}
+          color={focused ? Colors.main : 'black'}
         />
         <TextSmallEleven
           style={{
-            color: focused ? Colors.blue.blue20 : Colors.textGrayColor,
+            color: focused ? Colors.main : Colors.textGrayColor,
             fontWeight: focused ? 'bold' : '600',
           }}>
           {title(route.name)}
@@ -77,7 +77,7 @@ const Main = () => {
 
   return (
     <Tab.Navigator
-      initialRouteName={NAVIGATION_HOME}
+      initialRouteName={NAVIGATION_ACCOUNT}
       screenOptions={screenOption}>
       <Tab.Screen
         name={NAVIGATION_HOME}
