@@ -25,6 +25,7 @@ import {qr_code} from '../../assets/constans';
 import {asyncStorage} from 'store';
 import {CommonActions} from '@react-navigation/native';
 import SuperTokens from 'supertokens-react-native';
+import {NAVIGATION_VERIFY_CODE} from '../../navigation/routes';
 
 const IMAGE_HEIGHT = heightDevice * 0.336;
 
@@ -82,9 +83,26 @@ const Account = ({navigation}) => {
       />
     ));
   const renderFooter = () => (
-    <TextSmallMedium style={{color: Colors.gray.gray60, alignSelf: 'center'}}>
-      Phiên bản 1.0 build 2445
-    </TextSmallMedium>
+    <View>
+      <View>
+        <TextSmallMedium
+          style={{color: Colors.gray.gray60, alignSelf: 'center'}}>
+          Phiên bản 1.0 build 2445
+        </TextSmallMedium>
+      </View>
+      <TextNormal
+        onPress={() =>
+          navigation.navigate(NAVIGATION_VERIFY_CODE, {screen: 'account'})
+        }
+        style={{
+          position: 'absolute',
+          top: 0,
+          right: 0,
+          textDecorationLine: 'underline',
+        }}>
+        Xóa tài khoản
+      </TextNormal>
+    </View>
   );
 
   const getUserStorage = async () => {

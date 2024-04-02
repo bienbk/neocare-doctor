@@ -100,6 +100,7 @@
 		5DCACB8F33CDC322A6C60F78 /* libPods-neocaredoctor.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-neocaredoctor.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = neocaredoctor/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-neocaredoctor-neocaredoctorTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-neocaredoctor-neocaredoctorTests.release.xcconfig"; path = "Target Support Files/Pods-neocaredoctor-neocaredoctorTests/Pods-neocaredoctor-neocaredoctorTests.release.xcconfig"; sourceTree = "<group>"; };
+		96416CB72BB9E3E80090F63B /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		9689F08F2BA94DCE00B7C8D7 /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Feather.ttf; path = ../src/assets/fonts/Feather.ttf; sourceTree = "<group>"; };
 		968E985E2BAC1E8800D99AFE /* neocaredoctor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = neocaredoctor.entitlements; path = neocaredoctor/neocaredoctor.entitlements; sourceTree = "<group>"; };
 		968E98632BAC1F8800D99AFE /* OneSignalNotificationServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = OneSignalNotificationServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -239,6 +240,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				96416CB72BB9E3E80090F63B /* Config.xcconfig */,
 				96A05C622BA97A7000D4A4E0 /* EvilIcons.ttf */,
 				9689F08F2BA94DCE00B7C8D7 /* Feather.ttf */,
 				96A571092B97B0880091F3D7 /* SVN-Poppins-Black.ttf */,
@@ -805,6 +807,7 @@
 		};
 		83CBBA201A601CBA00E9B192 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 96416CB72BB9E3E80090F63B /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -877,6 +880,7 @@
 		};
 		83CBBA211A601CBA00E9B192 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 96416CB72BB9E3E80090F63B /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;

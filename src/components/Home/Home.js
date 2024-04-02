@@ -58,8 +58,9 @@ const Home = ({navigation}) => {
       return;
     }
     OneSignal.login(tempUser?.id.toString());
+    console.log('userrrrr:', tempUser);
     let dataOneSignal = {
-      cid: tempUser?.id,
+      cid: tempUser?.id.toString(),
       name: tempUser?.first_name + ' ' + tempUser?.last_name,
     };
     OneSignal.User.addTags(dataOneSignal);
@@ -76,7 +77,13 @@ const Home = ({navigation}) => {
   }, [navigation]);
   const fetchPatientData = () => {
     if (tabActive === 2) {
-      dispatch(listPatientAction());
+      dispatch(
+        listPatientAction({
+          page: 1,
+          size: 10,
+          status: tabActive,
+        }),
+      );
     }
     if (tabActive === 0) {
       dispatch(
@@ -170,8 +177,8 @@ const Home = ({navigation}) => {
         style={styles.containerListPatient}
         refreshControl={
           <RefreshControl
-            progressBackgroundColor={Colors.primary}
-            colors={['black']}
+            progressBackgroundColor={Colors.buttonBackground}
+            colors={['white']}
             // progressViewOffset={heightDevice / 2.3}
             refreshing={refreshing}
             onRefresh={onRefresh}
@@ -188,14 +195,15 @@ const Home = ({navigation}) => {
                 : listPatient
             }
             showsVerticalScrollIndicator={false}
-            keyExtractor={(_, index) => `${index}`}
+            keyExtractor={(item, index) => `${item.name}-${index}`}
             renderItem={renderPatientItem}
           />
         )}
-        {refreshing && [...Array(4).keys()].map(i => <Skeleton />)}
-        {((!listPatient.length && tabActive === 2) ||
-          (!listEmergency.length && tabActive === 0) ||
-          (!listRequested.length && tabActive === 1)) &&
+        {refreshing &&
+          [...Array(4).keys()].map(i => <Skeleton item={listPatient[0]} />)}
+        {listPatient.length === 0 &&
+          listEmergency.length === 0 &&
+          listRequested.length === 0 &&
           !refreshing && (
             <View style={styles.containerEmpty}>
               <Images
