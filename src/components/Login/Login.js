@@ -20,6 +20,7 @@ import {heightDevice} from 'assets/constans';
 import {NAVIGATION_VERIFY_CODE} from 'navigation/routes';
 import CheckBox from '@react-native-community/checkbox';
 import CustomButton from 'common/CustomButton/CustomButton';
+import {parsePhoneNumber} from 'libphonenumber-js/mobile';
 import strings from 'localization/Localization';
 
 const Login = props => {
@@ -29,6 +30,7 @@ const Login = props => {
   const errorSendPhone = useSelector(state => isErrorSendOtp(state));
   const [showError, setShowError] = useState(false);
   const [phone, setPhone] = useState('');
+  const [showPhoneError, setShowPhoneError] = useState(false);
   const [isAgreePolicy, setAgreePolicy] = useState(true);
   console.log('statusSendPhone', statusSendPhone);
   console.log('errorSendPhone', errorSendPhone);
@@ -48,8 +50,14 @@ const Login = props => {
     if (!phone || phone === '') {
       return 0;
     }
+    const phoneNumber = parsePhoneNumber(phone, 'VN');
+    if (phoneNumber.isValid()) {
+      dispatch(sendPhone(phoneNumber.number));
+    } else {
+      setShowPhoneError(true);
+    }
     // console.log('go to submit 1 time')
-    dispatch(sendPhone('+84' + phone.replace(/^0/, '')));
+    // dispatch(sendPhone('+84' + phone.replace(/^0/, '')));
     // navigation.navigate(NAVIGATION_VERIFY_CODE, {
     //   phone: phone.replace(/^0/, ''),
     // });
@@ -95,7 +103,7 @@ const Login = props => {
                   onChangeText={text => setPhone(text)}
                 />
               </TouchableOpacity>
-              {showError ? (
+              {showError || showPhoneError ? (
                 <TextNormal style={styles.errorMessage}>
                   {'Số điện thoại không hợp lệ'}
                 </TextNormal>
