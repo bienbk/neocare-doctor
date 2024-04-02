@@ -26,12 +26,18 @@ import {asyncStorage} from 'store';
 import {CommonActions} from '@react-navigation/native';
 import SuperTokens from 'supertokens-react-native';
 import {NAVIGATION_VERIFY_CODE} from '../../navigation/routes';
+import {useDispatch, useSelector} from 'react-redux';
+import {sendPhone} from '../../store/auth/authAction';
+import {isStatusSendPhone} from '../../store/auth/authSelector';
+import Status from '../../common/Status/Status';
 
 const IMAGE_HEIGHT = heightDevice * 0.336;
 
 const Account = ({navigation}) => {
+  const dispatch = useDispatch();
   const [user, setUser] = React.useState({id: -1, username: ''});
   const positionY = useRef(new Animated.Value(0)).current;
+  const statusSendPhone = useSelector(state => isStatusSendPhone(state));
   const imageAnimation = {
     transform: [
       // {
@@ -91,9 +97,7 @@ const Account = ({navigation}) => {
         </TextSmallMedium>
       </View>
       <TextNormal
-        onPress={() =>
-          navigation.navigate(NAVIGATION_VERIFY_CODE, {screen: 'account'})
-        }
+        onPress={() => deleteAccount()}
         style={{
           position: 'absolute',
           top: 0,
@@ -114,6 +118,35 @@ const Account = ({navigation}) => {
   useEffect(() => {
     getUserStorage();
   }, []);
+
+  const deleteAccount = async () => {
+    const tempUser = await asyncStorage.getUser();
+    if (!tempUser) {
+      return;
+    }
+    dispatch(sendPhone(tempUser?.phone || tempUser?.phoneNumber));
+  };
+
+  const confirmOtp = async () => {
+    const tempUser = await asyncStorage.getUser();
+    if (!tempUser) {
+      return;
+    }
+    navigation.navigate(NAVIGATION_VERIFY_CODE, {
+      phone: tempUser?.phone
+        ? tempUser?.phone.replace(/^\+84/, '')
+        : tempUser?.phoneNumber
+        ? tempUser?.phoneNumber.replace(/^\+84/, '')
+        : null,
+      screen: 'account',
+    });
+  };
+
+  useEffect(() => {
+    if (statusSendPhone === Status.SUCCESS) {
+      confirmOtp();
+    }
+  }, [statusSendPhone]);
 
   return (
     <SafeAreaView style={styles.container}>

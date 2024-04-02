@@ -16,15 +16,21 @@ import {
   getDeviceId,
   getPreAuthSessionId,
 } from 'store/selectors';
-import Status from 'common/Status/Status';
 import {TextNormal} from 'common/Text/TextFont';
 import {asyncStorage} from 'store/index';
 import strings from 'localization/Localization';
-import {NAVIGATION_MAIN} from '../../navigation/routes';
+import {NAVIGATION_LOGIN, NAVIGATION_MAIN} from '../../navigation/routes';
 import {CommonActions} from '@react-navigation/native';
+import {
+  deleteAccountReset,
+  getDeleteAccount,
+} from '../../store/user/userAction';
+import SuperTokens from 'supertokens-react-native';
+import {isStatusDeleteAccount} from '../../store/user/userSelector';
+import Status from '../../common/Status/Status';
 
 const VerifyCode = ({navigation, route}) => {
-  const {phone, type} = route.params;
+  const {phone, screen} = route.params;
   const MAX_CODE_LENGTH = 6;
   const dispatch = useDispatch();
   const [code, setCode] = useState('');
@@ -42,6 +48,9 @@ const VerifyCode = ({navigation, route}) => {
     }, 1000);
   }, []);
 
+  const statusDeleteAccount = useSelector(state =>
+    isStatusDeleteAccount(state),
+  );
   const deviceId = useSelector(state => getDeviceId(state));
   const preAuthSessionId = useSelector(state => getPreAuthSessionId(state));
   const handleSendCodeAgain = async () => {
@@ -71,14 +80,45 @@ const VerifyCode = ({navigation, route}) => {
   useEffect(() => {
     if (statusConfirmOtp === Status.SUCCESS) {
       dispatch(confirmOtpReset());
-      navigation.dispatch(
-        CommonActions.reset({
-          index: 0,
-          routes: [{name: NAVIGATION_MAIN}],
-        }),
-      );
+      if (screen === 'account') {
+        deleteAccount();
+      } else {
+        navigation.dispatch(
+          CommonActions.reset({
+            index: 0,
+            routes: [{name: NAVIGATION_MAIN}],
+          }),
+        );
+      }
     }
   }, [statusConfirmOtp]);
+
+  //Delete the account
+  const deleteAccount = () => {
+    dispatch(getDeleteAccount());
+  };
+
+  const handleLogOut = async () => {
+    await asyncStorage.clearStorage();
+    await SuperTokens.signOut();
+    dispatch(deleteAccountReset());
+    setTimeout(() => {
+      setTimeout(() => {
+        navigation.dispatch(
+          CommonActions.reset({
+            index: 0,
+            routes: [{name: NAVIGATION_LOGIN}],
+          }),
+        );
+      }, 50);
+    }, 100);
+  };
+
+  useEffect(() => {
+    if (statusDeleteAccount === Status.SUCCESS) {
+      handleLogOut();
+    }
+  }, [statusDeleteAccount]);
 
   return (
     <SafeAreaView style={styles.safeView}>

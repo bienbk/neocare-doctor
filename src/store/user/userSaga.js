@@ -5,17 +5,10 @@ import {asyncStorage} from 'store/index';
 import {isTokenConfirm} from '../auth/authSelector';
 
 function* getDeleteAccount() {
-  const currentUser = yield asyncStorage.getUser();
-  console.log('USERRRRRRRRRRRRR:', currentUser);
   try {
-    const result = yield call(
-      UserController.deleteAccount,
-      currentUser?.custid,
-      currentUser?.session_key,
-      currentUser?.custphone,
-    );
+    const result = yield call(UserController.deleteAccount);
     console.log('DELETE SAAAGAAAAAA:', result);
-    if (result?.success && result?.data?.status === 1) {
+    if (result?.success) {
       yield put({
         type: NEOCARE.GET_DELETE_ACCOUNT_SUCCESS,
       });
@@ -23,7 +16,7 @@ function* getDeleteAccount() {
       yield put({
         type: NEOCARE.GET_DELETE_ACCOUNT_ERROR,
         payload: {
-          errorMsg: result?.data?.message,
+          errorMsg: result?.data?.error,
         },
       });
     }

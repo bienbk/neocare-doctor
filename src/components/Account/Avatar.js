@@ -48,7 +48,7 @@ const Avatar = ({}) => {
         </View>
         <View style={styles.wrapperLabelDoctor}>
           <TextNormalSemiBold style={styles.labelPhone}>
-            {user?.phone || '0376527002'}
+            {user?.phone || user?.phoneNumber || '0376527002'}
           </TextNormalSemiBold>
           <View style={styles.labelConnect}>
             <TextNormalSemiBold style={{color: 'white'}}>

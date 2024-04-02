@@ -7,6 +7,7 @@ import {asyncStorage} from 'store/index';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {resetGetListShop, resetOrder} from 'store/actions';
 import strings from 'localization/Localization';
+import {getUserInfoAction} from '../user/userAction';
 
 function* sendPhoneSaga({payload}) {
   console.log('go to send phone saga');
@@ -97,6 +98,7 @@ function* confirmOtp({payload}) {
       yield put({
         type: NEOCARE.CONFIRM_OTP_SUCCESS,
       });
+      yield put(getUserInfoAction());
       yield asyncStorage.setUser(result.data?.user);
       let frontToken = result.headers?.get('front-token');
       let stAccessToken = result.headers?.get('st-access-token');
