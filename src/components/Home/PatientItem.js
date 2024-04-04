@@ -35,11 +35,6 @@ const PatientItem = ({item, selectItem, tabActive}) => {
       setCurrentPatient(item);
     }
   }, [tabActive]);
-  useEffect(() => {
-    if (currentPatient) {
-      console.log('current patient:::', currentPatient);
-    }
-  }, [currentPatient]);
   const max_status = items ? Math.max(...Array.from(items, i => i.status)) : 0;
   const renderParameter = () =>
     items.map(parameter => (

@@ -5,12 +5,12 @@ import {
   TextSmallTwelve,
   TextSemiBold,
 } from 'common/Text/TextFont';
-import {StyleSheet, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 // import {MIDDLE_DOT,} from 'assets/constans';
 import Icons from 'common/Icons/Icons';
 // import styles from './styles';
-import Colors from '../../theme/Colors';
-import { widthDevice } from '../../assets/constans';
+import Colors from 'theme/Colors';
+import {STATUS, STATUS_COLORS, widthDevice} from 'assets/constans';
 // import Colors from 'theme/Colors';
 
 const DiseaseItem = ({
@@ -18,7 +18,7 @@ const DiseaseItem = ({
   status,
   unit,
   value,
-  label,
+  item,
   subValue,
   created_at,
   index,
@@ -29,20 +29,25 @@ const DiseaseItem = ({
         <View style={styles.wrapperNameLine}>
           <TextSemiBold>{name}</TextSemiBold>
           <View
-            style={
-              status === 'Bình thường'
-                ? styles.statusText
-                : styles.statusDangerText
-            }>
+            style={[
+              styles.statusText,
+              {backgroundColor: STATUS_COLORS[status || -1]},
+            ]}>
             <TextSmallTwelve style={{color: Colors.whiteColor}}>
-              {status}
+              {STATUS[status || 0]}
             </TextSmallTwelve>
           </View>
         </View>
-        {index === 2 && (
+        {item.id === 2 && item?.eating_status && (
           <View style={styles.wrapperTypeTime}>
             <TextNormal style={styles.timeText}>Trạng thái:</TextNormal>
-            <TextNormal style={styles.typeTimeText}>Trước ăn</TextNormal>
+            <TextNormal style={styles.typeTimeText}>
+              {item?.eating_status === 1
+                ? 'Nhịn ăn'
+                : item?.eating_status === 2
+                ? 'Sau ăn'
+                : 'Truớc ăn'}
+            </TextNormal>
           </View>
         )}
         <TextSmallTwelve style={styles.timeText}>{created_at}</TextSmallTwelve>

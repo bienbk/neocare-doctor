@@ -60,9 +60,54 @@ function* listRequestedSaga() {
     });
   }
 }
+function* getPatientDetails({payload}) {
+  try {
+    const result = yield call(PatientController.getPatientDetail, payload);
+    if (result && result.success) {
+      yield put({
+        type: NEOCARE.GET_PATIENT_DETAIL_SUCCESS,
+        payload: result.data,
+      });
+    } else {
+      yield put({
+        type: NEOCARE.GET_PATIENT_DETAIL_ERROR,
+      });
+    }
+  } catch (error) {
+    yield put({
+      type: NEOCARE.GET_PATIENT_DETAIL_ERROR,
+    });
+  }
+}
+function* confirmPatientService({payload}) {
+  try {
+    const result = yield call(
+      PatientController.confirmPatientServices,
+      payload,
+    );
+    if (result && result.success) {
+      yield put({
+        type: NEOCARE.CONFIRM_PATIENT_SERVICE_SUCCESS,
+      });
+    } else {
+      yield put({
+        type: NEOCARE.CONFIRM_PATIENT_SERVICE_ERROR,
+      });
+    }
+  } catch (error) {
+    yield put({
+      type: NEOCARE.CONFIRM_PATIENT_SERVICE_ERROR,
+    });
+  }
+}
 
 export default function* watcherSaga() {
   yield takeLatest(NEOCARE.LIST_PATIENT_REQUEST, listPatientSaga);
   yield takeLatest(NEOCARE.LIST_EMERGENCY_REQUEST, listEmergencySaga);
   yield takeLatest(NEOCARE.LIST_REQUESTED_REQUEST, listRequestedSaga);
+  yield takeLatest(NEOCARE.GET_PATIENT_DETAIL_REQUEST, getPatientDetails);
+  yield takeLatest(
+    NEOCARE.CONFIRM_PATIENT_SERVICE_REQUEST,
+    confirmPatientService,
+  );
 }

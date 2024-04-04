@@ -28,7 +28,6 @@ const HeaderTab = ({isSelected, onPressTab, requesting, number}) => {
   const initUser = async () => {
     const user = await asyncStorage.getUser();
     if (user) {
-      console.log('user::', user);
       setCurrentUser(user);
     }
   };

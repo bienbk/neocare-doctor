@@ -19,26 +19,24 @@ const CardPatient = ({currentPatient}) => {
           style={styles.imageDoctor}
           source={avatar}
         />
-        {currentPatient && currentPatient?.patient && (
+        {currentPatient && (
           <View style={styles.wrapperProfileContent}>
             <TextSemiBold style={styles.textPatientName}>
-              {currentPatient.patient.first_name +
-                ' ' +
-                currentPatient.patient.last_name}
+              {currentPatient.first_name + ' ' + currentPatient.last_name}
             </TextSemiBold>
             <View style={{paddingVertical: 2}}>
               <TextSmallTwelve style={styles.subtitleText}>{`${
-                currentPatient?.patient.gender === 1 ? 'Nam' : 'Nữ'
+                currentPatient?.gender === 1 ? 'Nam' : 'Nữ'
               } | ${
-                currentPatient.patient.birthday
-                  ? currentPatient.patient.birthday
-                      .substring(0, 11)
-                      .split('-')[0]
+                currentPatient.birthday
+                  ? currentPatient.birthday.substring(0, 11).split('-')[0]
                   : '1999'
               }`}</TextSmallTwelve>
             </View>
             <TextNormal style={styles.subtitleText}>
-              {currentPatient?.patient?.phone.replaceAll(' ', '')}
+              {currentPatient.phone
+                ? currentPatient.phone.replaceAll(' ', '')
+                : ''}
             </TextNormal>
             <View style={styles.groupPatient}>
               <TextNormal

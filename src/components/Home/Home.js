@@ -58,7 +58,6 @@ const Home = ({navigation}) => {
       return;
     }
     OneSignal.login(tempUser?.id.toString());
-    console.log('userrrrr:', tempUser);
     let dataOneSignal = {
       cid: tempUser?.id.toString(),
       name: tempUser?.first_name + ' ' + tempUser?.last_name,

@@ -22,3 +22,16 @@ export const listRequestedAction = payload => ({
 export const resetListRequested = () => ({
   type: NEOCARE.LIST_REQUESTED_RESET,
 });
+
+export const getPatientDetailAction = payload => ({
+  type: NEOCARE.GET_PATIENT_DETAIL_REQUEST,
+  payload,
+});
+export const resetGetPatientDetail = () => ({
+  type: NEOCARE.GET_PATIENT_DETAIL_RESET,
+});
+
+export const confirmPatientService = payload => ({
+  type: NEOCARE.CONFIRM_PATIENT_SERVICE_REQUEST,
+  payload,
+});

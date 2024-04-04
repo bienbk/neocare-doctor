@@ -44,5 +44,31 @@ class PatientController {
       return {success: false};
     }
   };
+  getPatientDetail = async params => {
+    try {
+      const {data} = await HttpClient.get(UrlApi.apiGetPatientDetail, {params});
+      // console.log('GET PATIENT SUCCESS:::', data);
+      const patient = {
+        ...data.parameters_of_patients.patient,
+        parameters:
+          Array.from(data.parameters_of_patients.items, i => JSON.parse(i)) ||
+          [],
+      };
+      return {success: true, data: patient};
+    } catch (error) {
+      console.log('GET PATIENT DETAIL ERROR:::', error);
+      return {success: false};
+    }
+  };
+  confirmPatientServices = async payload => {
+    try {
+      const {data} = await HttpClient.put(UrlApi.apiConfirmService, payload);
+      console.log('CONFIRM SERVICE SUCCESS:::', data);
+      return {success: true};
+    } catch (error) {
+      console.log('CONFIRM SERVICE ERROR:::', error);
+      return {success: false};
+    }
+  };
 }
 export default new PatientController();

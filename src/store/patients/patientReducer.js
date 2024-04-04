@@ -1,5 +1,6 @@
 import Status from 'common/Status/Status';
 import {NEOCARE} from 'store/actionsTypes';
+// import { STATUS } from '../../assets/constans';
 
 const initializeState = {
   listPatient: [],
@@ -10,10 +11,60 @@ const initializeState = {
 
   listRequested: [],
   statusListRequested: Status.DEFAULT,
+
+  // PATIENT DETAIL
+  currentPatient: {},
+  statusGetPatientDetail: Status.DEFAULT,
+
+  // CONFIRM PATIENT SERVICE
+  statusConfirmService: Status.DEFAULT,
 };
 
 export default (state = initializeState, {type, payload}) => {
   switch (type) {
+    // ----------------- CONFIRM SERVICE -----------------------
+    case NEOCARE.CONFIRM_PATIENT_SERVICE_REQUEST:
+      return {
+        ...state,
+        statusConfirmService: Status.LOADING,
+      };
+    case NEOCARE.CONFIRM_PATIENT_SERVICE_SUCCESS:
+      return {
+        ...state,
+        statusConfirmService: Status.SUCCESS,
+      };
+    case NEOCARE.CONFIRM_PATIENT_SERVICE_ERROR:
+      return {
+        ...state,
+        statusConfirmService: Status.ERROR,
+      };
+    case NEOCARE.CONFIRM_PATIENT_SERVICE_RESET:
+      return {
+        ...state,
+        statusConfirmService: Status.DEFAULT,
+      };
+    // ----------------- GET PATIENT DETAIL -----------------------
+    case NEOCARE.GET_PATIENT_DETAIL_REQUEST:
+      return {
+        ...state,
+        statusGetPatientDetail: Status.LOADING,
+      };
+    case NEOCARE.GET_PATIENT_DETAIL_SUCCESS:
+      return {
+        ...state,
+        statusGetPatientDetail: Status.SUCCESS,
+        currentPatient: payload,
+      };
+    case NEOCARE.GET_PATIENT_DETAIL_ERROR:
+      return {
+        ...state,
+        statusGetPatientDetail: Status.ERROR,
+      };
+    case NEOCARE.GET_PATIENT_DETAIL_RESET:
+      return {
+        ...state,
+        statusGetPatientDetail: Status.DEFAULT,
+      };
     // ----------------- LIST EMRGENCY -----------------------
     case NEOCARE.LIST_EMERGENCY_REQUEST:
       return {
