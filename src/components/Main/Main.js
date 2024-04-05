@@ -14,6 +14,7 @@ import {
   NAVIGATION_DOCTOR_DETAIL,
   NAVIGATION_MY_PATIENT,
 } from 'navigation/routes';
+import {widthDevice} from '../../assets/constans';
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
@@ -113,6 +114,7 @@ const styles = StyleSheet.create({
   inactiveTab: {
     alignItems: 'center',
     padding: 10,
+    width: widthDevice / 2, //config ipad
   },
   activeTab: {
     alignItems: 'center',
