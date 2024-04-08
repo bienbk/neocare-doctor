@@ -41,6 +41,7 @@ export const NEOCARE = createRequestTypes(
     'LIST_REQUESTED',
     'GET_PATIENT_DETAIL',
     'CONFIRM_PATIENT_SERVICE',
+    'LIST_SERVICE',
 
     // orders
     'CONFIRM_ORDER',

@@ -27,10 +27,10 @@ const styles = StyleSheet.create({
     color: Colors.primary,
   },
   wrapperParameterItem: {
-    borderBottomColor: Colors.gray.gray90,
-    borderStyle: 'dashed',
+    // borderBottomColor: Colors.gray.gray90,
+    // borderStyle: 'dashed',
     paddingVertical: 8,
-    borderBottomWidth: 1,
+    // borderBottomWidth: 1,
   },
   alignItemsCenter: {alignItems: 'center'},
   weightBold: {

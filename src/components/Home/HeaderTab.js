@@ -33,7 +33,7 @@ const HeaderTab = ({isSelected, onPressTab, requesting, number}) => {
   };
   return (
     <ImageBackground source={decorator_home} style={{paddingBottom: 1}}>
-      <View source={decorator_home} style={styles.wrapperFixedHeader}>
+      <View style={styles.wrapperFixedHeader}>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
           <Images source={user_example} style={styles.avatarIcon} />
           <View style={{paddingHorizontal: 10}}>
@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     borderColor: Colors.primary,
     borderWidth: 1.3,
-    borderStyle: 'solid',
+    // borderStyle: 'solid',
     backgroundColor: 'lightgray',
   },
   badgeIcon: {

@@ -22,6 +22,17 @@ const TabOptions = ({isSelected, onPressTab, requesting, number}) => {
           Chỉ số sức khoẻ
         </TextNormal>
       </TouchableOpacity>
+      {/* <TouchableOpacity
+        onPress={() => onPressTab(2)}
+        style={[
+          styles.wrapperTabItem,
+          isSelected === 2 && styles.wrapperActiveTabItem,
+        ]}>
+        <TextNormal
+          style={[styles.titleTab, isSelected === 2 && styles.titleActivedTab]}>
+          Tư vấn
+        </TextNormal>
+      </TouchableOpacity> */}
       <TouchableOpacity
         onPress={() => onPressTab(2)}
         style={[
@@ -30,18 +41,7 @@ const TabOptions = ({isSelected, onPressTab, requesting, number}) => {
         ]}>
         <TextNormal
           style={[styles.titleTab, isSelected === 2 && styles.titleActivedTab]}>
-          Thân nhân
-        </TextNormal>
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() => onPressTab(3)}
-        style={[
-          styles.wrapperTabItem,
-          isSelected === 3 && styles.wrapperActiveTabItem,
-        ]}>
-        <TextNormal
-          style={[styles.titleTab, isSelected === 3 && styles.titleActivedTab]}>
-          Lịch sử điều trị
+          Lịch sử tư vấn
         </TextNormal>
       </TouchableOpacity>
     </View>
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
   },
   wrapperTab: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-evenly',
     alignItems: 'center',
     paddingVertical: 5,
     paddingHorizontal: 15,

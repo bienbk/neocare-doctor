@@ -35,3 +35,14 @@ export const confirmPatientService = payload => ({
   type: NEOCARE.CONFIRM_PATIENT_SERVICE_REQUEST,
   payload,
 });
+export const resetConfirmService = () => ({
+  type: NEOCARE.CONFIRM_PATIENT_SERVICE_RESET,
+});
+
+export const listServiceAction = payload => ({
+  type: NEOCARE.LIST_SERVICE_REQUEST,
+  payload,
+});
+export const resetListService = () => ({
+  type: NEOCARE.LIST_SERVICE_RESET,
+});

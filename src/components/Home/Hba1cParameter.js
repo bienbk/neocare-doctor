@@ -2,7 +2,6 @@ import React from 'react';
 import {TextSmallTwelve, TextNormal} from 'common/Text/TextFont';
 import {View} from 'react-native';
 import styles from './styles';
-import {STATUS_COLORS, STATUS} from 'assets/constans';
 const Hba1cParameter = ({parameter}) => {
   return (
     <View style={[styles.wrapperParameterItem]}>

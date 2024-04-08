@@ -7,16 +7,39 @@ import HeaderPatient from './HeaderPatient';
 import CardPatient from './CardPatient';
 import DiseaseItem from './DiseaseItem';
 import {useDispatch, useSelector} from 'react-redux';
-import {patientDetailSelector, statusGetPatientDetail} from 'store/selectors';
-import {getPatientDetailAction, resetGetPatientDetail} from 'store/actions';
+import {
+  patientDetailSelector,
+  statusGetPatientDetail,
+  serviceOfPatientSelector,
+  statusConfirmServiceSelector,
+  statusListServiceSelector,
+} from 'store/selectors';
+import {
+  getPatientDetailAction,
+  resetGetPatientDetail,
+  listServiceAction,
+  confirmPatientService,
+  resetConfirmService,
+} from 'store/actions';
 import Status from 'common/Status/Status';
+import ServiceHistory from './ServiceHistory';
+import ConfirmationModal from '../../common/ConfirmationModal/ConfirmationModal';
 
 const MyPatient = ({navigation, route}) => {
   const dispatch = useDispatch();
   const currentPatient = useSelector(state => patientDetailSelector(state));
   const statusGetPatient = useSelector(state => statusGetPatientDetail(state));
   const [listParameter, setListParams] = useState([]);
+  const [currentPackge, setCurrentPackage] = useState({});
   const [tabActive, setTabActive] = useState(1);
+  const [modal, showModal] = useState(0);
+  const statusServiceOfPatient = useSelector(state =>
+    statusListServiceSelector(state),
+  );
+  const statusUpdateService = useSelector(state =>
+    statusConfirmServiceSelector(state),
+  );
+  const listService = useSelector(state => serviceOfPatientSelector(state));
   useEffect(() => {
     initializePatient();
   }, []);
@@ -29,6 +52,13 @@ const MyPatient = ({navigation, route}) => {
         size: 100,
       }),
     );
+    dispatch(
+      listServiceAction({
+        patient_id: patient?.patient.id,
+        page: 1,
+        size: 100,
+      }),
+    );
   };
   useEffect(() => {
     if (statusGetPatient === Status.SUCCESS) {
@@ -36,6 +66,19 @@ const MyPatient = ({navigation, route}) => {
       dispatch(resetGetPatientDetail());
     }
   }, [statusGetPatient]);
+  useEffect(() => {
+    if (statusUpdateService === Status.SUCCESS) {
+      showModal(1);
+    }
+  }, [statusUpdateService]);
+  useEffect(() => {
+    if (statusServiceOfPatient === Status.SUCCESS && listService.length) {
+      setCurrentPackage(listService[0].package_item);
+    }
+  }, [statusServiceOfPatient]);
+  const handlerUpdateSerivce = item => {
+    dispatch(confirmPatientService({status: 8, id: item.id}));
+  };
   const mapParameter = () => {
     const tempMap = new Map(
       HOME_DATA.map(i => {
@@ -77,6 +120,10 @@ const MyPatient = ({navigation, route}) => {
       index={index}
     />
   );
+  const handleConfirmModal = () => {
+    showModal(0);
+    dispatch(resetConfirmService());
+  };
   return (
     <SafeAreaView style={styles.containerSafeArea}>
       {/* HEADER */}
@@ -87,14 +134,36 @@ const MyPatient = ({navigation, route}) => {
       <TabOptions isSelected={tabActive} onPressTab={v => setTabActive(v)} />
       {/* PARAMETER OF PATIENT */}
       <ScrollView style={styles.wrapperListCard}>
-        <FlatList
-          data={listParameter}
-          scrollEnabled={false}
-          showsVerticalScrollIndicator={false}
-          keyExtractor={i => i.name}
-          renderItem={renderCardItem}
-        />
+        {tabActive === 1 && (
+          <FlatList
+            data={listParameter}
+            scrollEnabled={false}
+            showsVerticalScrollIndicator={false}
+            keyExtractor={i => i.name}
+            renderItem={renderCardItem}
+          />
+        )}
+        {tabActive === 2 && (
+          <ServiceHistory
+            currentPackge={currentPackge}
+            listService={listService}
+            confirmService={service => handlerUpdateSerivce(service)}
+          />
+        )}
       </ScrollView>
+      <ConfirmationModal
+        isOpen={modal === 1}
+        isConfriming={true}
+        textButtonConfrim={'Đóng'}
+        textContent={
+          statusUpdateService === Status.SUCCESS
+            ? ' Xác nhận yêu cầu tư vấn thành công'
+            : ' Xác nhận yêu cầu tư vấn thất bại.  Vui lòng thử lại sau!'
+        }
+        title={'Thông báo'}
+        onCancel={handleConfirmModal}
+        onConfirm={handleConfirmModal}
+      />
     </SafeAreaView>
   );
 };

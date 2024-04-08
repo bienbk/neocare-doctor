@@ -2,7 +2,6 @@ import React from 'react';
 import {View} from 'react-native';
 import {TextNormal, TextSmallTwelve} from 'common/Text/TextFont';
 import styles from './styles';
-import {STATUS_COLORS, STATUS} from '../../assets/constans';
 const CholesterolParameter = ({parameter}) => (
   <View style={styles.wrapperParameterItem}>
     <View style={styles.lineBetween}>

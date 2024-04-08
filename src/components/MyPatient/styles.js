@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   imageDoctor: {
     width: 60,
     height: 60,
-    borderRadius: 8,
+    // borderRadius: 8,
   },
   subtitleText: {
     color: Colors.gray.gray40,
@@ -56,7 +56,64 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     width: 30,
-  }
+  },
+  contentLine: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingVertical: 10,
+    alignItems: 'center',
+  },
+  wrapperServiceHistory: {
+    // marginVertical: 5,
+    marginHorizontal: 20,
+  },
+  linkText1: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    textDecorationLine: 'underline',
+    color: Colors.main,
+  },
+  labelStatus: {
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 16,
+  },
+  statusText: {
+    color: Colors.whiteColor,
+    fontWeight: 'bold',
+  },
+  wrapperConfirm: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    paddingVertical: 5,
+  },
+  wrapperServiceItem: {
+    paddingVertical: 5,
+    marginVertical: 1,
+    borderBottomColor: 'lightgray',
+    borderBottomWidth: 1,
+    borderStyle: 'dashed',
+  },
+  wrapperLine: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingVertical: 5,
+    alignItems: 'center',
+  },
+  wrapperContentCard: {
+    paddingHorizontal: 15,
+    paddingVertical: 10,
+    // elevation: 3,
+    // marginHorizontal: 10,
+    backgroundColor: Colors.whiteColor,
+    borderRadius: 16,
+    // width: widthDevice - 20,
+  },
+  borderTopDashed: {
+    borderTopColor: Colors.gray.gray90,
+    borderTopWidth: 1,
+    borderStyle: 'solid',
+  },
 });
 
 export default styles;

@@ -118,7 +118,6 @@ const Home = ({navigation}) => {
     }
   }, [refreshing, statusListPatient]);
   const handleSelectPatient = item => {
-    console.log('press item::', item);
     if (!item) {
       return;
     }
@@ -199,7 +198,9 @@ const Home = ({navigation}) => {
           />
         )}
         {refreshing &&
-          [...Array(4).keys()].map(i => <Skeleton item={listPatient[0]} />)}
+          [...Array(4).keys()].map(i => (
+            <Skeleton key={i} item={listPatient[0]} />
+          ))}
         {listPatient.length === 0 &&
           listEmergency.length === 0 &&
           listRequested.length === 0 &&

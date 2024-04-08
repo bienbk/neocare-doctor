@@ -50,7 +50,9 @@ const DiseaseItem = ({
             </TextNormal>
           </View>
         )}
-        <TextSmallTwelve style={styles.timeText}>{created_at}</TextSmallTwelve>
+        <TextSmallTwelve style={styles.timeText}>
+          {new Date(created_at).toLocaleString('en-GB')}
+        </TextSmallTwelve>
       </View>
       <View style={styles.wrapperValue}>
         <View style={{flexDirection: 'row'}}>

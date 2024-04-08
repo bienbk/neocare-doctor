@@ -18,10 +18,37 @@ const initializeState = {
 
   // CONFIRM PATIENT SERVICE
   statusConfirmService: Status.DEFAULT,
+
+  // LIST SUH OF PATIENT
+  listServiceOfPatient: [],
+  statusListService: Status.DEFAULT,
 };
 
 export default (state = initializeState, {type, payload}) => {
   switch (type) {
+    // ----------------- LIST SERVICE -----------------------
+    case NEOCARE.LIST_SERVICE_REQUEST:
+      return {
+        ...state,
+        statusListService: Status.LOADING,
+      };
+    case NEOCARE.LIST_SERVICE_SUCCESS:
+      return {
+        ...state,
+        statusListService: Status.SUCCESS,
+        listServiceOfPatient: payload,
+      };
+    case NEOCARE.LIST_SERVICE_ERROR:
+      return {
+        ...state,
+        statusListService: Status.ERROR,
+        listServiceOfPatient: [],
+      };
+    case NEOCARE.LIST_SERVICE_RESET:
+      return {
+        ...state,
+        statusListService: Status.DEFAULT,
+      };
     // ----------------- CONFIRM SERVICE -----------------------
     case NEOCARE.CONFIRM_PATIENT_SERVICE_REQUEST:
       return {

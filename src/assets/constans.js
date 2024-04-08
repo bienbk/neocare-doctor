@@ -158,3 +158,9 @@ export const today = new Intl.DateTimeFormat('vi', {
   weekday: 'long',
   year: 'numeric',
 }).format(new Date());
+
+export const STATUS_SERVICE = {
+  7: {name: ' Chờ xác nhận', color: Colors.gray.gray70},
+  9: {name: 'Từ chối', color: Colors.very_high},
+  10: {name: 'Hoàn thành', color: Colors.greenColor},
+};

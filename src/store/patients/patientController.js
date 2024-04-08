@@ -38,7 +38,16 @@ class PatientController {
         params: payload,
       });
       console.log('DATA FROM LIST listRequested CONTROLLEr:::', data);
-      return {success: true, data: data?.service_requesting || []};
+      let list = new Map();
+      if (data && data.service_requesting) {
+        list = new Map(
+          data?.service_requesting.reverse().map(i => {
+            return [`${i.package_item.product_id}_${i.patient.id}`, i];
+          }),
+        );
+      }
+      console.log('LIST:::', list);
+      return {success: true, data: Array.from(list.values()) || []};
     } catch (error) {
       console.log('LIST listRequested ERROR:::', error);
       return {success: false};
@@ -62,11 +71,26 @@ class PatientController {
   };
   confirmPatientServices = async payload => {
     try {
-      const {data} = await HttpClient.put(UrlApi.apiConfirmService, payload);
+      const {data} = await HttpClient.put(
+        UrlApi.apiConfirmService + `/${payload.id}`,
+        {status: payload.status},
+      );
       console.log('CONFIRM SERVICE SUCCESS:::', data);
       return {success: true};
     } catch (error) {
       console.log('CONFIRM SERVICE ERROR:::', error);
+      return {success: false};
+    }
+  };
+  listService = async payload => {
+    try {
+      const {data} = await HttpClient.get(UrlApi.apiListService, {
+        params: payload,
+      });
+      console.log('LIST SUH::::', data);
+      return {success: true, data: data.service_utilization_histories};
+    } catch (error) {
+      console.log('ERROR LIST SUH:::', error);
       return {success: false};
     }
   };

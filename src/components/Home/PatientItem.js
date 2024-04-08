@@ -16,10 +16,8 @@ const ACU = 'Acid Uric';
 const BLG = 'Blood Glucose';
 // 0-EMERGENCY::::: 1-SERVICE:::::2-PACKAGE
 const PatientItem = ({item, selectItem, tabActive}) => {
-  // console.log(item);
   const [currentPatient, setCurrentPatient] = useState({});
   const {items, patient} = item;
-  console.log(items);
   useEffect(() => {
     if (patient) {
       setCurrentPatient(
