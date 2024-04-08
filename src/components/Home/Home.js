@@ -192,6 +192,7 @@ const Home = ({navigation}) => {
                 ? listRequested
                 : listPatient
             }
+            contentContainerStyle={{marginBottom: 10}}
             showsVerticalScrollIndicator={false}
             keyExtractor={(item, index) => `${item.name}-${index}`}
             renderItem={renderPatientItem}

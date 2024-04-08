@@ -54,7 +54,7 @@ const MyPatient = ({navigation, route}) => {
     );
     dispatch(
       listServiceAction({
-        patient_id: patient?.patient.id,
+        patientId: patient?.patient.id,
         page: 1,
         size: 100,
       }),

@@ -25,22 +25,20 @@ const Splash = ({navigation}) => {
   };
   const checAuthentication = async () => {
     const hasToken = await doesSessionExist();
-    hasToken &&
-      navigation &&
-      navigation.dispatch(
-        CommonActions.reset({
-          index: 0,
-          routes: [{name: NAVIGATION_MAIN}],
-        }),
-      );
-    !hasToken &&
-      navigation &&
-      navigation.dispatch(
-        CommonActions.reset({
-          index: 0,
-          routes: [{name: NAVIGATION_LOGIN}],
-        }),
-      );
+    hasToken && navigation && navigation.navigate(NAVIGATION_MAIN);
+    // navigation.dispatch(
+    //   CommonActions.reset({
+    //     index: 0,
+    //     routes: [{name: NAVIGATION_MAIN}],
+    //   }),
+    // );
+    !hasToken && navigation && navigation.navigate(NAVIGATION_LOGIN);
+    // navigation.dispatch(
+    //   CommonActions.reset({
+    //     index: 0,
+    //     routes: [{name: NAVIGATION_LOGIN}],
+    //   }),
+    // );
   };
   return (
     <SafeAreaView style={styles.container}>
