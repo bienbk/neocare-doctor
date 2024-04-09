@@ -90,9 +90,8 @@ const styles = StyleSheet.create({
   },
   wrapperTab: {
     flexDirection: 'row',
-    justifyContent: 'space-evenly',
     alignItems: 'center',
-    paddingVertical: 5,
+    paddingVertical: 15,
     paddingHorizontal: 15,
   },
   wrapperTabItem: {
@@ -103,6 +102,7 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     backgroundColor: '#EFEFEF',
     borderRadius: 10,
+    marginRight: 10,
     flexDirection: 'row',
     alignItems: 'center',
   },

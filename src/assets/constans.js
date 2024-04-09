@@ -113,36 +113,36 @@ export const HOME_DATA = [
 ];
 
 export const LIST_OPTION = [
-  {
-    title: 'Chung',
-    id: 1,
-    items: [
-      {
-        name: 'Hồ sơ',
-        icon: 'icon_user',
-        link: '',
-      },
-      {
-        name: 'Tài khoản & dữ liệu',
-        icon: 'icon_profile',
-        link: '',
-      },
-    ],
-  },
+  // {
+  //   title: 'Chung',
+  //   id: 1,
+  //   items: [
+  //     {
+  //       name: 'Hồ sơ',
+  //       icon: 'icon_user',
+  //       link: '',
+  //     },
+  //     {
+  //       name: 'Tài khoản & dữ liệu',
+  //       icon: 'icon_profile',
+  //       link: '',
+  //     },
+  //   ],
+  // },
   {
     title: 'Cài đặt & Hỗ trợ',
     id: 3,
     items: [
-      {
-        name: 'Hotline 0901234567',
-        icon: 'icon_hotline',
-        link: '',
-      },
-      {
-        name: 'Chính sách và quyền riêng tư',
-        icon: 'icon_policy',
-        link: '',
-      },
+      // {
+      //   name: 'Hotline 0901234567',
+      //   icon: 'icon_hotline',
+      //   link: '',
+      // },
+      // {
+      //   name: 'Chính sách và quyền riêng tư',
+      //   icon: 'icon_policy',
+      //   link: '',
+      // },
       {
         name: 'Đăng xuất',
         icon: 'icon_logout_red',
@@ -160,7 +160,7 @@ export const today = new Intl.DateTimeFormat('vi', {
 }).format(new Date());
 
 export const STATUS_SERVICE = {
-  7: {name: ' Chờ xác nhận', color: Colors.gray.gray70},
-  9: {name: 'Từ chối', color: Colors.very_high},
+  7: {name: ' Chờ xác nhận', color: Colors.primary},
+  9: {name: 'Từ chối', color: Colors.redColor},
   10: {name: 'Hoàn thành', color: Colors.greenColor},
 };

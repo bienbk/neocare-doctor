@@ -24,6 +24,8 @@ import {
 import Status from 'common/Status/Status';
 import ServiceHistory from './ServiceHistory';
 import ConfirmationModal from '../../common/ConfirmationModal/ConfirmationModal';
+import PackageInfo from './PackageInfo';
+
 
 const MyPatient = ({navigation, route}) => {
   const dispatch = useDispatch();
@@ -45,6 +47,7 @@ const MyPatient = ({navigation, route}) => {
   }, []);
   const initializePatient = () => {
     const {patient} = route?.params;
+    console.log(patient);
     dispatch(
       getPatientDetailAction({
         patient_id: patient?.patient.id,
@@ -130,10 +133,15 @@ const MyPatient = ({navigation, route}) => {
       <HeaderPatient navigation={navigation} />
       {/* CARD INFORMATION */}
       {currentPatient && <CardPatient currentPatient={currentPatient} />}
-      {/* TAB OPTIONS */}
-      <TabOptions isSelected={tabActive} onPressTab={v => setTabActive(v)} />
+      {/* Package */}
+      {currentPackge && currentPackge?.name && listService.length > 0 && (
+        <PackageInfo currentPackge={{...currentPackge, ...listService[0]}} />
+      )}
+
       {/* PARAMETER OF PATIENT */}
       <ScrollView style={styles.wrapperListCard}>
+        {/* TAB OPTIONS */}
+        <TabOptions isSelected={tabActive} onPressTab={v => setTabActive(v)} />
         {tabActive === 1 && (
           <FlatList
             data={listParameter}

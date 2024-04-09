@@ -24,14 +24,18 @@ const CardPatient = ({currentPatient}) => {
             <TextSemiBold style={styles.textPatientName}>
               {currentPatient.first_name + ' ' + currentPatient.last_name}
             </TextSemiBold>
-            <View style={{paddingVertical: 2}}>
+            <View style={styles.wrapperGender}>
               <TextSmallTwelve style={styles.subtitleText}>{`${
                 currentPatient?.gender === 1 ? 'Nam' : 'Nữ'
-              } | ${
-                currentPatient.birthday
-                  ? currentPatient.birthday.substring(0, 11).split('-')[0]
-                  : '1999'
               }`}</TextSmallTwelve>
+              <View style={styles.verticalLine} />
+              <TextSmallTwelve>
+                {`${
+                  currentPatient.birthday
+                    ? currentPatient.birthday.substring(0, 11).split('-')[0]
+                    : '1999'
+                }`}
+              </TextSmallTwelve>
             </View>
             <TextNormal style={styles.subtitleText}>
               {currentPatient.phone

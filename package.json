@@ -24,6 +24,7 @@
     "libphonenumber-js": "^1.10.59",
     "react": "18.2.0",
     "react-native": "0.71.11",
+    "react-native-circular-progress-indicator": "^4.4.2",
     "react-native-config": "^1.5.1",
     "react-native-device-info": "^10.6.0",
     "react-native-gesture-handler": "^2.15.0",

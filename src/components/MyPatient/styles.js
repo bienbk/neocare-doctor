@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
   subtitleText: {
     color: Colors.gray.gray40,
   },
-  wrapperListCard: {marginVertical: 5},
+  wrapperListCard: {marginVertical: 5, backgroundColor: Colors.whiteColor},
   groupPatient: {
     alignSelf: 'flex-start',
     paddingHorizontal: 12,
@@ -68,10 +68,9 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
   },
   linkText1: {
-    fontSize: 14,
-    fontWeight: 'bold',
-    textDecorationLine: 'underline',
+    fontSize: 12,
     color: Colors.main,
+    fontWeight: 'bold',
   },
   labelStatus: {
     paddingHorizontal: 8,
@@ -82,18 +81,33 @@ const styles = StyleSheet.create({
     color: Colors.whiteColor,
     fontWeight: 'bold',
   },
-  wrapperConfirm: {
+  wrapperGender: {
+    paddingVertical: 2,
     flexDirection: 'row',
-    justifyContent: 'center',
-    paddingVertical: 5,
+    alignItems: 'center',
   },
-  wrapperServiceItem: {
-    paddingVertical: 5,
-    marginVertical: 1,
-    borderBottomColor: 'lightgray',
-    borderBottomWidth: 1,
-    borderStyle: 'dashed',
+  verticalLine: {
+    height: 10,
+    width: 1,
+    marginHorizontal: 10,
+    backgroundColor: 'gray',
   },
+  wrapperConfirm: {
+    position: 'absolute',
+    top: 30,
+    right: 5,
+    borderRadius: 16,
+    backgroundColor: Colors.primary,
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+  },
+  // wrapperServiceItem: {
+  //   paddingVertical: 5,
+  //   marginVertical: 1,
+  //   borderBottomColor: 'lightgray',
+  //   borderBottomWidth: 1,
+  //   borderStyle: 'dashed',
+  // },
   wrapperLine: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -102,11 +116,13 @@ const styles = StyleSheet.create({
   },
   wrapperContentCard: {
     paddingHorizontal: 15,
-    paddingVertical: 10,
-    // elevation: 3,
+    paddingVertical: 15,
+    marginHorizontal: 15,
+    marginVertical: 3,
     // marginHorizontal: 10,
     backgroundColor: Colors.whiteColor,
-    borderRadius: 16,
+    elevation: 1,
+    borderRadius: 12,
     // width: widthDevice - 20,
   },
   borderTopDashed: {
