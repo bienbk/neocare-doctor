@@ -19,6 +19,8 @@ const Feature = ({
   const handlePress = () => {
     if (link === NAVIGATION_LOGIN) {
       logOut();
+    } else {
+      navigation && navigation.navigate(link);
     }
   };
   return (

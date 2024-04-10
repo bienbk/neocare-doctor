@@ -13,10 +13,11 @@ const Avatar = ({}) => {
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
   }, []);
-  async function getUserStorage() {
+  const getUserStorage = async () => {
     const userStore = (await asyncStorage.getUser()) || {id: -1};
+    console.log(userStore);
     setUser(userStore);
-  }
+  };
 
   // getUserStorage();
   useEffect(() => {

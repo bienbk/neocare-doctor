@@ -63,7 +63,7 @@ const Main = () => {
         <Svg
           name={icons[route.name]}
           size={25}
-          color={focused ? Colors.main : 'black'}
+          color={focused ? Colors.primary : 'black'}
         />
         <TextSmallEleven
           style={{

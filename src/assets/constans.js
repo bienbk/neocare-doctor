@@ -1,6 +1,6 @@
 import {Dimensions, Platform} from 'react-native';
 import DeviceInfo from 'react-native-device-info';
-import {NAVIGATION_LOGIN} from '../navigation/routes';
+import {NAVIGATION_LOGIN, NAVIGATION_SALE} from '../navigation/routes';
 import Colors from '../theme/Colors';
 export const STATUS = {
   0: 'Bình thuờng',
@@ -138,11 +138,11 @@ export const LIST_OPTION = [
       //   icon: 'icon_hotline',
       //   link: '',
       // },
-      // {
-      //   name: 'Chính sách và quyền riêng tư',
-      //   icon: 'icon_policy',
-      //   link: '',
-      // },
+      {
+        name: 'Cộng tác viên',
+        icon: 'icon_profile',
+        link: NAVIGATION_SALE,
+      },
       {
         name: 'Đăng xuất',
         icon: 'icon_logout_red',

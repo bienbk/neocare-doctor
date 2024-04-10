@@ -11,10 +11,12 @@ import VerifyCode from './VerifyCode/VerifyCode';
 import MyPatient from './MyPatient/MyPatient';
 import PackageDetails from './PackageDetails/PackageDetails';
 import Account from './Account/Account';
+import Sale from './Sale/Sale';
 export {
   Splash,
   Main,
   Home,
+  Sale,
   Login,
   VerifyCode,
   MyPatient,

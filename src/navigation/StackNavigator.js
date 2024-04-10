@@ -7,6 +7,7 @@ import {
   NAVIGATION_MY_PATIENT,
   NAVIGATION_SPLASH,
   NAVIGATION_VERIFY_CODE,
+  NAVIGATION_SALE,
 } from './routes';
 import * as Screens from 'components';
 
@@ -32,6 +33,7 @@ const StackNavigator = () => {
         name={NAVIGATION_PACKAGE_DETAILS}
         component={Screens.PackageDetails}
       />
+      <Stack.Screen name={NAVIGATION_SALE} component={Screens.Sale} />
     </Stack.Navigator>
   );
 };

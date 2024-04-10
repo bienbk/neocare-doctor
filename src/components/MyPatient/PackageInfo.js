@@ -28,22 +28,22 @@ const PackageInfo = ({currentPackge}) => {
       <CircularProgress
         value={
           parseInt(currentPackge.name.match(/\d+/)[0], 10) * 30 -
-          (new Date().getTime() -
-            new Date(currentPackge?.created_at).getTime()) /
-            60000 /
-            (24 * 60)
+            (new Date().getTime() -
+              new Date(currentPackge?.created_at).getTime()) /
+              60000 /
+              (24 * 60) || 50
         }
         radius={28}
         progressValueColor={'black'}
         progressValueFontSize={17}
         activeStrokeWidth={5}
         inActiveStrokeWidth={5}
-        progressValueStyle={{position: 'absolute', top: -10, left: -10}}
-        maxValue={parseInt(currentPackge.name.match(/\d+/)[0], 10) * 30}
+        progressValueStyle={{position: 'absolute', top: -5, left: -10}}
+        maxValue={parseInt(currentPackge.name.match(/\d+/)[0], 10) * 30 || 100}
         activeStrokeColor={'black'}
         // inActiveStrokeColor={Colors.gray.gray90}
         title={'Ngày'}
-        titleStyle={{fontSize: 10, marginTop: 10}}
+        titleStyle={{fontSize: 10, marginTop: 15}}
         titleColor={'gray'}
       />
     </View>
