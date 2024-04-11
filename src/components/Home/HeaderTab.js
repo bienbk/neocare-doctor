@@ -43,7 +43,7 @@ const HeaderTab = ({isSelected, onPressTab, requesting, number}) => {
             </TextSemiBold>
           </View>
         </View>
-        <Icons type={'Feather'} name={'bell'} size={29} color={'black'} />
+        {/* <Icons type={'Feather'} name={'bell'} size={29} color={'black'} /> */}
       </View>
       <View style={styles.wrapperTab}>
         <TouchableOpacity

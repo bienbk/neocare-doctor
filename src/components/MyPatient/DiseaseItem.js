@@ -5,7 +5,7 @@ import {
   TextSmallTwelve,
   TextSemiBold,
 } from 'common/Text/TextFont';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, View, Platform} from 'react-native';
 // import {MIDDLE_DOT,} from 'assets/constans';
 import Icons from 'common/Icons/Icons';
 // import styles from './styles';
@@ -90,6 +90,20 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     marginBottom: 10,
     paddingVertical: 10,
+    ...Platform.select({
+      android: {
+        elevation: 2,
+      },
+      ios: {
+        shadowColor: '#a8bed2',
+        shadowOpacity: 1,
+        shadowRadius: 6,
+        shadowOffset: {
+          width: 2,
+          height: 2,
+        },
+      },
+    }),
   },
   wrapperContentCard: {
     paddingVertical: 10,

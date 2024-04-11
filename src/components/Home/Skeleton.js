@@ -7,20 +7,20 @@ import {TextSemiBold} from 'common/Text/TextFont';
 const Skeleton = () => {
   return (
     <SkeletonPlaceholder style={[styles.wrapperDoctorItem]} borderRadius={4}>
-      <View style={[styles.wrapperProfileDoctor, {alignItems: 'center'}]}>
+      <View style={[styles.wrapperProfileDoctor]}>
         <View style={styles.imageDoctor} />
         <View style={[styles.wrapperProfileContent, {flex: 1}]}>
           <TextSemiBold
             style={[
               styles.textDoctorName,
-              {flex: 1, marginVertical: 5, paddingVertical: 2},
+              {flex: 1, marginVertical: 5, paddingVertical: 5},
             ]}>
             {''}
           </TextSemiBold>
           <TextSemiBold
             style={[
               styles.textDoctorName,
-              {flex: 1, marginVertical: 5, paddingVertical: 2},
+              {flex: 1, marginVertical: 5, paddingVertical: 5},
             ]}>
             {''}
           </TextSemiBold>

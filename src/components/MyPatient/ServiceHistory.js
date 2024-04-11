@@ -37,7 +37,7 @@ const ServiceHistory = ({currentPackge, listService, confirmService}) => {
           </View>
         ))
       ) : (
-        <TextNormal>Chưa gửi yêu câu tư vấn đến chuyên gia</TextNormal>
+        <View />
       )}
     </View>
   );

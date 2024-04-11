@@ -198,25 +198,13 @@ const Home = ({navigation}) => {
             renderItem={renderPatientItem}
           />
         )}
-        {refreshing &&
-          [...Array(4).keys()].map(i => (
-            <Skeleton key={i} item={listPatient[0]} />
-          ))}
-        {listPatient.length === 0 &&
-          listEmergency.length === 0 &&
-          listRequested.length === 0 &&
-          !refreshing && (
-            <View style={styles.containerEmpty}>
-              <Images
-                resizeMode="contain"
-                style={styles.imageEmpty}
-                source={empty_logo}
-              />
-              <TextNormalSemiBold style={styles.emptyDoctorText}>
-                Thông tin bệnh nhân có thể giúp bạn liên hệ với họ dễ dàng hơn
-              </TextNormalSemiBold>
-            </View>
-          )}
+        {refreshing && (
+          <View style={{flex: 1, marginTop: 10}}>
+            {[...Array(4).keys()].map(i => (
+              <Skeleton key={i} item={listPatient[0]} />
+            ))}
+          </View>
+        )}
       </ScrollView>
     </SafeAreaView>
   );
