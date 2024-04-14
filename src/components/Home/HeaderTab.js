@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   ImageBackground,
   StyleSheet,
@@ -16,7 +16,7 @@ import Images from 'common/Images/Images';
 import {user_example, widthDevice} from 'assets/constans';
 import Icons from 'common/Icons/Icons';
 import {decorator_home} from 'assets/constans';
-import { asyncStorage } from '../../store';
+import {asyncStorage} from '../../store';
 
 const HeaderTab = ({isSelected, onPressTab, requesting, number}) => {
   const [currentUser, setCurrentUser] = useState({last_name: ''});
@@ -28,6 +28,7 @@ const HeaderTab = ({isSelected, onPressTab, requesting, number}) => {
   const initUser = async () => {
     const user = await asyncStorage.getUser();
     if (user) {
+      console.log('BKKKKKKKKKK:', user);
       setCurrentUser(user);
     }
   };

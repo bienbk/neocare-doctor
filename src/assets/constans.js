@@ -27,7 +27,10 @@ export const versionSystem = DeviceInfo.getSystemVersion();
 export const versionNameApp = DeviceInfo.getVersion();
 export const deviceId = DeviceInfo.getUniqueId();
 export const isAndroid = Platform.OS === 'ios' ? false : true;
-export const KEY_ONE_SIGNAL = '3c25ea78-0436-412a-b4d8-a3309a6bc01d';
+export const KEY_ONE_SIGNAL =
+  process.env.NODE_ENV === 'development'
+    ? '3c25ea78-0436-412a-b4d8-a3309a6bc01d'
+    : '798c7e0a-2218-42ab-9254-c2927c02a0c1';
 export const KEY_GOONG_API = 'VphPkfidhRekSJM2Ff9TPIZSFtwDtgIWoXJ0wHUN';
 // export const GOOGLE_MAP_KEY = 'AIzaSyAAO8W-KytYgmE4BzIXP_dLGZ7ABdO2z54';
 export const GOOGLE_MAP_KEY = 'AIzaSyDy_5NNS-DwcZkcIYMar-wcspaL9fWJbQ0';

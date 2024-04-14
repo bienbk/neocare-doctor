@@ -39,6 +39,7 @@ import Colors from 'theme/Colors';
 
 import {asyncStorage} from 'store';
 import {OneSignal} from 'react-native-onesignal';
+import {getStatusGetUserInfo} from '../../store/user/userSelector';
 
 const Home = ({navigation}) => {
   const [tabActive, setTabActive] = useState(-1);
@@ -49,6 +50,7 @@ const Home = ({navigation}) => {
   const statusEmergency = useSelector(state => statusListEmergency(state));
   const listRequested = useSelector(state => listRequestedSelector(state));
   const statusRequested = useSelector(state => statusListRequested(state));
+  const statusGetUserInfo = useSelector(state => getStatusGetUserInfo(state));
   const statusListPatient = useSelector(state =>
     statusListPatientSelector(state),
   );
@@ -57,6 +59,7 @@ const Home = ({navigation}) => {
     if (!tempUser) {
       return;
     }
+    console.log('IDDD CUSTOMERRR:', tempUser.id);
     OneSignal.login(tempUser?.id.toString());
     let dataOneSignal = {
       cid: tempUser?.id.toString(),
@@ -66,8 +69,11 @@ const Home = ({navigation}) => {
   };
 
   useEffect(() => {
-    sendOneSignal();
-  }, []);
+    if (statusGetUserInfo === Status.SUCCESS) {
+      console.log('LOGINIIIII:');
+      sendOneSignal();
+    }
+  }, [statusGetUserInfo]);
   useEffect(() => {
     const navigationListener = navigation.addListener('focus', () => {
       setTabActive(0);
