@@ -22,7 +22,7 @@ const CardPatient = ({currentPatient}) => {
         {currentPatient && (
           <View style={styles.wrapperProfileContent}>
             <TextSemiBold style={styles.textPatientName}>
-              {currentPatient.first_name + ' ' + currentPatient.last_name}
+              {currentPatient.last_name + ' ' + currentPatient.first_name}
             </TextSemiBold>
             <View style={styles.wrapperGender}>
               <TextSmallTwelve style={styles.subtitleText}>{`${

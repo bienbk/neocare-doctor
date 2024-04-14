@@ -38,12 +38,12 @@ const PackageInfo = ({currentPackge}) => {
         progressValueFontSize={17}
         activeStrokeWidth={5}
         inActiveStrokeWidth={5}
-        progressValueStyle={{position: 'absolute', top: -5, left: -10}}
+        // progressValueStyle={{position: 'absolute', top: -5, left: -10}}
         maxValue={parseInt(currentPackge.name.match(/\d+/)[0], 10) * 30 || 100}
-        activeStrokeColor={'black'}
+        activeStrokeColor={'red'}
         // inActiveStrokeColor={Colors.gray.gray90}
         title={'Ngày'}
-        titleStyle={{fontSize: 10, marginTop: 15}}
+        titleStyle={{fontSize: 10}}
         titleColor={'gray'}
       />
     </View>

@@ -27,7 +27,7 @@ const ServiceHistory = ({currentPackge, listService, confirmService}) => {
               }}>
               {STATUS_SERVICE[service.status].name}
             </TextNormalSemiBold>
-            {service.status === 7 && (
+            {service.status === 1 && (
               <TouchableOpacity
                 style={styles.wrapperConfirm}
                 onPress={() => confirmService(service)}>

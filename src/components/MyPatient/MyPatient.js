@@ -23,9 +23,8 @@ import {
 } from 'store/actions';
 import Status from 'common/Status/Status';
 import ServiceHistory from './ServiceHistory';
-import ConfirmationModal from '../../common/ConfirmationModal/ConfirmationModal';
+import ConfirmationModal from 'common/ConfirmationModal/ConfirmationModal';
 import PackageInfo from './PackageInfo';
-
 
 const MyPatient = ({navigation, route}) => {
   const dispatch = useDispatch();
@@ -47,10 +46,10 @@ const MyPatient = ({navigation, route}) => {
   }, []);
   const initializePatient = () => {
     const {patient} = route?.params;
-    console.log(patient);
+    // console.log(patient);
     dispatch(
       getPatientDetailAction({
-        patient_id: patient?.patient.id,
+        patientId: patient?.patient.id,
         page: 1,
         size: 100,
       }),
@@ -80,7 +79,7 @@ const MyPatient = ({navigation, route}) => {
     }
   }, [statusServiceOfPatient]);
   const handlerUpdateSerivce = item => {
-    dispatch(confirmPatientService({status: 8, id: item.id}));
+    dispatch(confirmPatientService({status: 2, id: item.id}));
   };
   const mapParameter = () => {
     const tempMap = new Map(

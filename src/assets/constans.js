@@ -160,7 +160,8 @@ export const today = new Intl.DateTimeFormat('vi', {
 }).format(new Date());
 
 export const STATUS_SERVICE = {
-  7: {name: ' Chờ xác nhận', color: Colors.primary},
-  9: {name: 'Từ chối', color: Colors.redColor},
-  10: {name: 'Hoàn thành', color: Colors.greenColor},
+  1: {name: ' Chờ xác nhận', color: Colors.primary},
+  2: {name: 'Chập nhận', color: Colors.greenColor},
+  3: {name: 'Từ chối', color: Colors.redColor},
+  4: {name: 'Hoàn thành', color: Colors.greenColor},
 };

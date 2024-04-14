@@ -56,7 +56,7 @@ class PatientController {
   getPatientDetail = async params => {
     try {
       const {data} = await HttpClient.get(UrlApi.apiGetPatientDetail, {params});
-      // console.log('GET PATIENT SUCCESS:::', data);
+      console.log('GET PATIENT SUCCESS:::', data);
       const patient = {
         ...data.parameters_of_patients.patient,
         parameters:
