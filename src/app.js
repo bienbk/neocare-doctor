@@ -4,7 +4,8 @@ import RootNavigation from 'navigation/RootNavigation';
 import {LogBox, TextInput} from 'react-native';
 import {setCustomText} from 'react-native-global-props';
 import {LogLevel, OneSignal} from 'react-native-onesignal';
-import {KEY_ONE_SIGNAL} from './assets/constans';
+import {KEY_ONE_SIGNAL} from './assets/config';
+// import {KEY_ONE_SIGNAL} from './assets/constans';
 
 const customTextProps = {
   allowFontScaling: false,
