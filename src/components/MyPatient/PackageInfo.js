@@ -10,14 +10,28 @@ const PackageInfo = ({currentPackge}) => {
   console.log(currentPackge);
   const percent =
     parseFloat(currentPackge.name.match(/\d+/)[0]) <= 12
-      ? (parseFloat(currentPackge.name.match(/\d+/)[0]) / 12) * 100
-      : ((365 - parseFloat(currentPackge.name.match(/\d+/)[0])) / 365) * 100;
+      ? ((new Date().getTime() - new Date(currentPackge.created_at).getTime()) /
+          60000 /
+          (24 * 60) /
+          (currentPackge.name.match(/\d+/)[0] * 30)) *
+        100
+      : ((365 -
+          (new Date().getTime() -
+            new Date(currentPackge.created_at).getTime()) /
+            60000 /
+            (24 * 60)) /
+          365) *
+        100;
+  console.log('percent:::', percent);
   return (
     <View
       style={{
         paddingHorizontal: 10,
         paddingVertical: 10,
         backgroundColor: 'white',
+        borderBottomWidth: 4,
+        borderStyle: 'solid',
+        borderColor: Colors.backgroundColor,
         flexDirection: 'row',
         justifyContent: 'space-between',
         marginBottom: 5,
@@ -33,6 +47,7 @@ const PackageInfo = ({currentPackge}) => {
           style={{
             fontWeight: 'bold',
             fontSize: 15,
+            paddingHorizontal: 5,
             textAlign: 'center',
             width: '80%',
           }}>
@@ -55,7 +70,7 @@ const PackageInfo = ({currentPackge}) => {
           <TextNormalSemiBold style={{fontSize: 12, textAlign: 'center'}}>
             {currentPackge.name.match(/\d+/)[0]}
             <TextSmallEleven style={{color: Colors.gray.gray50, fontSize: 10}}>
-              {'\nngày'}
+              {currentPackge.name.match(/\d+/)[0] <= 12 ? '\ntháng' : '\nngày'}
             </TextSmallEleven>
           </TextNormalSemiBold>
         </ProgressCircle>

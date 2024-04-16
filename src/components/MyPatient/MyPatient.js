@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {FlatList, SafeAreaView, ScrollView} from 'react-native';
+import {FlatList, SafeAreaView, ScrollView, View} from 'react-native';
 import styles from './styles';
 import {HOME_DATA} from 'assets/constans';
 import TabOptions from './TabOptions';
@@ -25,6 +25,7 @@ import Status from 'common/Status/Status';
 import ServiceHistory from './ServiceHistory';
 import ConfirmationModal from 'common/ConfirmationModal/ConfirmationModal';
 import PackageInfo from './PackageInfo';
+import Colors from '../../theme/Colors';
 
 const MyPatient = ({navigation, route}) => {
   const dispatch = useDispatch();
@@ -130,15 +131,19 @@ const MyPatient = ({navigation, route}) => {
     <SafeAreaView style={styles.containerSafeArea}>
       {/* HEADER */}
       <HeaderPatient navigation={navigation} />
-      {/* CARD INFORMATION */}
-      {currentPatient && <CardPatient currentPatient={currentPatient} />}
-      {/* Package */}
-      {currentPackge && currentPackge?.name && listService.length > 0 && (
-        <PackageInfo currentPackge={{...currentPackge, ...listService[0]}} />
-      )}
 
       {/* PARAMETER OF PATIENT */}
       <ScrollView style={styles.wrapperListCard}>
+        {/* CARD INFORMATION */}
+        {currentPatient && (
+          <View style={{backgroundColor: Colors.backgroundColor}}>
+            <CardPatient currentPatient={currentPatient} />
+          </View>
+        )}
+        {/* Package */}
+        {currentPackge && currentPackge?.name && listService.length > 0 && (
+          <PackageInfo currentPackge={{...currentPackge, ...listService[0]}} />
+        )}
         {/* TAB OPTIONS */}
         <TabOptions isSelected={tabActive} onPressTab={v => setTabActive(v)} />
         {tabActive === 1 && (
