@@ -14,19 +14,23 @@ const ServiceHistory = ({currentPackge, listService, confirmService}) => {
             <TextNormal style={{fontWeight: 'bold'}}>
               {'Mã tư vấn: #' + service.id}
             </TextNormal>
-            <TextNormal style={{paddingVertical: 5}}>
-              {new Date(service.created_at)
-                .toLocaleString('en-GB')
-                .replaceAll('/', '-')
-                .substring(0, 17)}
+            <TextNormal style={{paddingVertical: 5, color: Colors.gray.gray50}}>
+              {'Thời gian gửi: ' +
+                new Date(service.created_at)
+                  .toLocaleString('en-GB')
+                  .replaceAll('/', '-')
+                  .substring(0, 17)}
             </TextNormal>
-            <TextNormalSemiBold
-              style={{
-                color: STATUS_SERVICE[service.status].color,
-                fontWeight: 'bold',
-              }}>
-              {STATUS_SERVICE[service.status].name}
-            </TextNormalSemiBold>
+            <TextNormal style={{color: Colors.gray.gray50}}>
+              {'Trạng thái: '}
+              <TextNormalSemiBold
+                style={{
+                  color: STATUS_SERVICE[service.status].color,
+                  fontWeight: 'bold',
+                }}>
+                {STATUS_SERVICE[service.status].name}
+              </TextNormalSemiBold>
+            </TextNormal>
             {service.status === 1 && (
               <TouchableOpacity
                 style={styles.wrapperConfirm}

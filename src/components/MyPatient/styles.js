@@ -94,8 +94,8 @@ const styles = StyleSheet.create({
   },
   wrapperConfirm: {
     position: 'absolute',
-    top: 30,
-    right: 5,
+    bottom: 15,
+    right: 15,
     borderRadius: 16,
     backgroundColor: Colors.primary,
     paddingHorizontal: 12,

@@ -62,15 +62,21 @@ const PatientItem = ({item, selectItem, tabActive}) => {
           <TextSemiBold style={styles.textPatientName}>
             {currentPatient?.first_name + ' ' + currentPatient?.last_name}
           </TextSemiBold>
-          {tabActive !== 2 && currentPatient?.birthday && (
+          {tabActive !== 2 && (
             <View>
-              <TextSmallTwelve style={styles.subtitleText}>{`${
-                currentPatient?.gender === 1 ? 'Nam' : 'Nữ'
-              } | ${
-                currentPatient?.birthday
-                  ? new Date(currentPatient?.birthday).getFullYear()
-                  : '1999'
-              }`}</TextSmallTwelve>
+              {tabActive === 0 && currentPatient?.birthday ? (
+                <TextSmallTwelve style={styles.subtitleText}>{`${
+                  currentPatient?.gender === 1 ? 'Nam' : 'Nữ'
+                } | ${
+                  currentPatient?.birthday
+                    ? new Date(currentPatient?.birthday).getFullYear()
+                    : '1999'
+                }`}</TextSmallTwelve>
+              ) : (
+                <TextSmallTwelve style={styles.subtitleText}>
+                  {currentPatient.phone}
+                </TextSmallTwelve>
+              )}
             </View>
           )}
           {tabActive === 2 && currentPatient.package_items && (

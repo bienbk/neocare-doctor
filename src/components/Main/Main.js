@@ -9,12 +9,8 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import Svg from 'common/Svg/Svg';
 import {TextSmallEleven} from 'common/Text/TextFont';
 import strings from 'localization/Localization';
-import {
-  NAVIGATION_ACCOUNT,
-  NAVIGATION_DOCTOR_DETAIL,
-  NAVIGATION_MY_PATIENT,
-} from 'navigation/routes';
-import {widthDevice} from '../../assets/constans';
+import {NAVIGATION_ACCOUNT, NAVIGATION_DOCTOR_DETAIL} from 'navigation/routes';
+import {widthDevice} from 'assets/constans';
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
