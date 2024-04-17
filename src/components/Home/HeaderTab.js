@@ -18,7 +18,7 @@ import Icons from 'common/Icons/Icons';
 import {decorator_home} from 'assets/constans';
 import {asyncStorage} from '../../store';
 
-const HeaderTab = ({isSelected, onPressTab, requesting, number}) => {
+const HeaderTab = ({isSelected, onPressTab, requested, order, emergency}) => {
   const [currentUser, setCurrentUser] = useState({last_name: ''});
 
   useEffect(() => {
@@ -28,7 +28,6 @@ const HeaderTab = ({isSelected, onPressTab, requesting, number}) => {
   const initUser = async () => {
     const user = await asyncStorage.getUser();
     if (user) {
-      console.log('BKKKKKKKKKK:', user);
       setCurrentUser(user);
     }
   };
@@ -61,10 +60,10 @@ const HeaderTab = ({isSelected, onPressTab, requesting, number}) => {
             Khẩn cấp
           </TextNormal>
 
-          {number && number.length && (
+          {emergency > 0 && (
             <View style={styles.badge}>
               <TextSmallMedium style={styles.badgeText}>
-                {number || ''}
+                {emergency || ''}
               </TextSmallMedium>
             </View>
           )}
@@ -82,10 +81,10 @@ const HeaderTab = ({isSelected, onPressTab, requesting, number}) => {
             ]}>
             Yêu cầu tư vấn
           </TextNormal>
-          {number && number.length && (
+          {requested > 0 && (
             <View style={styles.badge}>
               <TextSmallMedium style={styles.badgeText}>
-                {number || ''}
+                {requested || ''}
               </TextSmallMedium>
             </View>
           )}
@@ -104,10 +103,10 @@ const HeaderTab = ({isSelected, onPressTab, requesting, number}) => {
             Chờ mua gói
           </TextNormal>
           {/* <TextSmallEleven style={styles.badgeIcon}>{requesting}</TextSmallEleven> */}
-          {number && number.length && (
+          {order > 0 && (
             <View style={styles.badge}>
               <TextSmallEleven style={styles.badgeText}>
-                {number || ''}
+                {order || ''}
               </TextSmallEleven>
             </View>
           )}
@@ -123,8 +122,8 @@ const styles = StyleSheet.create({
   badgeText: {color: Colors.whiteColor, fontSize: 10},
   badge: {
     width: 16,
-    borderRadius: 20,
-    backgroundColor: 'red',
+    borderRadius: 16,
+    backgroundColor: '#EF0000',
     height: 16,
     marginLeft: 5,
     alignItems: 'center',

@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
   wrapperTab: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: 15,
+    paddingVertical: 10,
     paddingHorizontal: 15,
   },
   wrapperTabItem: {

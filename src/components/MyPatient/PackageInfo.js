@@ -5,6 +5,7 @@ import {TextNormalSemiBold, TextSmallEleven} from '../../common/Text/TextFont';
 // import CircularProgress from 'react-native-circular-progress-indicator';
 import Colors from '../../theme/Colors';
 import ProgressCircle from 'react-native-progress-circle';
+import styles from './styles';
 
 const PackageInfo = ({currentPackge}) => {
   console.log(currentPackge);
@@ -22,54 +23,25 @@ const PackageInfo = ({currentPackge}) => {
             (24 * 60)) /
           365) *
         100;
-  console.log('percent:::', percent);
   return (
-    <View
-      style={{
-        paddingHorizontal: 10,
-        paddingVertical: 10,
-        backgroundColor: 'white',
-        borderBottomWidth: 4,
-        borderStyle: 'solid',
-        borderColor: Colors.backgroundColor,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginBottom: 5,
-      }}>
-      <View
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          width: '65%',
-        }}>
+    <View style={styles.containerPackageInfo}>
+      <View style={styles.wrapperPackageName}>
         <Svg name={'icon_gift'} size={40} color={'black'} />
-        <TextNormalSemiBold
-          style={{
-            fontWeight: 'bold',
-            fontSize: 15,
-            paddingHorizontal: 5,
-            textAlign: 'center',
-            width: '80%',
-          }}>
+        <TextNormalSemiBold style={styles.packageNameText}>
           {currentPackge.name}
         </TextNormalSemiBold>
       </View>
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          width: '35%',
-        }}>
+      <View style={styles.wrapperProgresCircle}>
         <ProgressCircle
           percent={percent}
           radius={25}
-          borderWidth={4}
+          borderWidth={3}
           color="black"
           shadowColor="#999"
           bgColor="#fff">
-          <TextNormalSemiBold style={{fontSize: 12, textAlign: 'center'}}>
+          <TextNormalSemiBold style={styles.leftDayText}>
             {currentPackge.name.match(/\d+/)[0]}
-            <TextSmallEleven style={{color: Colors.gray.gray50, fontSize: 10}}>
+            <TextSmallEleven style={styles.subtitleProgress}>
               {currentPackge.name.match(/\d+/)[0] <= 12 ? '\ntháng' : '\nngày'}
             </TextSmallEleven>
           </TextNormalSemiBold>
@@ -77,13 +49,13 @@ const PackageInfo = ({currentPackge}) => {
         <ProgressCircle
           percent={1}
           radius={25}
-          borderWidth={4}
+          borderWidth={3}
           color="black"
           shadowColor="#999"
           bgColor="#fff">
-          <TextNormalSemiBold style={{fontSize: 12, textAlign: 'center'}}>
+          <TextNormalSemiBold style={styles.leftDayText}>
             {'0'}
-            <TextSmallEleven style={{color: Colors.gray.gray50, fontSize: 10}}>
+            <TextSmallEleven style={styles.subtitleProgress}>
               {'\nlần'}
             </TextSmallEleven>
           </TextNormalSemiBold>

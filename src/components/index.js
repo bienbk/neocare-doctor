@@ -12,6 +12,7 @@ import MyPatient from './MyPatient/MyPatient';
 import PackageDetails from './PackageDetails/PackageDetails';
 import Account from './Account/Account';
 import Sale from './Sale/Sale';
+import MyPackage from './MyPackage/MyPackage';
 export {
   Splash,
   Main,
@@ -21,5 +22,6 @@ export {
   VerifyCode,
   MyPatient,
   PackageDetails,
+  MyPackage,
   Account,
 };

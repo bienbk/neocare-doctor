@@ -1,6 +1,6 @@
 import {Dimensions, Platform} from 'react-native';
 import DeviceInfo from 'react-native-device-info';
-import {NAVIGATION_LOGIN, NAVIGATION_SALE} from '../navigation/routes';
+import {NAVIGATION_LOGIN, NAVIGATION_MY_PACKAGE, NAVIGATION_SALE} from '../navigation/routes';
 import Colors from '../theme/Colors';
 export const STATUS = {
   0: 'Bình thuờng',
@@ -48,6 +48,8 @@ export const home_image = require('assets/images/home.png');
 export const decorator_home = require('assets/images/decorator_home.png');
 export const patient_card = require('assets/images/patient_card.png');
 export const MIDDLE_DOT = '\u25CF';
+export const header_package = require('assets/images/header_package.png');
+export const path_package = require('assets/images/path_package.png');
 export function formatMoney(x) {
   return x && x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
@@ -136,11 +138,11 @@ export const LIST_OPTION = [
     title: 'Cài đặt & Hỗ trợ',
     id: 3,
     items: [
-      // {
-      //   name: 'Hotline 0901234567',
-      //   icon: 'icon_hotline',
-      //   link: '',
-      // },
+      {
+        name: 'Danh sách gói',
+        icon: 'icon_user',
+        link: NAVIGATION_MY_PACKAGE,
+      },
       {
         name: 'Cộng tác viên',
         icon: 'icon_profile',

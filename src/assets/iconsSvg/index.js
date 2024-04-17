@@ -24,10 +24,12 @@ import icon_gift from './iconMain/gift_icon.svg';
 import brand_name from './iconMain/brand_name.svg';
 import icon_splash from './iconMain/icon_splash.svg';
 import icon_avatar from './iconMain/icon_avatar.svg';
+import decorator_package from './iconMain/decorator_package.svg';
 export default {
   icon_option,
   icon_splash,
   brand_name,
+  decorator_package,
   icon_gift,
   icon_checked,
   icon_avatar,

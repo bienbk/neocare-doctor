@@ -42,7 +42,7 @@ import {OneSignal} from 'react-native-onesignal';
 import {getStatusGetUserInfo} from '../../store/user/userSelector';
 
 const Home = ({navigation}) => {
-  const [tabActive, setTabActive] = useState(-1);
+  const [tabActive, setTabActive] = useState(0);
   const dispatch = useDispatch();
   const [refreshing, setRefreshing] = useState(false);
   const listPatient = useSelector(state => listPatientSelector(state));
@@ -59,7 +59,6 @@ const Home = ({navigation}) => {
     if (!tempUser) {
       return;
     }
-    console.log('IDDD CUSTOMERRR:', tempUser.id);
     OneSignal.login(tempUser?.id.toString());
     let dataOneSignal = {
       cid: tempUser?.id.toString(),
@@ -70,46 +69,40 @@ const Home = ({navigation}) => {
 
   useEffect(() => {
     if (statusGetUserInfo === Status.SUCCESS) {
-      console.log('LOGINIIIII:');
       sendOneSignal();
     }
   }, [statusGetUserInfo]);
   useEffect(() => {
     const navigationListener = navigation.addListener('focus', () => {
-      setTabActive(0);
+      setRefreshing(true);
     });
     return navigationListener;
   }, [navigation]);
   const fetchPatientData = () => {
-    if (tabActive === 2) {
-      dispatch(
-        listPatientAction({
-          page: 1,
-          size: 10,
-          status: tabActive,
-        }),
-      );
-    }
-    if (tabActive === 0) {
-      dispatch(
-        listEmergencyAction({
-          category: 1,
-          read: false,
-          page: 1,
-          size: 100,
-        }),
-      );
-    }
-    if (tabActive === 1) {
-      dispatch(
-        listRequestedAction({
-          category: 2,
-          read: false,
-          page: 1,
-          size: 100,
-        }),
-      );
-    }
+    dispatch(
+      listPatientAction({
+        page: 1,
+        size: 10,
+        status: 2,
+      }),
+    );
+    dispatch(
+      listEmergencyAction({
+        category: 1,
+        read: false,
+        page: 1,
+        size: 100,
+      }),
+    );
+
+    dispatch(
+      listRequestedAction({
+        category: 2,
+        read: false,
+        page: 1,
+        size: 100,
+      }),
+    );
   };
   useEffect(() => {
     if (statusListPatient === Status.SUCCESS) {
@@ -117,12 +110,13 @@ const Home = ({navigation}) => {
     }
   }, [statusListPatient]);
   useEffect(() => {
-    if (refreshing || statusListPatient === Status.LOADING) {
+    if (refreshing) {
+      fetchPatientData();
       setTimeout(() => {
         setRefreshing(false);
       }, 2000);
     }
-  }, [refreshing, statusListPatient]);
+  }, [refreshing]);
   const handleSelectPatient = item => {
     if (!item) {
       return;
@@ -151,7 +145,6 @@ const Home = ({navigation}) => {
   };
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
-    fetchPatientData();
   }, []);
   useEffect(() => {
     if (statusEmergency === Status.SUCCESS) {
@@ -163,17 +156,14 @@ const Home = ({navigation}) => {
       dispatch(resetListRequested());
     }
   }, [statusRequested]);
-  useEffect(() => {
-    setRefreshing(true);
-    if (tabActive !== -1) {
-      fetchPatientData();
-    }
-  }, [tabActive]);
+
   return (
     <SafeAreaView style={styles.containerSafeArea}>
       <HeaderTab
         isSelected={tabActive}
-        requesting={listPatient.length}
+        requested={listRequested.length}
+        emergency={listEmergency.length}
+        order={listPatient.length}
         onPressTab={val => setTabActive(val)}
       />
       <ScrollView

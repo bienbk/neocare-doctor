@@ -25,7 +25,7 @@ import Status from 'common/Status/Status';
 import ServiceHistory from './ServiceHistory';
 import ConfirmationModal from 'common/ConfirmationModal/ConfirmationModal';
 import PackageInfo from './PackageInfo';
-import Colors from '../../theme/Colors';
+import Colors from 'theme/Colors';
 
 const MyPatient = ({navigation, route}) => {
   const dispatch = useDispatch();
@@ -47,7 +47,6 @@ const MyPatient = ({navigation, route}) => {
   }, []);
   const initializePatient = () => {
     const {patient} = route?.params;
-    // console.log(patient);
     dispatch(
       getPatientDetailAction({
         patientId: patient?.patient.id,

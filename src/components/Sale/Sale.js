@@ -1,20 +1,11 @@
 import React from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {SafeAreaView, ScrollView, StyleSheet, View} from 'react-native';
 import Colors from 'theme/Colors';
-import Icons from 'common/Icons/Icons';
-import {
-  TextNormal,
-  TextNormalSemiBold,
-  TextSemiBold,
-} from 'common/Text/TextFont';
+
+import {TextNormal, TextNormalSemiBold} from 'common/Text/TextFont';
 import Svg from 'common/Svg/Svg';
 import {NAVIGATION_ACCOUNT} from 'navigation/routes';
+import Header from 'common/Header/Header';
 
 const Sale = ({navigation}) => {
   const onBack = () => {
@@ -22,17 +13,7 @@ const Sale = ({navigation}) => {
   };
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.wrapperHeader}>
-        <TouchableOpacity onPress={onBack} style={styles.backBtn}>
-          <Icons
-            type={'Ionicons'}
-            name={'arrow-back'}
-            size={25}
-            color={'black'}
-          />
-        </TouchableOpacity>
-        <TextSemiBold>{'Cộng tác viên'}</TextSemiBold>
-      </View>
+      <Header onBack={onBack} title={'Cộng tác viên'} />
       <ScrollView style={styles.wrapperScrollView}>
         {[...Array(5).keys()].map(i => (
           <View style={styles.wrapperSaleItem}>

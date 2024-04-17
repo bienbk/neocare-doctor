@@ -58,8 +58,8 @@ const styles = StyleSheet.create({
   textGray: {color: Colors.gray.gray60},
   wrapperParameterList: {
     paddingTop: 5,
-    borderTopColor: 'lightgray',
-    borderTopWidth: 1,
+    borderTopColor: Colors.gray.gray90,
+    borderTopWidth: 0.5,
     borderStyle: 'solid',
   },
   containerListPatient: {

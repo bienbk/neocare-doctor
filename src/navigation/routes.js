@@ -9,3 +9,4 @@ export const NAVIGATION_VERIFY_CODE = 'VerifyCode';
 export const NAVIGATION_MY_PATIENT = 'MyPatient';
 export const NAVIGATION_PACKAGE_DETAILS = 'PackageDetails';
 export const NAVIGATION_SALE = 'Sale';
+export const NAVIGATION_MY_PACKAGE = 'MyPackage';

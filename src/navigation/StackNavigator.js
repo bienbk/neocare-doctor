@@ -8,6 +8,7 @@ import {
   NAVIGATION_SPLASH,
   NAVIGATION_VERIFY_CODE,
   NAVIGATION_SALE,
+  NAVIGATION_MY_PACKAGE,
 } from './routes';
 import * as Screens from 'components';
 
@@ -34,6 +35,10 @@ const StackNavigator = () => {
         component={Screens.PackageDetails}
       />
       <Stack.Screen name={NAVIGATION_SALE} component={Screens.Sale} />
+      <Stack.Screen
+        name={NAVIGATION_MY_PACKAGE}
+        component={Screens.MyPackage}
+      />
     </Stack.Navigator>
   );
 };
