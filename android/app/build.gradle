@@ -100,15 +100,15 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.neocaredoctor"
+    namespace "vn.neocare.expert"
     defaultConfig {
-        applicationId "com.neocaredoctor"
+        applicationId "vn.neocare.expert"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 6
+        versionCode 1
         versionName "1.0.0"
         multiDexEnabled true
-        resValue "string", "build_config_package", "com.neocaredoctor"
+        resValue "string", "build_config_package", "vn.neocare.expert"
         manifestPlaceholders = [label: 'Neo_NeoCare_Expert']
     }
 

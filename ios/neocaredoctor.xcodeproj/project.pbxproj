@@ -14,8 +14,8 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		7699B88040F8A987B510C191 /* libPods-neocaredoctor-neocaredoctorTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-neocaredoctor-neocaredoctorTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		968E98662BAC1F8800D99AFE /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968E98652BAC1F8800D99AFE /* NotificationService.swift */; };
-		968E986A2BAC1F8800D99AFE /* OneSignalNotificationServiceExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 968E98632BAC1F8800D99AFE /* OneSignalNotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		961BF1642BF36E5300871FFE /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961BF1632BF36E5300871FFE /* NotificationService.swift */; };
+		961BF1682BF36E5300871FFE /* OneSignalNotificationServiceExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 961BF1612BF36E5300871FFE /* OneSignalNotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		96A05C692BA97A7000D4A4E0 /* SVN-Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96A05C472BA97A6F00D4A4E0 /* SVN-Poppins-SemiBold.ttf */; };
 		96A05C6A2BA97A7000D4A4E0 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96A05C482BA97A6F00D4A4E0 /* Entypo.ttf */; };
 		96A05C6B2BA97A7000D4A4E0 /* SVN-Poppins-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96A05C492BA97A6F00D4A4E0 /* SVN-Poppins-ThinItalic.ttf */; };
@@ -60,11 +60,11 @@
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
 			remoteInfo = neocaredoctor;
 		};
-		968E98682BAC1F8800D99AFE /* PBXContainerItemProxy */ = {
+		961BF1662BF36E5300871FFE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 968E98622BAC1F8800D99AFE;
+			remoteGlobalIDString = 961BF1602BF36E5300871FFE;
 			remoteInfo = OneSignalNotificationServiceExtension;
 		};
 /* End PBXContainerItemProxy section */
@@ -76,7 +76,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				968E986A2BAC1F8800D99AFE /* OneSignalNotificationServiceExtension.appex in Embed Foundation Extensions */,
+				961BF1682BF36E5300871FFE /* OneSignalNotificationServiceExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -100,10 +100,12 @@
 		5DCACB8F33CDC322A6C60F78 /* libPods-neocaredoctor.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-neocaredoctor.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = neocaredoctor/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-neocaredoctor-neocaredoctorTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-neocaredoctor-neocaredoctorTests.release.xcconfig"; path = "Target Support Files/Pods-neocaredoctor-neocaredoctorTests/Pods-neocaredoctor-neocaredoctorTests.release.xcconfig"; sourceTree = "<group>"; };
+		961BF1612BF36E5300871FFE /* OneSignalNotificationServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = OneSignalNotificationServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		961BF1632BF36E5300871FFE /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		961BF1652BF36E5300871FFE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		96416CB72BB9E3E80090F63B /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		9689F08F2BA94DCE00B7C8D7 /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Feather.ttf; path = ../src/assets/fonts/Feather.ttf; sourceTree = "<group>"; };
 		968E985E2BAC1E8800D99AFE /* neocaredoctor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = neocaredoctor.entitlements; path = neocaredoctor/neocaredoctor.entitlements; sourceTree = "<group>"; };
-		968E98632BAC1F8800D99AFE /* OneSignalNotificationServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = OneSignalNotificationServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		968E98652BAC1F8800D99AFE /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		968E98672BAC1F8800D99AFE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		968E986F2BAC223900D99AFE /* OneSignalNotificationServiceExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OneSignalNotificationServiceExtension.entitlements; sourceTree = "<group>"; };
@@ -179,7 +181,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		968E98602BAC1F8800D99AFE /* Frameworks */ = {
+		961BF15E2BF36E5300871FFE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -298,6 +300,7 @@
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* neocaredoctorTests */,
 				968E98642BAC1F8800D99AFE /* OneSignalNotificationServiceExtension */,
+				961BF1622BF36E5300871FFE /* OneSignalNotificationServiceExtension */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
@@ -312,9 +315,18 @@
 			children = (
 				13B07F961A680F5B00A75B9A /* neocaredoctor.app */,
 				00E356EE1AD99517003FC87E /* neocaredoctorTests.xctest */,
-				968E98632BAC1F8800D99AFE /* OneSignalNotificationServiceExtension.appex */,
+				961BF1612BF36E5300871FFE /* OneSignalNotificationServiceExtension.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		961BF1622BF36E5300871FFE /* OneSignalNotificationServiceExtension */ = {
+			isa = PBXGroup;
+			children = (
+				961BF1632BF36E5300871FFE /* NotificationService.swift */,
+				961BF1652BF36E5300871FFE /* Info.plist */,
+			);
+			path = OneSignalNotificationServiceExtension;
 			sourceTree = "<group>";
 		};
 		968E98642BAC1F8800D99AFE /* OneSignalNotificationServiceExtension */ = {
@@ -379,20 +391,20 @@
 			buildRules = (
 			);
 			dependencies = (
-				968E98692BAC1F8800D99AFE /* PBXTargetDependency */,
+				961BF1672BF36E5300871FFE /* PBXTargetDependency */,
 			);
 			name = neocaredoctor;
 			productName = neocaredoctor;
 			productReference = 13B07F961A680F5B00A75B9A /* neocaredoctor.app */;
 			productType = "com.apple.product-type.application";
 		};
-		968E98622BAC1F8800D99AFE /* OneSignalNotificationServiceExtension */ = {
+		961BF1602BF36E5300871FFE /* OneSignalNotificationServiceExtension */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 968E986B2BAC1F8800D99AFE /* Build configuration list for PBXNativeTarget "OneSignalNotificationServiceExtension" */;
+			buildConfigurationList = 961BF1692BF36E5300871FFE /* Build configuration list for PBXNativeTarget "OneSignalNotificationServiceExtension" */;
 			buildPhases = (
-				968E985F2BAC1F8800D99AFE /* Sources */,
-				968E98602BAC1F8800D99AFE /* Frameworks */,
-				968E98612BAC1F8800D99AFE /* Resources */,
+				961BF15D2BF36E5300871FFE /* Sources */,
+				961BF15E2BF36E5300871FFE /* Frameworks */,
+				961BF15F2BF36E5300871FFE /* Resources */,
 			);
 			buildRules = (
 			);
@@ -400,7 +412,7 @@
 			);
 			name = OneSignalNotificationServiceExtension;
 			productName = OneSignalNotificationServiceExtension;
-			productReference = 968E98632BAC1F8800D99AFE /* OneSignalNotificationServiceExtension.appex */;
+			productReference = 961BF1612BF36E5300871FFE /* OneSignalNotificationServiceExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
@@ -419,7 +431,7 @@
 					13B07F861A680F5B00A75B9A = {
 						LastSwiftMigration = 1120;
 					};
-					968E98622BAC1F8800D99AFE = {
+					961BF1602BF36E5300871FFE = {
 						CreatedOnToolsVersion = 15.0;
 					};
 				};
@@ -439,7 +451,7 @@
 			targets = (
 				13B07F861A680F5B00A75B9A /* neocaredoctor */,
 				00E356ED1AD99517003FC87E /* neocaredoctorTests */,
-				968E98622BAC1F8800D99AFE /* OneSignalNotificationServiceExtension */,
+				961BF1602BF36E5300871FFE /* OneSignalNotificationServiceExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -495,7 +507,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		968E98612BAC1F8800D99AFE /* Resources */ = {
+		961BF15F2BF36E5300871FFE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -672,11 +684,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		968E985F2BAC1F8800D99AFE /* Sources */ = {
+		961BF15D2BF36E5300871FFE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				968E98662BAC1F8800D99AFE /* NotificationService.swift in Sources */,
+				961BF1642BF36E5300871FFE /* NotificationService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -688,10 +700,10 @@
 			target = 13B07F861A680F5B00A75B9A /* neocaredoctor */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
-		968E98692BAC1F8800D99AFE /* PBXTargetDependency */ = {
+		961BF1672BF36E5300871FFE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 968E98622BAC1F8800D99AFE /* OneSignalNotificationServiceExtension */;
-			targetProxy = 968E98682BAC1F8800D99AFE /* PBXContainerItemProxy */;
+			target = 961BF1602BF36E5300871FFE /* OneSignalNotificationServiceExtension */;
+			targetProxy = 961BF1662BF36E5300871FFE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -755,8 +767,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = neocaredoctor/neocaredoctor.entitlements;
-				CURRENT_PROJECT_VERSION = 16;
-				DEVELOPMENT_TEAM = WZUVY28PG4;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NYP3FQG9KC;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = neocaredoctor/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -769,7 +781,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.neocaredoctor;
+				PRODUCT_BUNDLE_IDENTIFIER = vn.neocare.expert;
 				PRODUCT_NAME = neocaredoctor;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -786,8 +798,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = neocaredoctor/neocaredoctor.entitlements;
-				CURRENT_PROJECT_VERSION = 16;
-				DEVELOPMENT_TEAM = WZUVY28PG4;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NYP3FQG9KC;
 				INFOPLIST_FILE = neocaredoctor/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -799,7 +811,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.neocaredoctor;
+				PRODUCT_BUNDLE_IDENTIFIER = vn.neocare.expert;
 				PRODUCT_NAME = neocaredoctor;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -946,7 +958,7 @@
 			};
 			name = Release;
 		};
-		968E986C2BAC1F8800D99AFE /* Debug */ = {
+		961BF16A2BF36E5300871FFE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -960,14 +972,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = WZUVY28PG4;
+				DEVELOPMENT_TEAM = NYP3FQG9KC;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = OneSignalNotificationServiceExtension;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -977,7 +989,7 @@
 				MARKETING_VERSION = 1.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.neocaredoctor.OneSignalNotificationServiceExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = vn.neocare.expert.OneSignalNotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
@@ -988,7 +1000,7 @@
 			};
 			name = Debug;
 		};
-		968E986D2BAC1F8800D99AFE /* Release */ = {
+		961BF16B2BF36E5300871FFE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -1003,14 +1015,14 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = WZUVY28PG4;
+				DEVELOPMENT_TEAM = NYP3FQG9KC;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = OneSignalNotificationServiceExtension;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1019,7 +1031,7 @@
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.neocaredoctor.OneSignalNotificationServiceExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = vn.neocare.expert.OneSignalNotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -1059,11 +1071,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		968E986B2BAC1F8800D99AFE /* Build configuration list for PBXNativeTarget "OneSignalNotificationServiceExtension" */ = {
+		961BF1692BF36E5300871FFE /* Build configuration list for PBXNativeTarget "OneSignalNotificationServiceExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				968E986C2BAC1F8800D99AFE /* Debug */,
-				968E986D2BAC1F8800D99AFE /* Release */,
+				961BF16A2BF36E5300871FFE /* Debug */,
+				961BF16B2BF36E5300871FFE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
