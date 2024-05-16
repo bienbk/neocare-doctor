@@ -28,7 +28,7 @@ Podfile.lock
 build/
 devrelease/
 # .idea
-# .gradle
+.gradle/
 local.properties
 *.iml
 .tmp/
