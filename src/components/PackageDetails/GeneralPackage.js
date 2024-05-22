@@ -13,7 +13,6 @@ import CustomButton from 'common/CustomButton/CustomButton';
 import {formatMoney} from 'assets/constans';
 
 const GeneralPackage = ({currentPackage, nextStep}) => {
-  console.log('CURRENT PACKAGE:::', currentPackage);
   const {patient} = currentPackage;
   return (
     <View style={styles.container}>

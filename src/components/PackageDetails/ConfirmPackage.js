@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from 'react';
-import {SafeAreaView, View, TouchableOpacity, ScrollView} from 'react-native';
+import React from 'react';
+import {View, ScrollView} from 'react-native';
 
-import {heightDevice, widthDevice} from 'assets/constans';
+import {widthDevice} from 'assets/constans';
 import {StyleSheet} from 'react-native';
 import Colors from 'theme/Colors';
 import {
@@ -9,17 +9,8 @@ import {
   TextNormalSemiBold,
   TextSemiBold,
 } from 'common/Text/TextFont';
-import Icons from 'common/Icons/Icons';
-import {NAVIGATION_MY_PATIENT} from 'navigation/routes';
-
 import CustomButton from 'common/CustomButton/CustomButton';
-import strings from 'localization/Localization';
-import ConfirmationModal from 'common/ConfirmationModal/ConfirmationModal';
 import {formatMoney} from 'assets/constans';
-import {useDispatch, useSelector} from 'react-redux';
-import {statusConfirmOrderSelector} from 'store/selectors';
-import {confirmOrderAction, resetConfrimOrder} from 'store/actions';
-import Status from 'common/Status/Status';
 
 const ConfirmPackage = ({currentPackage, nextStep}) => {
   console.log('CURRENT PACKAGE:::', currentPackage);
@@ -175,25 +166,11 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     // backgroundColor: 'red',
   },
-  container: {
-    // height: heightDevice - 150,
-    // padding: 15,
-    // backgroundColor: Colors.main,
-  },
   labelCancelBtn: {
     color: Colors.main,
     fontWeight: 'bold',
     fontSize: 16,
   },
-  // buttonConfirm: {
-  //   width: widthDevice * 0.44,
-  //   borderRadius: 30,
-  //   justifyContent: 'center',
-  //   alignItems: 'center',
-  //   paddingVertical: 8,
-  //   paddingHorizontal: 5,
-  //   backgroundColor: Colors.primary,
-  // },
   nameText: {
     fontWeight: 'bold',
   },
@@ -239,8 +216,6 @@ const styles = StyleSheet.create({
   },
   wrapperContentCard: {
     padding: 15,
-    // elevation: 3,
-    // marginHorizontal: 10,
     backgroundColor: Colors.whiteColor,
     borderRadius: 20,
     width: widthDevice - 20,

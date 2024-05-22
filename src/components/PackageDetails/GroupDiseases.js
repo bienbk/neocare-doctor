@@ -2,10 +2,10 @@ import React, {useEffect, useRef, useState} from 'react';
 import {Animated, StyleSheet, View} from 'react-native';
 import Colors from 'theme/Colors';
 import {TextNormalSemiBold} from 'common/Text/TextFont';
-import {widthDevice} from '../../assets/constans';
-import CustomCheckbox from '../../common/CustomCheckbox/CustomeCheckbox';
-import CustomButton from '../../common/CustomButton/CustomButton';
-import {TextSemiBold} from '../../common/Text/TextFont';
+import {widthDevice} from 'assets/constans';
+import CustomCheckbox from 'common/CustomCheckbox/CustomeCheckbox';
+import CustomButton from 'common/CustomButton/CustomButton';
+import {TextSemiBold} from 'common/Text/TextFont';
 
 const GroupDiseases = ({nextStep, data, title, subTitle}) => {
   const [listDiseases, setlistDiseases] = useState([]);
@@ -50,18 +50,6 @@ const GroupDiseases = ({nextStep, data, title, subTitle}) => {
       );
     });
 
-  // const animated = () => {
-  //   Animated.timing(cardAnimatedY, {
-  //     duration: 1000,
-  //     toValue: 0,
-  //     useNativeDriver: true,
-  //   }).start();
-  // };
-  // const opacityCard = cardAnimatedY.interpolate({
-  //   inputRange: [-widthDevice, 0],
-  //   outputRange: [0, 1],
-  //   extrapolate: 'clamp',
-  // });
   return (
     <View style={styled.container}>
       <TextSemiBold style={styled.titleText}>{title}</TextSemiBold>

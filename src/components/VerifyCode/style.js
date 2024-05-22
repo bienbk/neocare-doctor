@@ -3,6 +3,11 @@ import {StyleSheet} from 'react-native';
 import Colors from 'theme/Colors';
 
 const styles = StyleSheet.create({
+  errorOtp: {
+    color: Colors.redColor,
+    textAlign: 'center',
+    width: widthDevice * 0.7,
+  },
   buttonSkip: {
     paddingHorizontal: 10,
     paddingVertical: 5,

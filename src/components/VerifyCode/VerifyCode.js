@@ -1,4 +1,3 @@
-import {NAVIGATION_ACCESS_LOCATION} from 'navigation/routes';
 import {React, useState, useEffect} from 'react';
 import {
   SafeAreaView,
@@ -19,15 +18,13 @@ import {
 import {TextNormal} from 'common/Text/TextFont';
 import {asyncStorage} from 'store/index';
 import strings from 'localization/Localization';
-import {NAVIGATION_LOGIN, NAVIGATION_MAIN} from '../../navigation/routes';
+import {NAVIGATION_LOGIN, NAVIGATION_MAIN} from 'navigation/routes';
 import {CommonActions} from '@react-navigation/native';
-import {
-  deleteAccountReset,
-  getDeleteAccount,
-} from '../../store/user/userAction';
+import {deleteAccountReset, getDeleteAccount} from 'store/user/userAction';
 import SuperTokens from 'supertokens-react-native';
-import {isStatusDeleteAccount} from '../../store/user/userSelector';
-import Status from '../../common/Status/Status';
+import {isStatusDeleteAccount} from 'store/user/userSelector';
+import Status from 'common/Status/Status';
+import {isErrorConfirm} from 'store/auth/authSelector';
 
 const VerifyCode = ({navigation, route}) => {
   const {phone, screen} = route.params;
@@ -36,9 +33,10 @@ const VerifyCode = ({navigation, route}) => {
   const [code, setCode] = useState('');
   const [pinReady, setPinReady] = useState(false);
   const statusConfirmOtp = useSelector(state => isStatusConfirmOtp(state));
+  const errorMessOtp = useSelector(state => isErrorConfirm(state));
   const [disableSendAgainButton, setDisableSendAgainButton] = useState(false);
   const [timer, setTimer] = useState(60);
-  const [resendTime, setResendTime] = useState(0);
+  // const [resendTime, setResendTime] = useState(0);
   useEffect(() => {
     const interval = setInterval(() => {
       setTimer(lastTimerCount => {
@@ -152,7 +150,14 @@ const VerifyCode = ({navigation, route}) => {
           </View>
           {pinReady ? (
             <View style={styles.wrapperSubtitle}>
-              <TextNormal style={styles.subtitle}>Đang xác minh...</TextNormal>
+              {statusConfirmOtp === Status.LOADING && (
+                <TextNormal style={styles.subtitle}>
+                  Đang xác minh...
+                </TextNormal>
+              )}
+              {statusConfirmOtp === Status.ERROR && (
+                <TextNormal style={styles.errorOtp}>{errorMessOtp}</TextNormal>
+              )}
             </View>
           ) : (
             <View>

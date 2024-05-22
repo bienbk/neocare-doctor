@@ -49,18 +49,6 @@ const PackageDetails = ({navigation, route}) => {
     const {packageDetail} = route ? route?.params : {};
     console.log('package DETAIL', packageDetail);
     setCurrentPackage(packageDetail);
-    // if (
-    //   packageDetail &&
-    //   packageDetail?.doctor_of_patient[0] &&
-    //   packageDetail?.doctor_of_patient[0]?.package_items &&
-    //   packageDetail?.doctor_of_patient[0]?.package_items[0]
-    // ) {
-    //   const customPackage = {
-    //     ...packageDetail,
-    //     package_items: packageDetail?.doctor_of_patient[0]?.package_items[0],
-    //   };
-    //   setCurrentPackage(customPackage);
-    // }
   }, []);
   const renderStep = () =>
     STEP.map((item, index) => (
