@@ -169,13 +169,13 @@ const Account = ({navigation}) => {
         <Animated.View style={[styles.wrapperHeader, imageAnimation]}>
           <Avatar />
         </Animated.View>
-        <TouchableOpacity style={styles.wrapperPackage}>
+        <View style={styles.wrapperPackage}>
           <View>
             <TextNormalSemiBold>Mã giới thiệu</TextNormalSemiBold>
             <TextMoneyBold>{user?.qr_code}</TextMoneyBold>
           </View>
           <Images source={qr_code} style={styles.imageCode} />
-        </TouchableOpacity>
+        </View>
         <FlatList
           data={LIST_OPTION}
           scrollEnabled={false}

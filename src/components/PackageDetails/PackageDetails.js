@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {SafeAreaView, View, TouchableOpacity} from 'react-native';
 
 import {widthDevice} from 'assets/constans';
@@ -42,6 +42,7 @@ const SUB_1 = 'Chọn các chỉ số cần thiết để hỗ trợ cho quá tr
 const PackageDetails = ({navigation, route}) => {
   const statusConfirm = useSelector(state => statusConfirmOrderSelector(state));
   const dispatch = useDispatch();
+  const isDenied = useRef(null);
   const [step, setStep] = useState(-1);
   const [currentPackage, setCurrentPackage] = useState(0);
   const [modal, setModal] = useState(false);
@@ -49,18 +50,6 @@ const PackageDetails = ({navigation, route}) => {
     const {packageDetail} = route ? route?.params : {};
     console.log('package DETAIL', packageDetail);
     setCurrentPackage(packageDetail);
-    // if (
-    //   packageDetail &&
-    //   packageDetail?.doctor_of_patient[0] &&
-    //   packageDetail?.doctor_of_patient[0]?.package_items &&
-    //   packageDetail?.doctor_of_patient[0]?.package_items[0]
-    // ) {
-    //   const customPackage = {
-    //     ...packageDetail,
-    //     package_items: packageDetail?.doctor_of_patient[0]?.package_items[0],
-    //   };
-    //   setCurrentPackage(customPackage);
-    // }
   }, []);
   const renderStep = () =>
     STEP.map((item, index) => (
@@ -124,7 +113,7 @@ const PackageDetails = ({navigation, route}) => {
       statusConfirm === Status.ERROR ||
       (statusConfirm === Status.SUCCESS && step === -1)
     ) {
-      setStep(prev => (prev += 1));
+      !isDenied.current && setStep(prev => (prev += 1));
       dispatch(resetConfrimOrder());
     }
   }, [statusConfirm]);
@@ -136,7 +125,7 @@ const PackageDetails = ({navigation, route}) => {
     navigation && navigation.navigate(NAVIGATION_HOME);
   };
   const handleConfirmOrder = () => {
-    console.log(currentPackage);
+    // console.log(currentPackage);
     if (currentPackage?.order_id) {
       dispatch(
         confirmOrderAction({
@@ -144,6 +133,20 @@ const PackageDetails = ({navigation, route}) => {
           order_status: 1,
         }),
       );
+    }
+  };
+  const handleDenyPackage = () => {
+    if (currentPackage?.order_id) {
+      isDenied.current = true;
+      dispatch(
+        confirmOrderAction({
+          order_id: currentPackage?.order_id,
+          order_status: 3,
+        }),
+      );
+      // setTimeout(() => {
+      //   navigation && navigation.navigate(NAVIGATION_HOME);
+      // }, 300);
     }
   };
   return (
@@ -169,6 +172,7 @@ const PackageDetails = ({navigation, route}) => {
       {step === -1 && currentPackage !== 0 && (
         <GeneralPackage
           currentPackage={currentPackage}
+          handleDenyPackage={handleDenyPackage}
           nextStep={() => handleConfirmOrder()}
         />
       )}
