@@ -138,16 +138,16 @@ export const LIST_OPTION = [
     title: 'Cài đặt & Hỗ trợ',
     id: 3,
     items: [
-      {
-        name: 'Danh sách gói',
-        icon: 'icon_user',
-        link: NAVIGATION_MY_PACKAGE,
-      },
-      {
-        name: 'Cộng tác viên',
-        icon: 'icon_profile',
-        link: NAVIGATION_SALE,
-      },
+      // {
+      //   name: 'Danh sách gói',
+      //   icon: 'icon_user',
+      //   link: NAVIGATION_MY_PACKAGE,
+      // },
+      // {
+      //   name: 'Cộng tác viên',
+      //   icon: 'icon_profile',
+      //   link: NAVIGATION_SALE,
+      // },
       {
         name: 'Đăng xuất',
         icon: 'icon_logout_red',
