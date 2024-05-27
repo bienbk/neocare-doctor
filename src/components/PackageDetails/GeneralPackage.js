@@ -12,7 +12,7 @@ import {
 import CustomButton from 'common/CustomButton/CustomButton';
 import {formatMoney} from 'assets/constans';
 
-const GeneralPackage = ({currentPackage, nextStep}) => {
+const GeneralPackage = ({currentPackage, nextStep, handleDenyPackage}) => {
   const {patient} = currentPackage;
   return (
     <View style={styles.container}>
@@ -74,7 +74,7 @@ const GeneralPackage = ({currentPackage, nextStep}) => {
       </View>
       <View style={styles.wrapperButtonSection}>
         <CustomButton
-          onPress={() => console.log()}
+          onPress={handleDenyPackage}
           label={'Huỷ yêu cầu'}
           styledLabel={styles.labelCancelBtn}
           styledButton={styles.buttonCancel}

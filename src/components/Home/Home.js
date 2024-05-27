@@ -7,9 +7,6 @@ import {
   ScrollView,
 } from 'react-native';
 import styles from './styles';
-import {TextNormalSemiBold} from 'common/Text/TextFont';
-import Images from 'common/Images/Images';
-import {empty_logo} from 'assets/constans';
 import PatientItem from './PatientItem';
 import HeaderTab from './HeaderTab';
 import {
@@ -39,7 +36,7 @@ import Colors from 'theme/Colors';
 
 import {asyncStorage} from 'store';
 import {OneSignal} from 'react-native-onesignal';
-import {getStatusGetUserInfo} from '../../store/user/userSelector';
+import {getStatusGetUserInfo} from 'store/user/userSelector';
 
 const Home = ({navigation}) => {
   const [tabActive, setTabActive] = useState(0);
