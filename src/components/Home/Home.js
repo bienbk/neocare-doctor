@@ -18,6 +18,7 @@ import {
   listPatientAction,
   resetListPatient,
   listEmergencyAction,
+  getUserInfoAction,
   listRequestedAction,
   resetListEmergency,
   resetListRequested,
@@ -56,10 +57,11 @@ const Home = ({navigation}) => {
     if (!tempUser) {
       return;
     }
+    console.log('come here', tempUser);
     OneSignal.login(tempUser?.id.toString());
     let dataOneSignal = {
       cid: tempUser?.id.toString(),
-      name: tempUser?.first_name + ' ' + tempUser?.last_name,
+      name: tempUser?.last_name + ' ' + tempUser?.first_name,
     };
     OneSignal.User.addTags(dataOneSignal);
   };
@@ -70,6 +72,7 @@ const Home = ({navigation}) => {
     }
   }, [statusGetUserInfo]);
   useEffect(() => {
+    dispatch(getUserInfoAction());
     const navigationListener = navigation.addListener('focus', () => {
       setRefreshing(true);
     });

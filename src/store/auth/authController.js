@@ -28,7 +28,7 @@ class AuthController {
     }
   };
   confirmOtpController = async query => {
-    console.log('controller Auth:::::', query, UrlApi.confirmPhone)
+    // console.log('controller Auth:::::', query, UrlApi.confirmPhone)
     const result = await HttpClient.post(UrlApi.confirmPhone, query);
     console.log('RESULT CONFIRM OTP CONTROLLER', result);
     return result;

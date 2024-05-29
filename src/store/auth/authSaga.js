@@ -93,13 +93,13 @@ function* confirmOtp({payload}) {
   };
   try {
     const result = yield call(authController.confirmOtpController, query);
-    // console.log('result confirmOtp:', result);
-    if (result.data?.status == 'OK') {
+    console.log('result confirmOtp:', result);
+    if (result.data?.status === 'OK') {
       yield put({
         type: NEOCARE.CONFIRM_OTP_SUCCESS,
       });
-      yield put(getUserInfoAction());
       yield asyncStorage.setUser(result.data?.user);
+      yield put(getUserInfoAction());
       let frontToken = result.headers?.get('front-token');
       let stAccessToken = result.headers?.get('st-access-token');
       let stRefreshToken = result.headers?.get('st-refresh-token');
