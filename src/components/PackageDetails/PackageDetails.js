@@ -130,7 +130,7 @@ const PackageDetails = ({navigation, route}) => {
       dispatch(
         confirmOrderAction({
           order_id: currentPackage?.order_id,
-          order_status: 1,
+          order_status: 6,
         }),
       );
     }
@@ -144,9 +144,9 @@ const PackageDetails = ({navigation, route}) => {
           order_status: 3,
         }),
       );
-      // setTimeout(() => {
-      //   navigation && navigation.navigate(NAVIGATION_HOME);
-      // }, 300);
+      setTimeout(() => {
+        navigation && navigation.navigate(NAVIGATION_HOME);
+      }, 300);
     }
   };
   return (
