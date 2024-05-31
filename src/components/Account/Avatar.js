@@ -43,7 +43,7 @@ const Avatar = ({}) => {
         <View style={styles.textBalance}>
           <TextSemiBold style={{color: Colors.whiteColor}}>
             {user?.first_name
-              ? user?.first_name + ' ' + user?.last_name
+              ? user?.last_name + ' ' + user?.first_name
               : 'Username'}
           </TextSemiBold>
         </View>

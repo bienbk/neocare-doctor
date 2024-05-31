@@ -2,13 +2,11 @@ import React from 'react';
 import {View} from 'react-native';
 import Svg from '../../common/Svg/Svg';
 import {TextNormalSemiBold, TextSmallEleven} from '../../common/Text/TextFont';
-// import CircularProgress from 'react-native-circular-progress-indicator';
-import Colors from '../../theme/Colors';
 import ProgressCircle from 'react-native-progress-circle';
 import styles from './styles';
 
 const PackageInfo = ({currentPackge}) => {
-  console.log(currentPackge);
+  console.log('current package::::', currentPackge);
   const percent =
     parseFloat(currentPackge.name.match(/\d+/)[0]) <= 12
       ? ((new Date().getTime() - new Date(currentPackge.created_at).getTime()) /
@@ -27,7 +25,7 @@ const PackageInfo = ({currentPackge}) => {
     <View style={styles.containerPackageInfo}>
       <View style={styles.wrapperPackageName}>
         <Svg name={'icon_gift'} size={40} color={'black'} />
-        <TextNormalSemiBold style={styles.packageNameText}>
+        <TextNormalSemiBold numberOfLines={3} style={styles.packageNameText}>
           {currentPackge.name}
         </TextNormalSemiBold>
       </View>

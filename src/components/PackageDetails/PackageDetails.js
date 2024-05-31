@@ -48,7 +48,6 @@ const PackageDetails = ({navigation, route}) => {
   const [modal, setModal] = useState(false);
   useEffect(() => {
     const {packageDetail} = route ? route?.params : {};
-    console.log('package DETAIL', packageDetail);
     setCurrentPackage(packageDetail);
   }, []);
   const renderStep = () =>
@@ -115,6 +114,7 @@ const PackageDetails = ({navigation, route}) => {
     ) {
       !isDenied.current && setStep(prev => (prev += 1));
       dispatch(resetConfrimOrder());
+      isDenied.current && navigation && navigation.navigate(NAVIGATION_HOME);
     }
   }, [statusConfirm]);
   const handleBack = () => {
@@ -124,31 +124,19 @@ const PackageDetails = ({navigation, route}) => {
   const onSuccess = () => {
     navigation && navigation.navigate(NAVIGATION_HOME);
   };
-  const handleConfirmOrder = () => {
-    // console.log(currentPackage);
+  const handleConfirmOrder = type => {
+    // type 1:CONFIRM ---- 2: DENIED
     if (currentPackage?.order_id) {
+      isDenied.current = type === 2 ? true : false;
       dispatch(
         confirmOrderAction({
           order_id: currentPackage?.order_id,
-          order_status: 6,
+          order_status: type === 1 ? 6 : 3,
         }),
       );
     }
   };
-  const handleDenyPackage = () => {
-    if (currentPackage?.order_id) {
-      isDenied.current = true;
-      dispatch(
-        confirmOrderAction({
-          order_id: currentPackage?.order_id,
-          order_status: 3,
-        }),
-      );
-      setTimeout(() => {
-        navigation && navigation.navigate(NAVIGATION_HOME);
-      }, 300);
-    }
-  };
+
   return (
     <SafeAreaView style={styles.containerSafeArea}>
       <View style={styles.wrapperHeader}>
@@ -172,8 +160,8 @@ const PackageDetails = ({navigation, route}) => {
       {step === -1 && currentPackage !== 0 && (
         <GeneralPackage
           currentPackage={currentPackage}
-          handleDenyPackage={handleDenyPackage}
-          nextStep={() => handleConfirmOrder()}
+          handleDenyPackage={() => handleConfirmOrder(2)}
+          nextStep={() => handleConfirmOrder(1)}
         />
       )}
       {(step === 0 || step === 1) && (
@@ -206,7 +194,7 @@ const PackageDetails = ({navigation, route}) => {
         textButtonConfrim={strings.common.close}>
         {currentPackage && (
           <TextNormal style={{paddingHorizontal: 20, textAlign: 'center'}}>
-            {`Bệnh nhân ${currentPackage?.patient.first_name} ${currentPackage?.patient.last_name} vừa được xác nhận mua gói thành công.`}
+            {`Bệnh nhân ${currentPackage?.patient.last_name} ${currentPackage?.patient.first_name} vừa được xác nhận mua gói thành công.`}
           </TextNormal>
         )}
         <TextNormal style={{paddingHorizontal: 20, textAlign: 'center'}}>

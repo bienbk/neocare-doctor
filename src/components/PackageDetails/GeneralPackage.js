@@ -24,7 +24,7 @@ const GeneralPackage = ({currentPackage, nextStep, handleDenyPackage}) => {
             </TextNormal>
 
             <TextNormal style={styles.nameText}>
-              {patient?.first_name + ' ' + patient?.last_name}
+              {patient?.last_name + ' ' + patient?.first_name}
             </TextNormal>
           </View>
           <View style={styles.contentLine}>

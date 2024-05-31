@@ -3,6 +3,13 @@ import {StyleSheet} from 'react-native';
 import Colors from 'theme/Colors';
 
 const styles = StyleSheet.create({
+  tagLabel: {
+    marginHorizontal: 5,
+    paddingHorizontal: 8,
+    borderRadius: 4,
+    paddingVertical: 4,
+    backgroundColor: '#FFE699',
+  },
   containerSafeArea: {
     flex: 1,
     backgroundColor: Colors.whiteColor,
@@ -37,9 +44,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   statusPatient: {
-    alignSelf: 'flex-start',
+    alignSelf: 'flex-end',
     paddingHorizontal: 12,
     paddingVertical: 4,
+    marginBottom: 3,
     // position: 'absolute',
     // right: 10,
     // zIndex: 2,

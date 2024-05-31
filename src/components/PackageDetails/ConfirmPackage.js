@@ -38,7 +38,7 @@ const ConfirmPackage = ({currentPackage, nextStep}) => {
 
             {patient && (
               <TextNormal style={styles.nameText}>
-                {patient?.first_name + ' ' + patient?.last_name}
+                {patient?.last_name + ' ' + patient?.first_name}
               </TextNormal>
             )}
           </View>

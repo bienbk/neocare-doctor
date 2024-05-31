@@ -1,41 +1,74 @@
 import React, {useEffect, useState} from 'react';
-import {TouchableOpacity, View} from 'react-native';
-import {TextNormal, TextSemiBold, TextSmallTwelve} from 'common/Text/TextFont';
-import Images from 'common/Images/Images';
-import {STATUS_COLORS, STATUS, avatar, formatMoney} from 'assets/constans';
-import styles from './styles';
+import {View} from 'react-native';
+import {STATUS_COLORS, STATUS, avatar, mFomatter} from 'assets/constans';
 import CholesterolParameter from './CholesterolParameter';
 import BloodPressureParameter from './BloodPressureParameter';
 import Hba1cParameter from './Hba1cParameter';
 import AcidUricParameter from './AcidUricParameter';
 import BloodGlucoseParameter from './BloodGlucoseParameter';
+import PatientItemRequested from './PatientItemRequested';
+import PatientItemEmergency from './PatientItemEmergency';
+import PatientItemOrder from './PatientItemOrder';
+import PatientItemAll from './PatientItemAll';
+
 const BLP = 'Blood Pressure';
 const CHOL = 'Cholesterol';
 const HBA1C = 'HbA1cLabTest';
 const ACU = 'Acid Uric';
 const BLG = 'Blood Glucose';
-// 0-EMERGENCY::::: 1-SERVICE:::::2-PACKAGE
-const PatientItem = ({item, selectItem, tabActive}) => {
-  const [currentPatient, setCurrentPatient] = useState({});
-  const {items, patient} = item;
+const TAB_EMERGENCY = 0,
+  TAB_SERVICE = 1,
+  TAB_ORDER = 2,
+  TAB_ALL = 3;
+// 0-EMERGENCY::::: 1-SERVICE:::::2-PACKAGE ::::: 3-Alll
+const PatientItem = ({item = null, selectItem, tabActive}) => {
+  const [currentPatient, setCurrentPatient] = useState(-1);
+  const [params, setParams] = useState([]);
+  const [timeSince, setTimeSince] = useState('');
   useEffect(() => {
-    if (patient) {
-      setCurrentPatient(
-        tabActive === 2
-          ? {
-              ...patient.patient,
-              order_id: item.order_id,
-              package_items: item?.package_item_orders[0],
-            }
-          : patient,
-      );
-    } else {
-      setCurrentPatient(item);
+    const {items, patient} = item;
+    setParams(items && items.length > 0 ? items : []);
+
+    item !== null &&
+      setCurrentPatient({
+        ...patient.patient,
+        ...patient,
+        ...items,
+        ...item,
+        order_id: tabActive === TAB_ORDER ? item.order_id : -1,
+        package_item:
+          tabActive === TAB_ORDER ? item?.package_item_orders[0] : {},
+      });
+  }, [item]);
+  useEffect(() => {
+    if (currentPatient !== -1) {
+      checkTimeRequest();
     }
-  }, [tabActive]);
-  const max_status = items ? Math.max(...Array.from(items, i => i.status)) : 0;
+  }, [currentPatient]);
+  const checkTimeRequest = () => {
+    let time = '';
+    if (
+      typeof currentPatient.created_at !== 'string' &&
+      currentPatient.created_at
+    ) {
+      const {seconds, nanos} = currentPatient?.created_at;
+      const converted = mFomatter
+        .unix(seconds)
+        .add(nanos / 1000000, 'milliseconds');
+      time = mFomatter(converted).fromNow();
+    } else if (
+      typeof currentPatient.created_at === 'string' &&
+      currentPatient.created_at
+    ) {
+      time = mFomatter(currentPatient?.created_at).fromNow();
+    }
+    setTimeSince(time);
+  };
+  const max_status = params
+    ? Math.max(...Array.from(params, i => i.status))
+    : 0;
   const renderParameter = () =>
-    items.map(parameter => (
+    params.map(parameter => (
       <View key={parameter?.name}>
         {parameter?.name === HBA1C && <Hba1cParameter parameter={parameter} />}
         {parameter?.name === ACU && <AcidUricParameter parameter={parameter} />}
@@ -51,72 +84,43 @@ const PatientItem = ({item, selectItem, tabActive}) => {
       </View>
     ));
   return (
-    <TouchableOpacity onPress={selectItem} style={[styles.wrapperDoctorItem]}>
-      <View style={[styles.wrapperProfileDoctor]}>
-        <Images
-          resizeMode="contain"
-          style={styles.imageDoctor}
-          source={avatar}
+    <View>
+      {tabActive === TAB_SERVICE && (
+        <PatientItemRequested
+          currentPatient={currentPatient}
+          selectItem={selectItem}
+          avatar={avatar}
+          timeSince={timeSince}
         />
-        <View style={styles.wrapperProfileContent}>
-          <TextSemiBold style={styles.textPatientName}>
-            {currentPatient?.first_name + ' ' + currentPatient?.last_name}
-          </TextSemiBold>
-          {tabActive !== 2 && (
-            <View>
-              {tabActive === 0 && currentPatient?.birthday ? (
-                <TextSmallTwelve style={styles.subtitleText}>{`${
-                  currentPatient?.gender === 1 ? 'Nam' : 'Nữ'
-                } | ${
-                  currentPatient?.birthday
-                    ? new Date(currentPatient?.birthday).getFullYear()
-                    : '1999'
-                }`}</TextSmallTwelve>
-              ) : (
-                <TextSmallTwelve style={styles.subtitleText}>
-                  {currentPatient.phone}
-                </TextSmallTwelve>
-              )}
-            </View>
-          )}
-          {tabActive === 2 && currentPatient.package_items && (
-            <View>
-              <TextNormal style={styles.requestingText}>
-                {currentPatient?.package_items.product_name}
-              </TextNormal>
-              <TextNormal style={styles.priceText}>
-                {formatMoney(currentPatient?.package_items?.price) + ' vnd'}
-              </TextNormal>
-            </View>
-          )}
-        </View>
-        {tabActive === 0 && (
-          <View
-            style={[
-              styles.statusPatient,
-              {backgroundColor: STATUS_COLORS[max_status]},
-            ]}>
-            <TextSmallTwelve style={styles.textStatus}>
-              {STATUS[max_status]}
-            </TextSmallTwelve>
-          </View>
-        )}
-      </View>
-      {tabActive === 0 && (
-        <View style={styles.wrapperParameterList}>
-          {renderParameter(tabActive)}
-        </View>
       )}
-      {/* {doctor_of_patient &&
-        tabActive === 1 &&
-        doctor_of_patient.length > 0 &&
-        doctor_of_patient[0]?.package_items &&
-        doctor_of_patient[0]?.package_items.map(line => {
-          return (
-            <ProgressLine key={line.id} line={line} isDetailDoctor={false} />
-          );
-        })} */}
-    </TouchableOpacity>
+      {tabActive === TAB_EMERGENCY && (
+        <PatientItemEmergency
+          currentPatient={currentPatient}
+          STATUS={STATUS}
+          STATUS_COLORS={STATUS_COLORS}
+          max_status={max_status}
+          renderParameter={renderParameter}
+          selectItem={selectItem}
+          timeSince={timeSince}
+          avatar={avatar}
+        />
+      )}
+      {tabActive === TAB_ORDER && (
+        <PatientItemOrder
+          currentPatient={currentPatient}
+          selectItem={selectItem}
+          timeSince={timeSince}
+          avatar={avatar}
+        />
+      )}
+      {tabActive === TAB_ALL && (
+        <PatientItemAll
+          currentPatient={currentPatient}
+          selectItem={selectItem}
+          avatar={avatar}
+        />
+      )}
+    </View>
   );
 };
 

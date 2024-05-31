@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {
+  FlatList,
   ImageBackground,
   StyleSheet,
   TouchableOpacity,
@@ -14,16 +15,26 @@ import {
 import Colors from 'theme/Colors';
 import Images from 'common/Images/Images';
 import {user_example, widthDevice} from 'assets/constans';
-import Icons from 'common/Icons/Icons';
-import {decorator_home} from 'assets/constans';
 import {asyncStorage} from '../../store';
+import {heightDevice, home_header} from '../../assets/constans';
 
 const HeaderTab = ({isSelected, onPressTab, requested, order, emergency}) => {
   const [currentUser, setCurrentUser] = useState({last_name: ''});
-
+  const [tabs, setTabs] = useState([]);
   useEffect(() => {
     initUser();
   }, []);
+  useEffect(() => {
+    setTimeout(() => {
+      const TABS = [
+        {id: 3, name: 'Tất cả', nums: order + requested + emergency},
+        {id: 0, name: 'Khẩn cấp', nums: emergency},
+        {id: 1, name: 'Yêu cầu tư vấn', nums: requested},
+        {id: 2, name: 'Chờ mua gói', nums: order},
+      ];
+      setTabs(TABS);
+    }, 200);
+  }, [requested, order, emergency]);
 
   const initUser = async () => {
     const user = await asyncStorage.getUser();
@@ -32,87 +43,57 @@ const HeaderTab = ({isSelected, onPressTab, requested, order, emergency}) => {
     }
   };
   return (
-    <ImageBackground source={decorator_home} style={{paddingBottom: 1}}>
-      <View style={styles.wrapperFixedHeader}>
-        <View style={{flexDirection: 'row', alignItems: 'center'}}>
-          <Images source={user_example} style={styles.avatarIcon} />
-          <View style={{paddingHorizontal: 10}}>
-            <TextSemiBold style={{fontWeight: 500}}>
-              Xin chào
-              <TextSemiBold> {currentUser.last_name || 'bạn'}</TextSemiBold>
-            </TextSemiBold>
+    <View>
+      <ImageBackground
+        source={home_header}
+        imageStyle={{height: heightDevice * 0.12}}
+        style={{marginBottom: 10}}>
+        <View style={styles.wrapperFixedHeader}>
+          <View style={{flexDirection: 'row', alignItems: 'center'}}>
+            <Images source={user_example} style={styles.avatarIcon} />
+            <View style={{paddingHorizontal: 10}}>
+              <TextSemiBold style={{color: Colors.whiteColor}}>
+                {'Xin chào '}
+                <TextSemiBold style={{color: Colors.whiteColor}}>
+                  {currentUser.first_name || 'bạn'}
+                </TextSemiBold>
+              </TextSemiBold>
+            </View>
           </View>
+          {/* <Icons type={'Feather'} name={'bell'} size={29} color={'black'} /> */}
         </View>
-        {/* <Icons type={'Feather'} name={'bell'} size={29} color={'black'} /> */}
-      </View>
-      <View style={styles.wrapperTab}>
-        <TouchableOpacity
-          onPress={() => onPressTab(0)}
-          style={[
-            styles.wrapperTabItem,
-            isSelected === 0 && styles.wrapperActiveTabItem,
-          ]}>
-          <TextNormal
+      </ImageBackground>
+      <FlatList
+        data={tabs}
+        contentContainerStyle={{marginTop: 15}}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        renderItem={({item, index}) => (
+          <TouchableOpacity
+            onPress={() => onPressTab(item.id)}
             style={[
-              styles.titleTab,
-              isSelected === 0 && styles.titleActivedTab,
+              styles.wrapperTabItem,
+              isSelected === item.id && styles.wrapperActiveTabItem,
             ]}>
-            Khẩn cấp
-          </TextNormal>
-
-          {emergency > 0 && (
-            <View style={styles.badge}>
-              <TextSmallMedium style={styles.badgeText}>
-                {emergency || ''}
-              </TextSmallMedium>
-            </View>
-          )}
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => onPressTab(1)}
-          style={[
-            styles.wrapperTabItem,
-            isSelected === 1 && styles.wrapperActiveTabItem,
-          ]}>
-          <TextNormal
-            style={[
-              styles.titleTab,
-              isSelected === 1 && styles.titleActivedTab,
-            ]}>
-            Yêu cầu tư vấn
-          </TextNormal>
-          {requested > 0 && (
-            <View style={styles.badge}>
-              <TextSmallMedium style={styles.badgeText}>
-                {requested || ''}
-              </TextSmallMedium>
-            </View>
-          )}
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => onPressTab(2)}
-          style={[
-            styles.wrapperTabItem,
-            isSelected === 2 && styles.wrapperActiveTabItem,
-          ]}>
-          <TextNormal
-            style={[
-              styles.titleTab,
-              isSelected === 2 && styles.titleActivedTab,
-            ]}>
-            Chờ mua gói
-          </TextNormal>
-          {/* <TextSmallEleven style={styles.badgeIcon}>{requesting}</TextSmallEleven> */}
-          {order > 0 && (
-            <View style={styles.badge}>
-              <TextSmallEleven style={styles.badgeText}>
-                {order || ''}
-              </TextSmallEleven>
-            </View>
-          )}
-        </TouchableOpacity>
-      </View>
-    </ImageBackground>
+            <TextNormal
+              style={[
+                styles.titleTab,
+                isSelected === item.id && styles.titleActivedTab,
+              ]}>
+              {item.name}
+            </TextNormal>
+            {item.nums > 0 && (
+              <View style={styles.badge}>
+                <TextSmallMedium style={styles.badgeText}>
+                  {item.nums || ''}
+                </TextSmallMedium>
+              </View>
+            )}
+          </TouchableOpacity>
+        )}
+        keyExtractor={i => i.id}
+      />
+    </View>
   );
 };
 
@@ -164,9 +145,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   wrapperTabItem: {
-    paddingHorizontal: 8,
+    paddingHorizontal: 10,
     paddingVertical: 6,
-    minWidth: widthDevice / 3.5,
+    minWidth: widthDevice / 3.9,
+    marginHorizontal: 5,
     justifyContent: 'center',
     alignContent: 'center',
     backgroundColor: '#EFEFEF',

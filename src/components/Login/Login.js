@@ -22,7 +22,7 @@ import CheckBox from '@react-native-community/checkbox';
 import CustomButton from 'common/CustomButton/CustomButton';
 import {parsePhoneNumber} from 'libphonenumber-js/mobile';
 import strings from 'localization/Localization';
-import { isAndroid } from '../../assets/constans';
+import {isAndroid} from '../../assets/constans';
 
 const Login = props => {
   const dispatch = useDispatch();
@@ -99,9 +99,7 @@ const Login = props => {
                   placeholder="000 000 000 "
                   placeholderTextColor={Colors.textGrayColor}
                   style={styles.styleTextInput}
-                  keyboardType={
-                    isAndroid ? 'number-pad' : 'numbers-and-punctuation'
-                  }
+                  keyboardType={isAndroid ? 'number-pad' : 'phone-pad'}
                   returnKeyLabel={'Done'}
                   returnKeyType={'done'}
                   onChangeText={text => setPhone(text)}

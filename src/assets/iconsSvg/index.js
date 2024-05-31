@@ -25,9 +25,11 @@ import brand_name from './iconMain/brand_name.svg';
 import icon_splash from './iconMain/icon_splash.svg';
 import icon_avatar from './iconMain/icon_avatar.svg';
 import decorator_package from './iconMain/decorator_package.svg';
+import icon_home_header from './iconMain/icon_home_header.svg';
 export default {
   icon_option,
   icon_splash,
+  icon_home_header,
   brand_name,
   decorator_package,
   icon_gift,

@@ -57,7 +57,6 @@ const Home = ({navigation}) => {
     if (!tempUser) {
       return;
     }
-    console.log('come here', tempUser);
     OneSignal.login(tempUser?.id.toString());
     let dataOneSignal = {
       cid: tempUser?.id.toString(),
@@ -178,7 +177,7 @@ const Home = ({navigation}) => {
             onRefresh={onRefresh}
           />
         }>
-        {!refreshing && listPatient && (
+        {!refreshing && (
           <FlatList
             scrollEnabled={false}
             data={
@@ -186,7 +185,9 @@ const Home = ({navigation}) => {
                 ? listEmergency
                 : tabActive === 1
                 ? listRequested
-                : listPatient
+                : tabActive === 2
+                ? listPatient
+                : [...listEmergency, ...listRequested, ...listPatient]
             }
             contentContainerStyle={{marginBottom: 10}}
             showsVerticalScrollIndicator={false}

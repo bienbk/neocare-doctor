@@ -1,6 +1,12 @@
 import {Dimensions, Platform} from 'react-native';
 import DeviceInfo from 'react-native-device-info';
-import {NAVIGATION_LOGIN, NAVIGATION_MY_PACKAGE, NAVIGATION_SALE} from '../navigation/routes';
+import {NAVIGATION_LOGIN} from '../navigation/routes';
+import moment from 'moment';
+import 'moment/locale/vi';
+moment.locale('vi');
+// moment.relativeTimeThreshold('m', 60);
+// moment.relativeTimeThreshold('h', 24 * 26);
+export const mFomatter = moment;
 import Colors from '../theme/Colors';
 export const STATUS = {
   0: 'Bình thuờng',
@@ -44,6 +50,7 @@ export const avatar = require('assets/images/avatar.png');
 export const home_img = require('assets/images/home.png');
 export const user_example = require('assets/images/user_example.png');
 export const qr_code = require('assets/images/qr_code.png');
+export const home_header = require('assets/images/home_header.png');
 export const home_image = require('assets/images/home.png');
 export const decorator_home = require('assets/images/decorator_home.png');
 export const patient_card = require('assets/images/patient_card.png');

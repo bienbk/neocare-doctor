@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
   wrapperProgresCircle: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    width: '35%',
+    width: '32%',
   },
   leftDayText: {fontSize: 14, textAlign: 'center', fontWeight: 'bold'},
   packageNameText: {
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     paddingHorizontal: 5,
     textAlign: 'center',
-    width: '80%',
+    width: '85%',
   },
   containerPackageInfo: {
     paddingHorizontal: 10,

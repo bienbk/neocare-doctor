@@ -28,7 +28,14 @@ const Splash = ({navigation}) => {
   const checAuthentication = async () => {
     const hasToken = await doesSessionExist();
     setTimeout(() => {
-      hasToken && navigation && navigation.navigate(NAVIGATION_MAIN);
+      hasToken &&
+        navigation &&
+        navigation.dispatch(
+          CommonActions.reset({
+            index: 0,
+            routes: [{name: NAVIGATION_MAIN}],
+          }),
+        );
       !hasToken && navigation && navigation.navigate(NAVIGATION_LOGIN);
     }, 1000);
 
