@@ -94,5 +94,16 @@ class PatientController {
       return {success: false};
     }
   };
+  getTagController = async () => {
+    try {
+      const {data} = await HttpClient.get(UrlApi.mockSetupOrderInfor);
+      console.log('LIST tag::::', data);
+      return {success: true, data: data};
+    } catch (error) {
+      console.log('ERROR LIST tag:::', error);
+      return {success: false};
+    }
+  };
 }
+
 export default new PatientController();

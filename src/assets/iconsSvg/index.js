@@ -26,13 +26,17 @@ import icon_splash from './iconMain/icon_splash.svg';
 import icon_avatar from './iconMain/icon_avatar.svg';
 import decorator_package from './iconMain/decorator_package.svg';
 import icon_home_header from './iconMain/icon_home_header.svg';
+import avatar_default from './iconMain/avatar_default.svg';
+import icon_empty from './iconMain/icon_empty.svg';
 export default {
   icon_option,
   icon_splash,
   icon_home_header,
   brand_name,
+  avatar_default,
   decorator_package,
   icon_gift,
+  icon_empty,
   icon_checked,
   icon_avatar,
   icon_mydoctor_main,

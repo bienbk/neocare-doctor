@@ -46,3 +46,6 @@ export const listServiceAction = payload => ({
 export const resetListService = () => ({
   type: NEOCARE.LIST_SERVICE_RESET,
 });
+export const getTagAction = () => ({
+  type: NEOCARE.GET_TAG_REQUEST,
+});

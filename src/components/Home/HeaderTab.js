@@ -17,6 +17,7 @@ import Images from 'common/Images/Images';
 import {user_example, widthDevice} from 'assets/constans';
 import {asyncStorage} from '../../store';
 import {heightDevice, home_header} from '../../assets/constans';
+import Svg from '../../common/Svg/Svg';
 
 const HeaderTab = ({isSelected, onPressTab, requested, order, emergency}) => {
   const [currentUser, setCurrentUser] = useState({last_name: ''});
@@ -39,6 +40,7 @@ const HeaderTab = ({isSelected, onPressTab, requested, order, emergency}) => {
   const initUser = async () => {
     const user = await asyncStorage.getUser();
     if (user) {
+      console.log(user);
       setCurrentUser(user);
     }
   };
@@ -46,11 +48,21 @@ const HeaderTab = ({isSelected, onPressTab, requested, order, emergency}) => {
     <View>
       <ImageBackground
         source={home_header}
-        imageStyle={{height: heightDevice * 0.12}}
-        style={{marginBottom: 10}}>
+        imageStyle={{height: 90, marginBottom: 10}}
+        resizeMode={'stretch'}
+        style={{marginBottom: 15}}>
         <View style={styles.wrapperFixedHeader}>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
-            <Images source={user_example} style={styles.avatarIcon} />
+            {currentUser?.avatar && currentUser?.avatar.length > 0 ? (
+              <Images
+                source={{uri: currentUser?.avatar}}
+                style={styles.avatarIcon}
+              />
+            ) : (
+              <View style={styles.avatarIcon}>
+                <Svg name={'avatar_default'} size={45} />
+              </View>
+            )}
             <View style={{paddingHorizontal: 10}}>
               <TextSemiBold style={{color: Colors.whiteColor}}>
                 {'Xin chào '}
@@ -123,9 +135,11 @@ const styles = StyleSheet.create({
     width: 45,
     borderRadius: 20,
     borderColor: Colors.primary,
-    borderWidth: 1.3,
-    // borderStyle: 'solid',
-    backgroundColor: 'lightgray',
+    borderWidth: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderStyle: 'solid',
+    // backgroundColor: 'lightgray',
   },
   badgeIcon: {
     height: 20,

@@ -22,10 +22,36 @@ const initializeState = {
   // LIST SUH OF PATIENT
   listServiceOfPatient: [],
   statusListService: Status.DEFAULT,
+  // list tag
+  listTag: [],
+  statusListTag: Status.DEFAULT,
 };
 
 export default (state = initializeState, {type, payload}) => {
   switch (type) {
+    // ----------------- LIST TAG -----------------------
+    case NEOCARE.GET_TAG_REQUEST:
+      return {
+        ...state,
+        statusListTag: Status.LOADING,
+      };
+    case NEOCARE.GET_TAG_SUCCESS:
+      return {
+        ...state,
+        statusListTag: Status.SUCCESS,
+        listTag: payload,
+      };
+    case NEOCARE.GET_TAG_ERROR:
+      return {
+        ...state,
+        statusListTag: Status.ERROR,
+        listTag: [],
+      };
+    case NEOCARE.LIST_SERVICE_RESET:
+      return {
+        ...state,
+        statusListTag: Status.DEFAULT,
+      };
     // ----------------- LIST SERVICE -----------------------
     case NEOCARE.LIST_SERVICE_REQUEST:
       return {

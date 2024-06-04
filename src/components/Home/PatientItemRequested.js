@@ -10,6 +10,7 @@ const PatientItemRequested = ({
   selectItem,
   timeSince,
 }) => {
+  console.log('rrrr:::', currentPatient);
   return (
     <TouchableOpacity onPress={selectItem} style={[styles.wrapperDoctorItem]}>
       <View style={[styles.wrapperProfileDoctor]}>
@@ -25,10 +26,10 @@ const PatientItemRequested = ({
           <View>
             <TextSmallTwelve style={styles.subtitleText}>{`${
               currentPatient?.gender === 1 ? 'Nam' : 'Nữ'
-            } | ${
+            } ${
               currentPatient?.birthday
-                ? new Date(currentPatient?.birthday).getFullYear()
-                : '1999'
+                ? ' | ' + new Date(currentPatient?.birthday).getFullYear()
+                : ''
             }`}</TextSmallTwelve>
           </View>
         </View>

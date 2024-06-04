@@ -30,6 +30,8 @@ import {
   statusListEmergency,
   listRequestedSelector,
   statusListRequested,
+  statusListTag,
+  tagSelector,
 } from 'store/selectors';
 import Status from 'common/Status/Status';
 import Skeleton from './Skeleton';
@@ -38,6 +40,8 @@ import Colors from 'theme/Colors';
 import {asyncStorage} from 'store';
 import {OneSignal} from 'react-native-onesignal';
 import {getStatusGetUserInfo} from 'store/user/userSelector';
+import EmptyPage from 'common/EmptyPage/EmptyPage';
+import {getTagAction} from 'store/patients/patientAction';
 
 const Home = ({navigation}) => {
   const [tabActive, setTabActive] = useState(0);
@@ -52,6 +56,8 @@ const Home = ({navigation}) => {
   const statusListPatient = useSelector(state =>
     statusListPatientSelector(state),
   );
+  const tags = useSelector(state => tagSelector(state));
+  const statusListTags = useSelector(state => statusListTag(state));
   const sendOneSignal = async () => {
     const tempUser = await asyncStorage.getUser();
     if (!tempUser) {
@@ -72,11 +78,8 @@ const Home = ({navigation}) => {
   }, [statusGetUserInfo]);
   useEffect(() => {
     dispatch(getUserInfoAction());
-    const navigationListener = navigation.addListener('focus', () => {
-      setRefreshing(true);
-    });
-    return navigationListener;
-  }, [navigation]);
+    setRefreshing(true);
+  }, []);
   const fetchPatientData = () => {
     dispatch(
       listPatientAction({
@@ -102,6 +105,7 @@ const Home = ({navigation}) => {
         size: 100,
       }),
     );
+    dispatch(getTagAction());
   };
   useEffect(() => {
     if (statusListPatient === Status.SUCCESS) {
@@ -130,13 +134,15 @@ const Home = ({navigation}) => {
       });
     tabActive !== 2 &&
       navigation.navigate(NAVIGATION_MY_PATIENT, {
-        patient: item,
+        patient: {...item, ...item?.patient},
+        tags: tags,
       });
   };
   const renderPatientItem = ({item, index}) => {
     return (
       <PatientItem
         item={item}
+        tags={tags}
         selectItem={() => handleSelectPatient(item)}
         tabActive={tabActive}
       />
@@ -195,6 +201,14 @@ const Home = ({navigation}) => {
             renderItem={renderPatientItem}
           />
         )}
+        {((tabActive === 0 && listEmergency.length === 0) ||
+          (tabActive === 1 && listRequested.length === 0) ||
+          (tabActive === 3 &&
+            !listPatient &&
+            !listEmergency &&
+            !listRequested) ||
+          (tabActive === 2 && listPatient.length === 0)) &&
+          !refreshing && <EmptyPage />}
         {refreshing && (
           <View style={{flex: 1, marginTop: 10}}>
             {[...Array(4).keys()].map(i => (

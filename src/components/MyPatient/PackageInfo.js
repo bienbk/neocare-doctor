@@ -1,26 +1,12 @@
 import React from 'react';
 import {View} from 'react-native';
-import Svg from '../../common/Svg/Svg';
-import {TextNormalSemiBold, TextSmallEleven} from '../../common/Text/TextFont';
+import Svg from 'common/Svg/Svg';
+import {TextNormalSemiBold, TextSmallEleven} from 'common/Text/TextFont';
 import ProgressCircle from 'react-native-progress-circle';
 import styles from './styles';
 
 const PackageInfo = ({currentPackge}) => {
-  console.log('current package::::', currentPackge);
-  const percent =
-    parseFloat(currentPackge.name.match(/\d+/)[0]) <= 12
-      ? ((new Date().getTime() - new Date(currentPackge.created_at).getTime()) /
-          60000 /
-          (24 * 60) /
-          (currentPackge.name.match(/\d+/)[0] * 30)) *
-        100
-      : ((365 -
-          (new Date().getTime() -
-            new Date(currentPackge.created_at).getTime()) /
-            60000 /
-            (24 * 60)) /
-          365) *
-        100;
+  // console.log('current package::::', currentPackge);
   return (
     <View style={styles.containerPackageInfo}>
       <View style={styles.wrapperPackageName}>
@@ -31,7 +17,7 @@ const PackageInfo = ({currentPackge}) => {
       </View>
       <View style={styles.wrapperProgresCircle}>
         <ProgressCircle
-          percent={percent}
+          percent={10}
           radius={25}
           borderWidth={3}
           color="black"

@@ -35,6 +35,7 @@ const MyPatient = ({navigation, route}) => {
   const [currentPackge, setCurrentPackage] = useState({});
   const [tabActive, setTabActive] = useState(1);
   const [modal, showModal] = useState(0);
+  const [listTag, setListTag] = useState([]);
   const statusServiceOfPatient = useSelector(state =>
     statusListServiceSelector(state),
   );
@@ -46,7 +47,14 @@ const MyPatient = ({navigation, route}) => {
     initializePatient();
   }, []);
   const initializePatient = () => {
-    const {patient} = route?.params;
+    const {patient, tags} = route?.params;
+    if (tags && tags.length > 0) {
+      tags.map(t => {
+        if (t.customerId === patient?.patient.id) {
+          setListTag(t.tags);
+        }
+      });
+    }
     dispatch(
       getPatientDetailAction({
         patientId: patient?.patient.id,
@@ -136,7 +144,7 @@ const MyPatient = ({navigation, route}) => {
         {/* CARD INFORMATION */}
         {currentPatient && (
           <View style={{backgroundColor: Colors.backgroundColor}}>
-            <CardPatient currentPatient={currentPatient} />
+            <CardPatient listTag={listTag} currentPatient={currentPatient} />
           </View>
         )}
         {/* Package */}

@@ -1,5 +1,5 @@
 import {heightDevice, widthDevice} from 'assets/constans';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Platform} from 'react-native';
 import Colors from 'theme/Colors';
 
 const styles = StyleSheet.create({
@@ -8,11 +8,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     borderRadius: 4,
     paddingVertical: 4,
+    marginVertical: 3,
     backgroundColor: '#FFE699',
   },
   containerSafeArea: {
     flex: 1,
-    backgroundColor: Colors.whiteColor,
+    backgroundColor: Colors.backgroundColor,
   },
   lineBetween: {
     flexDirection: 'row',
@@ -112,6 +113,20 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 15,
     backgroundColor: Colors.whiteColor,
+    ...Platform.select({
+      android: {
+        elevation: 2,
+      },
+      ios: {
+        shadowColor: '#a8bed2',
+        shadowOpacity: 1,
+        shadowRadius: 6,
+        shadowOffset: {
+          width: 2,
+          height: 2,
+        },
+      },
+    }),
     borderRadius: 12,
     marginVertical: 5,
     marginHorizontal: 1,

@@ -11,13 +11,15 @@ import {NAVIGATION_HOME} from 'navigation/routes';
 import strings from 'localization/Localization';
 import ConfirmationModal from 'common/ConfirmationModal/ConfirmationModal';
 import {useDispatch, useSelector} from 'react-redux';
-import {statusConfirmOrderSelector} from 'store/selectors';
+import {statusConfirmOrderSelector, statusInforSelector} from 'store/selectors';
 import {confirmOrderAction, resetConfrimOrder} from 'store/actions';
 import Status from 'common/Status/Status';
 import GeneralPackage from './GeneralPackage';
 import GroupDiseases from './GroupDiseases';
 import StoreSelection from './StoreSelection';
 import ConfirmPackage from './ConfirmPackage';
+import {setupOrderInfo} from 'store/orders/orderAction';
+import {resetOrderInfor} from '../../store/orders/orderAction';
 const STEP = ['Nhóm bệnh', 'Chỉ số', 'Nhà thuốc', 'Hoàn tất'];
 const INDEX = [
   {id: 1, name: 'Huyết áp', checked: false},
@@ -41,6 +43,7 @@ const SUB_1 = 'Chọn các chỉ số cần thiết để hỗ trợ cho quá tr
 
 const PackageDetails = ({navigation, route}) => {
   const statusConfirm = useSelector(state => statusConfirmOrderSelector(state));
+  const statusSetupInfor = useSelector(state => statusInforSelector(state));
   const dispatch = useDispatch();
   const isDenied = useRef(null);
   const [step, setStep] = useState(-1);
@@ -122,6 +125,7 @@ const PackageDetails = ({navigation, route}) => {
     step !== -1 && setStep(prev => (prev -= 1));
   };
   const onSuccess = () => {
+    dispatch(resetOrderInfor());
     navigation && navigation.navigate(NAVIGATION_HOME);
   };
   const handleConfirmOrder = type => {
@@ -136,6 +140,26 @@ const PackageDetails = ({navigation, route}) => {
       );
     }
   };
+  const handleSaveInfo = () => {
+    console.log('currentPackage to save:::', currentPackage);
+    const query = {
+      customerId: currentPackage?.patient?.id,
+      createdAt: new Date(),
+      tags: currentPackage?.parameters,
+      hospitals: currentPackage?.store,
+      orderId: currentPackage?.order_id,
+      package: currentPackage?.package_items,
+    };
+    dispatch(setupOrderInfo(query));
+  };
+  useEffect(() => {
+    if (
+      statusSetupInfor === Status.SUCCESS ||
+      statusSetupInfor === Status.ERROR
+    ) {
+      setModal(true);
+    }
+  }, [statusSetupInfor]);
 
   return (
     <SafeAreaView style={styles.containerSafeArea}>
@@ -183,7 +207,7 @@ const PackageDetails = ({navigation, route}) => {
       {step === 3 && (
         <ConfirmPackage
           currentPackage={currentPackage}
-          nextStep={() => setModal(true)}
+          nextStep={() => handleSaveInfo()}
         />
       )}
       <ConfirmationModal

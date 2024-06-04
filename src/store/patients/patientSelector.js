@@ -14,3 +14,5 @@ export const statusListServiceSelector = state =>
   state.patient.statusListService;
 export const statusConfirmServiceSelector = state =>
   state.patient.statusConfirmService;
+export const statusListTag = state => state.patient.statusListTag;
+export const tagSelector = state => state.patient.listTag;

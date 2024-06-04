@@ -1,5 +1,5 @@
 import {heightDevice, widthDevice} from 'assets/constans';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Platform} from 'react-native';
 import Colors from 'theme/Colors';
 
 const styles = StyleSheet.create({
@@ -44,8 +44,8 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   imageDoctor: {
-    width: 60,
-    height: 60,
+    width: 61,
+    height: 61,
     // borderRadius: 8,
   },
   subtitleText: {
@@ -58,6 +58,7 @@ const styles = StyleSheet.create({
     paddingVertical: 4,
     marginTop: 2,
     alignItems: 'flex-end',
+    marginRight: 4,
     backgroundColor: '#B88A00',
     borderRadius: 8,
   },
@@ -72,10 +73,10 @@ const styles = StyleSheet.create({
   containerCard: {
     width: widthDevice - 30,
     alignSelf: 'center',
-    height: 130,
+    // height: 130,
     marginVertical: 10,
-    paddingHorizontal: 15,
-    paddingVertical: 10,
+    marginBottom: 15,
+    padding: 15,
   },
   borderRadius16: {borderRadius: 16},
   phoneIcon: {
@@ -148,6 +149,20 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     paddingVertical: 15,
     marginHorizontal: 15,
+    ...Platform.select({
+      android: {
+        elevation: 2,
+      },
+      ios: {
+        shadowColor: '#a8bed2',
+        shadowOpacity: 1,
+        shadowRadius: 6,
+        shadowOffset: {
+          width: 2,
+          height: 2,
+        },
+      },
+    }),
     marginVertical: 3,
     // marginHorizontal: 10,
     backgroundColor: Colors.whiteColor,

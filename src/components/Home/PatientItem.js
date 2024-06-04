@@ -21,7 +21,7 @@ const TAB_EMERGENCY = 0,
   TAB_ORDER = 2,
   TAB_ALL = 3;
 // 0-EMERGENCY::::: 1-SERVICE:::::2-PACKAGE ::::: 3-Alll
-const PatientItem = ({item = null, selectItem, tabActive}) => {
+const PatientItem = ({item = null, selectItem, tabActive, tags}) => {
   const [currentPatient, setCurrentPatient] = useState(-1);
   const [params, setParams] = useState([]);
   const [timeSince, setTimeSince] = useState('');
@@ -42,6 +42,7 @@ const PatientItem = ({item = null, selectItem, tabActive}) => {
   }, [item]);
   useEffect(() => {
     if (currentPatient !== -1) {
+      console.log('current patient::', currentPatient);
       checkTimeRequest();
     }
   }, [currentPatient]);
@@ -118,6 +119,7 @@ const PatientItem = ({item = null, selectItem, tabActive}) => {
           currentPatient={currentPatient}
           selectItem={selectItem}
           avatar={avatar}
+          tags={tags}
         />
       )}
     </View>

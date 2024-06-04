@@ -42,9 +42,11 @@ export const NEOCARE = createRequestTypes(
     'GET_PATIENT_DETAIL',
     'CONFIRM_PATIENT_SERVICE',
     'LIST_SERVICE',
+    'GET_TAG',
 
     // orders
     'CONFIRM_ORDER',
+    'SETUP_ORDER_INFOR',
   ],
   suffixTypes,
 );

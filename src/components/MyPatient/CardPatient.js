@@ -7,11 +7,12 @@ import {TextNormal, TextSemiBold, TextSmallTwelve} from 'common/Text/TextFont';
 import Colors from 'theme/Colors';
 import Icons from 'common/Icons/Icons';
 
-const CardPatient = ({currentPatient}) => {
+const CardPatient = ({currentPatient, listTag}) => {
   return (
     <ImageBackground
       source={patient_card}
       imageStyle={styles.borderRadius16}
+      resizeMode={'stretch'}
       style={styles.containerCard}>
       <View style={[styles.wrapperProfilePatient]}>
         <Images
@@ -42,11 +43,20 @@ const CardPatient = ({currentPatient}) => {
                 ? currentPatient.phone.replaceAll(' ', '')
                 : ''}
             </TextNormal>
-            <View style={styles.groupPatient}>
-              <TextNormal
-                style={{color: Colors.whiteColor, fontWeight: 'bold'}}>
-                {'Tim mạch'}
-              </TextNormal>
+
+            <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
+              {listTag &&
+                listTag.length > 0 &&
+                listTag.map(a => {
+                  return (
+                    <View style={styles.groupPatient}>
+                      <TextNormal
+                        style={{color: Colors.whiteColor, fontWeight: 'bold'}}>
+                        {a.name}
+                      </TextNormal>
+                    </View>
+                  );
+                })}
             </View>
           </View>
         )}

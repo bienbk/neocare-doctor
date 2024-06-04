@@ -1,4 +1,4 @@
-import {PATH_NEOCARE_DOCTOR, PATH_DOCTOR_AUTH} from 'assets/config';
+import {PATH_NEOCARE_DOCTOR, PATH_DOCTOR_AUTH, MOCK_API} from 'assets/config';
 
 // const PATH_DOCTOR_AUTH = 'https://dev-api.neocare.vn/';
 // const PATH_NEOCARE_DOCTOR = 'https://dev-api.neocare.vn/doctors/v1/';
@@ -26,4 +26,8 @@ export const UrlApi = {
 
   // ------------------- ORDER -----------------------
   apiConfirmOrder: PATH_NEOCARE_DOCTOR + 'orders/healthcare',
+
+  // -------------------- MOCK API -------------------
+  mockSetupOrderInfor: MOCK_API + 'package',
+  mockGetTags: MOCK_API + 'package',
 };

@@ -4,8 +4,8 @@ import Colors from 'theme/Colors';
 import {STATUS_SERVICE} from 'assets/constans';
 import styles from './styles';
 import {TextNormal} from 'common/Text/TextFont';
-import {TextNormalSemiBold} from '../../common/Text/TextFont';
-const ServiceHistory = ({currentPackge, listService, confirmService}) => {
+import {TextNormalSemiBold} from 'common/Text/TextFont';
+const ServiceHistory = ({listService, confirmService}) => {
   return (
     <View>
       {listService.length > 0 ? (

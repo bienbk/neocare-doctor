@@ -13,5 +13,17 @@ class OrderController {
       return {success: false};
     }
   };
+  setupOrderInfor = async payload => {
+    console.log('payload controller setup order infor:::', payload);
+    try {
+      const {data} = await HttpClient.post(UrlApi.mockSetupOrderInfor, payload);
+      if (data) {
+        return {success: true};
+      }
+    } catch (error) {
+      console.log('error:::', error);
+      return {success: false, message: error};
+    }
+  };
 }
 export default new OrderController();

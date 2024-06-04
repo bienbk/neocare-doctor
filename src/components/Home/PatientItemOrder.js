@@ -19,10 +19,10 @@ const PatientItemOrder = ({selectItem, avatar, currentPatient, timeSince}) => {
           <TextSemiBold style={styles.textPatientName}>
             {currentPatient?.last_name + ' ' + currentPatient?.first_name}
           </TextSemiBold>
-          {currentPatient && currentPatient?.package_items && (
+          {currentPatient && currentPatient?.package_item && (
             <View>
               <TextNormal style={styles.requestingText}>
-                {currentPatient?.package_items.product_name}
+                {currentPatient?.package_item?.product_name}
               </TextNormal>
               <TextNormal style={styles.priceText}>
                 {formatMoney(currentPatient?.package_item?.price) + ' vnd'}
@@ -30,8 +30,8 @@ const PatientItemOrder = ({selectItem, avatar, currentPatient, timeSince}) => {
             </View>
           )}
         </View>
-        <View>
-          <TextSmallTwelve style={[styles.subtitleText, {marginTop: 3}]}>
+        <View style={{position: 'absolute', top: 5, right: 5}}>
+          <TextSmallTwelve style={[styles.subtitleText]}>
             {timeSince}
           </TextSmallTwelve>
         </View>
