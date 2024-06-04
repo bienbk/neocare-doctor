@@ -46,7 +46,7 @@ const PatientItemAll = ({selectItem, avatar, currentPatient, tags}) => {
               {currentPatient?.phone}
             </TextSmallTwelve>
           </View>
-          {birthday && birthday.length > 0 && currentPatient?.gender && (
+          {birthday && birthday.length > 0 && (
             <View>
               <TextSmallTwelve style={styles.subtitleText}>{`${
                 currentPatient?.gender === 1

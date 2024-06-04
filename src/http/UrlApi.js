@@ -20,7 +20,7 @@ export const UrlApi = {
   // ------------------ PATIENT ------------------------
   apiListPatient: PATH_NEOCARE_DOCTOR + 'orders/status/1',
   apiListEmergency: PATH_NEOCARE_DOCTOR + 'category/list',
-  apiGetPatientDetail: PATH_NEOCARE_DOCTOR + 'parameters/patient/list/',
+  apiGetPatientDetail: PATH_NEOCARE_DOCTOR + 'parameters/patient/list',
   apiListService: PATH_NEOCARE_DOCTOR + 'suh/patient/list',
   apiConfirmService: PATH_NEOCARE_DOCTOR + 'suh',
 
