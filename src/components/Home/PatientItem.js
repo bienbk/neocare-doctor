@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {View} from 'react-native';
-import {STATUS_COLORS, STATUS, avatar, mFomatter} from 'assets/constans';
+import {STATUS_COLORS, STATUS, mFomatter} from 'assets/constans';
 import CholesterolParameter from './CholesterolParameter';
 import BloodPressureParameter from './BloodPressureParameter';
 import Hba1cParameter from './Hba1cParameter';
@@ -26,19 +26,21 @@ const PatientItem = ({item = null, selectItem, tabActive, tags}) => {
   const [params, setParams] = useState([]);
   const [timeSince, setTimeSince] = useState('');
   useEffect(() => {
-    const {items, patient} = item;
-    setParams(items && items.length > 0 ? items : []);
-
-    item !== null &&
-      setCurrentPatient({
-        ...patient.patient,
-        ...patient,
-        ...items,
-        ...item,
-        order_id: tabActive === TAB_ORDER ? item.order_id : -1,
-        package_item:
-          tabActive === TAB_ORDER ? item?.package_item_orders[0] : {},
-      });
+    if (tabActive !== TAB_ALL) {
+      const {items, patient} = item;
+      setParams(items && items.length > 0 ? items : []);
+      item !== null &&
+        patient &&
+        setCurrentPatient({
+          ...patient.patient,
+          ...patient,
+          ...items,
+          ...item,
+          order_id: tabActive === TAB_ORDER ? item.order_id : -1,
+          package_item:
+            tabActive === TAB_ORDER ? item?.package_item_orders[0] : {},
+        });
+    }
   }, [item]);
   useEffect(() => {
     if (currentPatient !== -1) {
@@ -89,8 +91,8 @@ const PatientItem = ({item = null, selectItem, tabActive, tags}) => {
       {tabActive === TAB_SERVICE && (
         <PatientItemRequested
           currentPatient={currentPatient}
-          selectItem={selectItem}
-          avatar={avatar}
+          selectItem={() => selectItem(currentPatient)}
+          avatar={currentPatient?.avatar}
           timeSince={timeSince}
         />
       )}
@@ -101,24 +103,24 @@ const PatientItem = ({item = null, selectItem, tabActive, tags}) => {
           STATUS_COLORS={STATUS_COLORS}
           max_status={max_status}
           renderParameter={renderParameter}
-          selectItem={selectItem}
+          selectItem={() => selectItem(currentPatient)}
           timeSince={timeSince}
-          avatar={avatar}
+          avatar={currentPatient?.avatar}
         />
       )}
       {tabActive === TAB_ORDER && (
         <PatientItemOrder
           currentPatient={currentPatient}
-          selectItem={selectItem}
+          selectItem={() => selectItem(currentPatient)}
           timeSince={timeSince}
-          avatar={avatar}
+          avatar={currentPatient?.avatar}
         />
       )}
       {tabActive === TAB_ALL && (
         <PatientItemAll
-          currentPatient={currentPatient}
-          selectItem={selectItem}
-          avatar={avatar}
+          currentPatient={item}
+          selectItem={() => selectItem(item)}
+          avatar={item?.avatar}
           tags={tags}
         />
       )}

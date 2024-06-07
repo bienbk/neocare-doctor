@@ -1,11 +1,12 @@
 import React from 'react';
 import styles from './styles';
-import {avatar, patient_card} from 'assets/constans';
+import {patient_card} from 'assets/constans';
 import {ImageBackground, TouchableOpacity, View} from 'react-native';
 import Images from 'common/Images/Images';
 import {TextNormal, TextSemiBold, TextSmallTwelve} from 'common/Text/TextFont';
 import Colors from 'theme/Colors';
 import Icons from 'common/Icons/Icons';
+import Svg from 'common/Svg/Svg';
 
 const CardPatient = ({currentPatient, listTag}) => {
   return (
@@ -15,11 +16,14 @@ const CardPatient = ({currentPatient, listTag}) => {
       resizeMode={'stretch'}
       style={styles.containerCard}>
       <View style={[styles.wrapperProfilePatient]}>
-        <Images
-          resizeMode="contain"
-          style={styles.imageDoctor}
-          source={avatar}
-        />
+        {currentPatient?.avatar && currentPatient?.avatar.length > 0 ? (
+          <Images
+            source={{uri: currentPatient?.avatar}}
+            style={{height: 60, width: 60, borderRadius: 8}}
+          />
+        ) : (
+          <Svg name={'avatar_default'} size={60} />
+        )}
         {currentPatient && (
           <View style={styles.wrapperProfileContent}>
             <TextSemiBold style={styles.textPatientName}>
@@ -30,17 +34,13 @@ const CardPatient = ({currentPatient, listTag}) => {
                 currentPatient?.gender === 1 ? 'Nam' : 'Nữ'
               }`}</TextSmallTwelve>
               <View style={styles.verticalLine} />
-              <TextSmallTwelve>
-                {`${
-                  currentPatient.birthday
-                    ? currentPatient.birthday.substring(0, 11).split('-')[0]
-                    : '1999'
-                }`}
+              <TextSmallTwelve style={styles.subtitleText}>
+                {new Date(currentPatient.birthday).getFullYear() || ''}
               </TextSmallTwelve>
             </View>
             <TextNormal style={styles.subtitleText}>
               {currentPatient.phone
-                ? currentPatient.phone.replaceAll(' ', '')
+                ? currentPatient.phone.replaceAll('+84', '0')
                 : ''}
             </TextNormal>
 
@@ -49,7 +49,7 @@ const CardPatient = ({currentPatient, listTag}) => {
                 listTag.length > 0 &&
                 listTag.map(a => {
                   return (
-                    <View style={styles.groupPatient}>
+                    <View key={a.name} style={styles.groupPatient}>
                       <TextNormal
                         style={{color: Colors.whiteColor, fontWeight: 'bold'}}>
                         {a.name}

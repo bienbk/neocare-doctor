@@ -2,10 +2,9 @@ import React from 'react';
 import {TextSemiBold, TextSmallTwelve} from 'common/Text/TextFont';
 import {View, TouchableOpacity} from 'react-native';
 import styles from './styles';
-import Images from 'common/Images/Images';
+import Svg from 'common/Svg/Svg';
 const PatientItemEmergency = ({
   selectItem,
-  avatar,
   currentPatient,
   STATUS_COLORS,
   max_status,
@@ -16,11 +15,7 @@ const PatientItemEmergency = ({
   return (
     <TouchableOpacity onPress={selectItem} style={[styles.wrapperDoctorItem]}>
       <View style={[styles.wrapperProfileDoctor]}>
-        <Images
-          resizeMode="contain"
-          style={styles.imageDoctor}
-          source={avatar}
-        />
+        <Svg name={'avatar_default'} size={40} />
         <View style={styles.wrapperProfileContent}>
           <TextSemiBold style={styles.textPatientName}>
             {currentPatient?.last_name + ' ' + currentPatient?.first_name}

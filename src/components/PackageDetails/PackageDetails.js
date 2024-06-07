@@ -141,7 +141,7 @@ const PackageDetails = ({navigation, route}) => {
     }
   };
   const handleSaveInfo = () => {
-    console.log('currentPackage to save:::', currentPackage);
+    // console.log('currentPackage to save:::', currentPackage);
     const query = {
       customerId: currentPackage?.patient?.id,
       createdAt: new Date(),

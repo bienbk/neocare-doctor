@@ -1,20 +1,16 @@
 import React from 'react';
 import styles from './styles';
-import Images from 'common/Images/Images';
 import {TouchableOpacity, View} from 'react-native';
 import {TextNormal, TextSemiBold} from 'common/Text/TextFont';
 import {formatMoney} from 'assets/constans';
-import {TextSmallTwelve} from '../../common/Text/TextFont';
+import {TextSmallTwelve} from 'common/Text/TextFont';
+import Svg from 'common/Svg/Svg';
 
 const PatientItemOrder = ({selectItem, avatar, currentPatient, timeSince}) => {
   return (
     <TouchableOpacity onPress={selectItem} style={[styles.wrapperDoctorItem]}>
       <View style={[styles.wrapperProfileDoctor]}>
-        <Images
-          resizeMode="contain"
-          style={styles.imageDoctor}
-          source={avatar}
-        />
+        <Svg name={'avatar_default'} size={40} />
         <View style={styles.wrapperProfileContent}>
           <TextSemiBold style={styles.textPatientName}>
             {currentPatient?.last_name + ' ' + currentPatient?.first_name}

@@ -56,13 +56,14 @@ class PatientController {
   getPatientDetail = async params => {
     try {
       const {data} = await HttpClient.get(UrlApi.apiGetPatientDetail, {params});
-      console.log('GET PATIENT SUCCESS:::', data);
+
       const patient = {
         ...data.parameters_of_patients.patient,
-        parameters:
-          Array.from(data.parameters_of_patients.items, i => JSON.parse(i)) ||
-          [],
+        parameters: data.parameters_of_patients.items
+          ? Array.from(data.parameters_of_patients.items, i => JSON.parse(i))
+          : [],
       };
+      console.log('GET PATIENT SUCCESS data:::', patient);
       return {success: true, data: patient};
     } catch (error) {
       console.log('GET PATIENT DETAIL ERROR:::', error);
@@ -101,6 +102,18 @@ class PatientController {
       return {success: true, data: data};
     } catch (error) {
       console.log('ERROR LIST tag:::', error);
+      return {success: false};
+    }
+  };
+  listAllPatient = async query => {
+    try {
+      const {data} = await HttpClient.get(UrlApi.apiListMyPatient, {
+        params: query,
+      });
+      console.log('list all patient data:::', data);
+      return {success: true, data};
+    } catch (error) {
+      console.log('list all patient errror:::', error);
       return {success: false};
     }
   };

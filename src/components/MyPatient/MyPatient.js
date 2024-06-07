@@ -45,26 +45,28 @@ const MyPatient = ({navigation, route}) => {
   const listService = useSelector(state => serviceOfPatientSelector(state));
   useEffect(() => {
     initializePatient();
-  }, []);
+    return () => dispatch(resetGetPatientDetail());
+  }, [navigation]);
+  console.log(route.params);
+  const {patient, tags} = route?.params;
   const initializePatient = () => {
-    const {patient, tags} = route?.params;
     if (tags && tags.length > 0) {
       tags.map(t => {
-        if (t.customerId === patient?.patient.id) {
+        if (t.customerId === patient?.id) {
           setListTag(t.tags);
         }
       });
     }
     dispatch(
       getPatientDetailAction({
-        patientId: patient?.patient.id,
+        patientId: patient?.id,
         page: 1,
         size: 100,
       }),
     );
     dispatch(
       listServiceAction({
-        patientId: patient?.patient.id,
+        patientId: patient?.id,
         page: 1,
         size: 100,
       }),
@@ -73,7 +75,6 @@ const MyPatient = ({navigation, route}) => {
   useEffect(() => {
     if (statusGetPatient === Status.SUCCESS) {
       mapParameter();
-      dispatch(resetGetPatientDetail());
     }
   }, [statusGetPatient]);
   useEffect(() => {
@@ -90,12 +91,16 @@ const MyPatient = ({navigation, route}) => {
     dispatch(confirmPatientService({status: 2, id: item.id}));
   };
   const mapParameter = () => {
+    if (currentPatient?.parameters && currentPatient?.parameters.length <= 0) {
+      return;
+    }
     const tempMap = new Map(
       HOME_DATA.map(i => {
         return [i.code, i];
       }),
     );
-    currentPatient.parameters.map(p => {
+    let tempList = [];
+    [...currentPatient.parameters].map(p => {
       if (tempMap.has(p.name)) {
         const mapItem = tempMap.get(p.name);
         if (p.name === 'Blood Pressure') {
@@ -112,10 +117,10 @@ const MyPatient = ({navigation, route}) => {
         mapItem.created_at = p.date;
         mapItem.status = p.status;
         mapItem.unit = p.unit_name;
-        tempMap.set(p.name, mapItem);
+        tempList.push({...mapItem});
       }
     });
-    setListParams(Array.from(tempMap.values()).filter(i => i.status !== ''));
+    setListParams(tempList);
   };
   const renderCardItem = ({item, index}) => (
     <DiseaseItem
@@ -144,7 +149,12 @@ const MyPatient = ({navigation, route}) => {
         {/* CARD INFORMATION */}
         {currentPatient && (
           <View style={{backgroundColor: Colors.backgroundColor}}>
-            <CardPatient listTag={listTag} currentPatient={currentPatient} />
+            <CardPatient
+              listTag={listTag}
+              currentPatient={
+                currentPatient && currentPatient?.id ? currentPatient : patient
+              }
+            />
           </View>
         )}
         {/* Package */}

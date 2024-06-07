@@ -6,29 +6,32 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {
-  TextNormal,
-  TextSemiBold,
-  TextSmallMedium,
-  TextSmallEleven,
-} from 'common/Text/TextFont';
+import {TextNormal, TextSemiBold, TextSmallMedium} from 'common/Text/TextFont';
 import Colors from 'theme/Colors';
 import Images from 'common/Images/Images';
-import {user_example, widthDevice} from 'assets/constans';
-import {asyncStorage} from '../../store';
-import {heightDevice, home_header} from '../../assets/constans';
-import Svg from '../../common/Svg/Svg';
+import {widthDevice} from 'assets/constans';
+import {asyncStorage} from 'store';
+import {home_header} from 'assets/constans';
+import Svg from 'common/Svg/Svg';
 
-const HeaderTab = ({isSelected, onPressTab, requested, order, emergency}) => {
+const HeaderTab = ({
+  isSelected,
+  onPressTab,
+  requested,
+  order,
+  emergency,
+  allPatient,
+}) => {
   const [currentUser, setCurrentUser] = useState({last_name: ''});
   const [tabs, setTabs] = useState([]);
   useEffect(() => {
     initUser();
   }, []);
   useEffect(() => {
+    console.log('allPatient::', allPatient);
     setTimeout(() => {
       const TABS = [
-        {id: 3, name: 'Tất cả', nums: order + requested + emergency},
+        {id: 3, name: 'Khách hàng của tôi', nums: allPatient},
         {id: 0, name: 'Khẩn cấp', nums: emergency},
         {id: 1, name: 'Yêu cầu tư vấn', nums: requested},
         {id: 2, name: 'Chờ mua gói', nums: order},

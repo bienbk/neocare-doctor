@@ -49,3 +49,10 @@ export const resetListService = () => ({
 export const getTagAction = () => ({
   type: NEOCARE.GET_TAG_REQUEST,
 });
+export const listAllPatient = payload => ({
+  type: NEOCARE.LIST_ALL_PATIENT_REQUEST,
+  payload,
+});
+export const resetListAllPatient = () => ({
+  type: NEOCARE.LIST_ALL_PATIENT_RESET,
+});

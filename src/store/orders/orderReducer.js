@@ -51,7 +51,7 @@ export default (state = initializeState, {type, payload}) => {
         statusSetupInfor: Status.ERROR,
         messageSetupInfor: payload,
       };
-    case NEOCARE.CONFIRM_ORDER_RESET:
+    case NEOCARE.SETUP_ORDER_INFOR_RESET:
       return {
         ...state,
         statusSetupInfor: Status.DEFAULT,

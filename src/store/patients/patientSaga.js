@@ -138,9 +138,29 @@ function* getTagSaga() {
     });
   }
 }
+function* listAllPatientSaga({payload}) {
+  try {
+    const result = yield call(PatientController.listAllPatient, payload);
+    if (result && result?.success) {
+      yield put({
+        type: NEOCARE.LIST_ALL_PATIENT_SUCCESS,
+        payload: result?.data || [],
+      });
+    } else {
+      yield put({
+        type: NEOCARE.LIST_ALL_PATIENT_ERROR,
+      });
+    }
+  } catch (error) {
+    yield put({
+      type: NEOCARE.LIST_ALL_PATIENT_ERROR,
+    });
+  }
+}
 
 export default function* watcherSaga() {
   yield takeLatest(NEOCARE.GET_TAG_REQUEST, getTagSaga);
+  yield takeLatest(NEOCARE.LIST_ALL_PATIENT_REQUEST, listAllPatientSaga);
   yield takeLatest(NEOCARE.LIST_PATIENT_REQUEST, listPatientSaga);
   yield takeLatest(NEOCARE.LIST_EMERGENCY_REQUEST, listEmergencySaga);
   yield takeLatest(NEOCARE.LIST_REQUESTED_REQUEST, listRequestedSaga);

@@ -70,7 +70,7 @@ const StoreSelection = ({nextStep, data, title, subTitle}) => {
   useEffect(() => {
     setTimeout(() => {
       Animated.timing(cardAnimatedY, {
-        duration: 1000,
+        duration: 300,
         toValue: 0,
         useNativeDriver: true,
       }).start();

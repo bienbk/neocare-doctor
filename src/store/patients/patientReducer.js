@@ -12,6 +12,9 @@ const initializeState = {
   listRequested: [],
   statusListRequested: Status.DEFAULT,
 
+  listAllPatient: [],
+  statusListAll: Status.DEFAULT,
+
   // PATIENT DETAIL
   currentPatient: {},
   statusGetPatientDetail: Status.DEFAULT,
@@ -29,6 +32,29 @@ const initializeState = {
 
 export default (state = initializeState, {type, payload}) => {
   switch (type) {
+    // ----------------- LIST ALL PATIENT -----------------------
+    case NEOCARE.LIST_ALL_PATIENT_REQUEST:
+      return {
+        ...state,
+        statusListAll: Status.LOADING,
+      };
+    case NEOCARE.LIST_ALL_PATIENT_SUCCESS:
+      return {
+        ...state,
+        statusListAll: Status.SUCCESS,
+        listAllPatient: payload,
+      };
+    case NEOCARE.LIST_ALL_PATIENT_ERROR:
+      return {
+        ...state,
+        statusListAll: Status.ERROR,
+        listAllPatient: [],
+      };
+    case NEOCARE.LIST_ALL_PATIENT_RESET:
+      return {
+        ...state,
+        statusListAll: Status.DEFAULT,
+      };
     // ----------------- LIST TAG -----------------------
     case NEOCARE.GET_TAG_REQUEST:
       return {
@@ -117,6 +143,7 @@ export default (state = initializeState, {type, payload}) => {
       return {
         ...state,
         statusGetPatientDetail: Status.DEFAULT,
+        currentPatient: {},
       };
     // ----------------- LIST EMRGENCY -----------------------
     case NEOCARE.LIST_EMERGENCY_REQUEST:

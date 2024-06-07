@@ -118,7 +118,7 @@ export const HOME_DATA = [
     status: '',
     code: 'Weight',
     created_at: '27/02/2024, 10:02',
-    value: '78',
+    value: '---',
     unit: 'kg',
     label: 'Thêm chỉ số đo',
   },
