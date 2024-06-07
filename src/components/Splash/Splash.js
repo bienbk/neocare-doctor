@@ -3,13 +3,12 @@ import {View, SafeAreaView} from 'react-native';
 import styles from './styles';
 import {useDispatch, useSelector} from 'react-redux';
 import {getStatusGetUserInfo} from 'store/selectors';
-import {TextHighLightBold} from 'common/Text/TextFont';
 import {NAVIGATION_LOGIN, NAVIGATION_MAIN} from 'navigation/routes';
 import {getUserInfoAction} from 'store/user/userAction';
 import SuperTokens from 'supertokens-react-native';
 import {CommonActions} from '@react-navigation/native';
-import Colors from '../../theme/Colors';
-import Svg from '../../common/Svg/Svg';
+import Colors from 'theme/Colors';
+import Svg from 'common/Svg/Svg';
 
 const Splash = ({navigation}) => {
   const dispatch = useDispatch();
@@ -38,20 +37,6 @@ const Splash = ({navigation}) => {
         );
       !hasToken && navigation && navigation.navigate(NAVIGATION_LOGIN);
     }, 1000);
-
-    // navigation.dispatch(
-    //   CommonActions.reset({
-    //     index: 0,
-    //     routes: [{name: NAVIGATION_MAIN}],
-    //   }),
-    // );
-
-    // navigation.dispatch(
-    //   CommonActions.reset({
-    //     index: 0,
-    //     routes: [{name: NAVIGATION_LOGIN}],
-    //   }),
-    // );
   };
   return (
     <SafeAreaView style={styles.container}>

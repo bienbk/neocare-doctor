@@ -1,4 +1,3 @@
-/* eslint-disable curly */
 import React, {useEffect, useState} from 'react';
 import {
   FlatList,
@@ -51,7 +50,7 @@ import {getTagAction} from 'store/patients/patientAction';
 const Home = ({navigation}) => {
   const [tabActive, setTabActive] = useState(3);
   const dispatch = useDispatch();
-  const [refreshing, setRefreshing] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
   const listPatient = useSelector(state => listPatientSelector(state));
   const listEmergency = useSelector(state => listEmergencySelector(state));
   const statusEmergency = useSelector(state => statusListEmergency(state));
@@ -210,7 +209,7 @@ const Home = ({navigation}) => {
         {refreshing && (
           <View style={{flex: 1, marginTop: 10}}>
             {[...Array(4).keys()].map(i => (
-              <Skeleton key={i} item={listPatient[0]} />
+              <Skeleton key={i} />
             ))}
           </View>
         )}

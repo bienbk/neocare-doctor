@@ -44,7 +44,7 @@ const PatientItem = ({item = null, selectItem, tabActive, tags}) => {
   }, [item]);
   useEffect(() => {
     if (currentPatient !== -1) {
-      console.log('current patient::', currentPatient);
+      // console.log('current patient::', currentPatient);
       checkTimeRequest();
     }
   }, [currentPatient]);

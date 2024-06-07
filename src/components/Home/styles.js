@@ -4,7 +4,7 @@ import Colors from 'theme/Colors';
 
 const styles = StyleSheet.create({
   tagLabel: {
-    marginHorizontal: 5,
+    marginRight: 5,
     paddingHorizontal: 8,
     borderRadius: 4,
     paddingVertical: 4,

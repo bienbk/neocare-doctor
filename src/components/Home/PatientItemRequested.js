@@ -14,13 +14,11 @@ const PatientItemRequested = ({currentPatient, selectItem, timeSince}) => {
             {currentPatient?.last_name + ' ' + currentPatient?.first_name}
           </TextSemiBold>
           <View>
-            <TextSmallTwelve style={styles.subtitleText}>{`${
-              currentPatient?.gender === 1 ? 'Nam' : 'Nữ'
-            } ${
-              currentPatient?.birthday
-                ? ' | ' + new Date(currentPatient?.birthday).getFullYear()
-                : ''
-            }`}</TextSmallTwelve>
+            <TextSmallTwelve style={styles.subtitleText}>
+              {currentPatient?.phone
+                ? currentPatient?.phone.replace('+84', '0')
+                : ''}
+            </TextSmallTwelve>
           </View>
         </View>
         <TextSmallTwelve style={[styles.subtitleText, {marginTop: 3}]}>

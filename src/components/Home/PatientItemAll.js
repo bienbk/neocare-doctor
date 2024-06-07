@@ -4,7 +4,7 @@ import {TouchableOpacity, View} from 'react-native';
 import {TextNormal, TextSemiBold, TextSmallTwelve} from 'common/Text/TextFont';
 import {mFomatter} from 'assets/constans';
 import Svg from 'common/Svg/Svg';
-import Images from '../../common/Images/Images';
+import Images from 'common/Images/Images';
 
 const PatientItemAll = ({selectItem, avatar, currentPatient, tags}) => {
   const [showTag, setShowTag] = useState({val: false, items: []});
@@ -27,7 +27,7 @@ const PatientItemAll = ({selectItem, avatar, currentPatient, tags}) => {
       const {seconds} = currentPatient?.birthday;
       const tempYear = mFomatter.unix(seconds).format('YYYY');
       setBirthday(tempYear);
-      console.log(currentPatient);
+      // console.log(currentPatient);
     }
   }, [currentPatient]);
   return (

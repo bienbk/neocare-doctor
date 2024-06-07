@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
   FlatList,
   ImageBackground,
@@ -22,45 +22,40 @@ const HeaderTab = ({
   emergency,
   allPatient,
 }) => {
-  const [currentUser, setCurrentUser] = useState({last_name: ''});
-  const [tabs, setTabs] = useState([]);
+  const currentUser = useRef({first_name: ''});
+  let tabs = [
+    {id: 3, name: 'Khách hàng của tôi', nums: allPatient},
+    {id: 0, name: 'Khẩn cấp', nums: emergency},
+    {id: 1, name: 'Yêu cầu tư vấn', nums: requested},
+    {id: 2, name: 'Chờ mua gói', nums: order},
+  ];
   useEffect(() => {
     initUser();
+    console.log(tabs);
   }, []);
-  useEffect(() => {
-    console.log('allPatient::', allPatient);
-    setTimeout(() => {
-      const TABS = [
-        {id: 3, name: 'Khách hàng của tôi', nums: allPatient},
-        {id: 0, name: 'Khẩn cấp', nums: emergency},
-        {id: 1, name: 'Yêu cầu tư vấn', nums: requested},
-        {id: 2, name: 'Chờ mua gói', nums: order},
-      ];
-      setTabs(TABS);
-    }, 200);
-  }, [requested, order, emergency]);
 
   const initUser = async () => {
     const user = await asyncStorage.getUser();
     if (user) {
-      console.log(user);
-      setCurrentUser(user);
+      currentUser.current = user;
     }
   };
   return (
     <View>
       <ImageBackground
         source={home_header}
-        imageStyle={{height: 90, marginBottom: 10}}
         resizeMode={'stretch'}
-        style={{marginBottom: 15}}>
+        style={{height: 90}}>
         <View style={styles.wrapperFixedHeader}>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
-            {currentUser?.avatar && currentUser?.avatar.length > 0 ? (
-              <Images
-                source={{uri: currentUser?.avatar}}
-                style={styles.avatarIcon}
-              />
+            {currentUser.current?.avatar &&
+            currentUser.current?.avatar.length > 0 ? (
+              <View style={styles.avatarIcon}>
+                <Images
+                  source={{uri: currentUser.current?.avatar}}
+                  style={styles.avatar}
+                />
+              </View>
             ) : (
               <View style={styles.avatarIcon}>
                 <Svg name={'avatar_default'} size={45} />
@@ -70,7 +65,7 @@ const HeaderTab = ({
               <TextSemiBold style={{color: Colors.whiteColor}}>
                 {'Xin chào '}
                 <TextSemiBold style={{color: Colors.whiteColor}}>
-                  {currentUser.first_name || 'bạn'}
+                  {currentUser.current.first_name || 'bạn'}
                 </TextSemiBold>
               </TextSemiBold>
             </View>
@@ -80,10 +75,10 @@ const HeaderTab = ({
       </ImageBackground>
       <FlatList
         data={tabs}
-        contentContainerStyle={{marginTop: 15}}
+        contentContainerStyle={{marginTop: 15, marginBottom: 5}}
         horizontal
         showsHorizontalScrollIndicator={false}
-        renderItem={({item, index}) => (
+        renderItem={({item, _}) => (
           <TouchableOpacity
             onPress={() => onPressTab(item.id)}
             style={[
@@ -134,15 +129,23 @@ const styles = StyleSheet.create({
     width: widthDevice,
   },
   avatarIcon: {
-    height: 45,
-    width: 45,
-    borderRadius: 20,
+    height: 47,
+    width: 47,
+    borderRadius: 30,
     borderColor: Colors.primary,
     borderWidth: 1,
     justifyContent: 'center',
     alignItems: 'center',
     borderStyle: 'solid',
     // backgroundColor: 'lightgray',
+  },
+  avatar: {
+    height: 45,
+    width: 45,
+    borderRadius: 30,
+    // borderStyle: 'dotted',
+    // borderColor: Colors.primary,
+    // borderWidth: 1,
   },
   badgeIcon: {
     height: 20,
@@ -163,8 +166,8 @@ const styles = StyleSheet.create({
   },
   wrapperTabItem: {
     paddingHorizontal: 10,
-    paddingVertical: 6,
     minWidth: widthDevice / 3.9,
+    height: 34,
     marginHorizontal: 5,
     justifyContent: 'center',
     alignContent: 'center',

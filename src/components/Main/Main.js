@@ -1,10 +1,11 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import * as Screens from 'components';
 import {NAVIGATION_HOME} from 'navigation/routes';
 import {StyleSheet, View} from 'react-native';
 import Colors from 'theme/Colors';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+// import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import Svg from 'common/Svg/Svg';
 import {TextSmallEleven} from 'common/Text/TextFont';
@@ -12,16 +13,16 @@ import strings from 'localization/Localization';
 import {NAVIGATION_ACCOUNT, NAVIGATION_DOCTOR_DETAIL} from 'navigation/routes';
 import {widthDevice} from 'assets/constans';
 const Tab = createBottomTabNavigator();
-const Stack = createNativeStackNavigator();
+// const Stack = createNativeStackNavigator();
 
-const StackAccount = () => {
-  return (
-    <Stack.Navigator
-      screenOptions={{header: () => null}}
-      initialRouteName={NAVIGATION_DOCTOR_DETAIL}
-    />
-  );
-};
+// const StackAccount = () => {
+//   return (
+//     <Stack.Navigator
+//       screenOptions={{header: () => null}}
+//       initialRouteName={NAVIGATION_DOCTOR_DETAIL}
+//     />
+//   );
+// };
 
 // icon_giohang1
 const Main = () => {
@@ -34,7 +35,6 @@ const Main = () => {
     headerShown: false,
     tabBarStyle: {height: 75 + insets.bottom / 2},
   });
-  // const currentUserLanguage = useSelector(state => getCurrentLanguage(state));
   const renderItemTab = ({focused}, route) => {
     const icons = {
       [NAVIGATION_HOME]: 'icon_heart_main',
@@ -45,10 +45,6 @@ const Main = () => {
       switch (router) {
         case NAVIGATION_HOME:
           return 'Trang chủ';
-        // case NAVIGATION_MY_PATIENT:
-        //   return 'Tư Vấn';
-        // case 'NAVIGATION_PRESCRIPTION':
-        //   return 'Chỉ định';
         case NAVIGATION_ACCOUNT:
           return strings.common.user;
         default:

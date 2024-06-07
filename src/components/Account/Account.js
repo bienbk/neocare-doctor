@@ -1,11 +1,5 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {
-  View,
-  SafeAreaView,
-  FlatList,
-  Animated,
-  TouchableOpacity,
-} from 'react-native';
+import React, {useEffect, useRef} from 'react';
+import {View, SafeAreaView, FlatList, Animated} from 'react-native';
 
 import {NAVIGATION_LOGIN} from 'navigation/routes';
 import styles from './styles';
@@ -19,17 +13,17 @@ import {
   TextSemiBold,
   TextSmallMedium,
 } from 'common/Text/TextFont';
-import {TextNormalSemiBold} from '../../common/Text/TextFont';
-import Images from '../../common/Images/Images';
-import {qr_code} from '../../assets/constans';
+import {TextNormalSemiBold} from 'common/Text/TextFont';
+import Images from 'common/Images/Images';
+import {qr_code} from 'assets/constans';
 import {asyncStorage} from 'store';
 import {CommonActions} from '@react-navigation/native';
 import SuperTokens from 'supertokens-react-native';
-import {NAVIGATION_VERIFY_CODE} from '../../navigation/routes';
+import {NAVIGATION_VERIFY_CODE} from 'navigation/routes';
 import {useDispatch, useSelector} from 'react-redux';
-import {sendPhone} from '../../store/auth/authAction';
-import {isStatusSendPhone} from '../../store/auth/authSelector';
-import Status from '../../common/Status/Status';
+import {sendPhone} from 'store/auth/authAction';
+import {isStatusSendPhone} from 'store/auth/authSelector';
+import Status from 'common/Status/Status';
 
 const IMAGE_HEIGHT = heightDevice * 0.336;
 
@@ -40,13 +34,6 @@ const Account = ({navigation}) => {
   const statusSendPhone = useSelector(state => isStatusSendPhone(state));
   const imageAnimation = {
     transform: [
-      // {
-      //   translateY: positionY.interpolate({
-      //     inputRange: [0, IMAGE_HEIGHT],
-      //     outputRange: [0, -IMAGE_HEIGHT / 3],
-      //     extrapolate: 'clamp',
-      //   }),
-      // },
       {
         scaleY: positionY.interpolate({
           inputRange: [0, IMAGE_HEIGHT],

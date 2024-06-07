@@ -10,7 +10,7 @@ import {StyleSheet, View, Platform} from 'react-native';
 import Icons from 'common/Icons/Icons';
 // import styles from './styles';
 import Colors from 'theme/Colors';
-import {STATUS, STATUS_COLORS, widthDevice} from 'assets/constans';
+import {STATUS, STATUS_COLORS, widthDevice, mFomatter} from 'assets/constans';
 // import Colors from 'theme/Colors';
 
 const DiseaseItem = ({
@@ -51,7 +51,7 @@ const DiseaseItem = ({
           </View>
         )}
         <TextSmallTwelve style={styles.timeText}>
-          {new Date(created_at).toLocaleString('en-GB')}
+          {mFomatter(created_at).fromNow()}
         </TextSmallTwelve>
       </View>
       <View style={styles.wrapperValue}>

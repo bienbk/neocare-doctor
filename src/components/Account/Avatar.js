@@ -92,6 +92,7 @@ const styles = StyleSheet.create({
   content: {
     borderWidth: 1,
     borderColor: '#FFC51B',
+    borderStyle: 'solid',
     width: 92,
     height: 92,
     marginTop: 10,
