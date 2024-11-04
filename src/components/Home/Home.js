@@ -122,6 +122,9 @@ const Home = ({navigation}) => {
     sendOneSignal();
   }, []);
   useEffect(() => {
+    fetchPatientData();
+  }, []);
+  useEffect(() => {
     if (refreshing) {
       fetchPatientData();
       setTimeout(() => {

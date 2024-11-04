@@ -60,6 +60,7 @@ function* confirmDeleteAccountSaga({payload}) {
 function* getUserInfoSaga() {
   try {
     const result = yield call(UserController.getUserInfo);
+    console.log('userInfoSaga:', result);
     if (result.success === true) {
       asyncStorage.setUser(result.data);
       yield put({
